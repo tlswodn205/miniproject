@@ -60,7 +60,7 @@ create table person_skill(
 create table resume(
   resume_id INT primary KEY auto_increment,
   person_id INT,
-  photo LONGTEXT,
+  photo blob,
   introduction LONGTEXT,
   my_cloud LONGTEXT,
   created_at TIMESTAMP
