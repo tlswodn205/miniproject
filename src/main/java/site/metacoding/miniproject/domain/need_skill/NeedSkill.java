@@ -13,4 +13,3 @@ public class NeedSkill {
 	private String skill;
 	private Timestamp createdAt;
 }
-

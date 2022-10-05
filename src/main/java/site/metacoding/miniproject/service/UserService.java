@@ -11,7 +11,5 @@ import site.metacoding.miniproject.domain.user.UserDao;
 public class UserService {
 	private final UserDao userDao;
 
-	public void 회원가입(User user) {
-		userDao.insert(user);
-	}
+	
 }

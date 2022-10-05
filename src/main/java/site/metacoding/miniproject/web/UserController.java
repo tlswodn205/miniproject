@@ -11,8 +11,4 @@ import site.metacoding.miniproject.service.UserService;
 public class UserController {
 	private final UserService userService;
 
-	@GetMapping("/user/join")
-	public String join() {
-		return "/user/userJoinForm";
-	}
 }

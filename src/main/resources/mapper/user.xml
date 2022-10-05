@@ -13,6 +13,12 @@
     WHERE user_id = #{userId}
   </select>
 
+  <select id="findByUsername" resultType="site.metacoding.miniproject.domain.user.User">
+    SELECT *
+    FROM user
+    WHERE username = #{username}
+  </select>
+
   <insert id="insert">
     INSERT INTO user(username, password, role, created_at )
     VALUE(#{username}, #{password}, #{role}, now())

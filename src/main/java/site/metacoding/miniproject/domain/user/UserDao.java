@@ -12,4 +12,6 @@ public interface UserDao {
 	public void update(User user); // dto생각
 
 	public void deleteById(Integer userId);
+
+	public User findByUsername(String username);
 }

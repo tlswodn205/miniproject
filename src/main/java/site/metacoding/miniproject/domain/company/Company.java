@@ -18,9 +18,8 @@ public class Company {
 	private Integer history;
 	private String introduction;
 	private String photo;
-	private String corporationGoal;
-	private String corporationMind;
-	private String CEO_name;
+	private String companyGoal;
+	private String companyMind;
+	private String ceoName;
 	private Timestamp createdAt;
 }
-

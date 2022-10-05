@@ -11,41 +11,42 @@ GRANT ALL PRIVILEGES ON greendb.* TO 'green'@'%';
 ```sql
 USE greendb;
 
+
 create table user(
-	user_id INT primary KEY auto_increment,
-	username VARCHAR(20),
-	password VARCHAR(20),
-	role VARCHAR(10),
-	created_at TIMESTAMP
+   user_id INT primary KEY auto_increment,
+   username VARCHAR(20),
+   password VARCHAR(20),
+   role VARCHAR(10),
+   created_at TIMESTAMP
 );
 
 
 create table recommend(
-	recommend_id INT primary KEY auto_increment,
-	subject_id INT,
-	subject_id INT,
-	content longtext,
-	created_at TIMESTAMP
+   recommend_id INT primary KEY auto_increment,
+   subject_id INT,
+   subject_id INT,
+   content longtext,
+   created_at TIMESTAMP
 );
 
 create table subscribe(
-	subscribe_id INT primary KEY auto_increment,
-	user_id INT,
-	subject_id INT, 
-	created_at TIMESTAMP
+   subscribe_id INT primary KEY auto_increment,
+   user_id INT,
+   subject_id INT, 
+   created_at TIMESTAMP
 );
 
 create TABLE person(
-	person_id INT primary KEY AUTO_INCREMENT,
-	user_id INT,
-	person_name VARCHAR(20),
-	person_email VARCHAR(50),
-	person_phone VARCHAR(20),
-	is_gender BOOLEAN,
-	address VARCHAR(50),
-	degree VARCHAR(20),
-	career INT,
-	created_at TIMESTAMP
+   person_id INT primary KEY AUTO_INCREMENT,
+   user_id INT,
+   person_name VARCHAR(20),
+   person_email VARCHAR(50),
+   person_phone VARCHAR(20),
+   is_gender BOOLEAN,
+   address VARCHAR(50),
+   degree VARCHAR(20),
+   career INT,
+   created_at TIMESTAMP
 );
 
 
@@ -67,39 +68,44 @@ create table resume(
 
 
 create table company (
-	company_id INT primary KEY auto_increment,
-	user_id INT,
-	company_name VARCHAR(20),
-	company_email VARCHAR(50),
-	company_phone VARCHAR(20),
-	tech VARCHAR(20),
-	address LONGTEXT,
-	history INT,
-	introduction LONGTEXT,
-	photo LONGTEXT,
-	corporation_goal LONGTEXT,
-	corporation_mind LONGTEXT,
-	ceo_name VARCHAR(20),
-	created_at TIMESTAMP
+   company_id INT primary KEY auto_increment,
+   user_id INT,
+   company_name VARCHAR(20),
+   company_email VARCHAR(50),
+   company_phone VARCHAR(20),
+   tech VARCHAR(20),
+   address LONGTEXT,
+   history INT,
+   introduction LONGTEXT,
+   photo LONGTEXT,
+   company_goal LONGTEXT,
+   company_mind LONGTEXT,
+   ceo_name VARCHAR(20),
+   created_at TIMESTAMP
 );
 
 create table notice(
-	notice_id INT primary KEY auto_increment,
-	company_id INT,
-	job VARCHAR(20),
-	salary VARCHAR(20),
-	degree VARCHAR(20),
-	created_at TIMESTAMP
+   notice_id INT primary KEY auto_increment,
+   company_id INT,
+   job VARCHAR(20),
+   salary VARCHAR(20),
+   degree VARCHAR(20),
+   created_at TIMESTAMP
 );
 
 create table need_skill(
-	need_skill_id INT primary KEY auto_increment,
-	notice_id INT,
-	skill VARCHAR(20),
-	created_at TIMESTAMP
+   need_skill_id INT primary KEY auto_increment,
+   notice_id INT,
+   skill VARCHAR(20),
+   created_at TIMESTAMP
 );
 
-
+create table submit_resume(
+  submit_resume_id int primary KEY auto_increment,
+  resume_id INT,
+  company_id INT,
+  created_at TIMESTAMP
+);
 
 ```
 

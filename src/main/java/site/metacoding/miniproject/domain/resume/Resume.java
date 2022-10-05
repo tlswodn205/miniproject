@@ -1,5 +1,6 @@
 package site.metacoding.miniproject.domain.resume;
 
+
 import java.sql.Timestamp;
 
 import lombok.Getter;

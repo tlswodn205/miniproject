@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import lombok.Getter;
 
 import lombok.NoArgsConstructor;
-
 @NoArgsConstructor
 @Getter
 public class User {

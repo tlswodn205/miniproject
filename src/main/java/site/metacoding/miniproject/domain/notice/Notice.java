@@ -1,6 +1,5 @@
 package site.metacoding.miniproject.domain.notice;
 
-
 import java.sql.Timestamp;
 
 import lombok.Getter;
@@ -13,6 +12,5 @@ public class Notice {
 	private Integer companyId;
 	private String job;
 	private Integer salary;
-	private Integer degree;
 	private Timestamp createdAt;
 }

@@ -1,6 +1,5 @@
 package site.metacoding.miniproject.domain.company;
 
-
 import java.util.List;
 
 public interface CompanyDao {

@@ -18,4 +18,3 @@ public class Person {
 	private Integer career;
 	private Timestamp createdAt;
 }
-

@@ -14,8 +14,8 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO company(user_Id, company_Name, company_Email, company_Phone, tech, address, history, introduction, created_At)
-    VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone}, #{tech}, #{address}, #{history}, #{introduction}, now())
+    INSERT INTO company(user_Id, company_Name, company_Email, company_Phone, tech, address, ceoName, created_At)
+    VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone}, #{tech}, #{address}, #{ceoName}, now())
   </insert>
 
   <delete id="deleteById">
@@ -25,7 +25,7 @@
 
   <update id="update">
     Update company
-    SET company_name = #{companyName}, company_email = #{companyEmail}, company_phone = #{companyPhone}, tech = #{tech}, address = #{address}, history = #{history}, introduction = #{introduction}
+    SET company_name = #{companyName}, company_email = #{companyEmail}, company_phone = #{companyPhone}, tech = #{tech}, address = #{address}, ceoName = #{ceoName}
     WHERE company_id = #{companyId}
   </update>
 
