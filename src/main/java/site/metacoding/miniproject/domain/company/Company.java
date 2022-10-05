@@ -22,4 +22,16 @@ public class Company {
 	private String companyMind;
 	private String ceoName;
 	private Timestamp createdAt;
+	
+	public Company(Integer userId, String companyName, String companyEmail, String companyPhone, String tech,
+			String address, String ceoName) {
+		super();
+		this.userId = userId;
+		this.companyName = companyName;
+		this.companyEmail = companyEmail;
+		this.companyPhone = companyPhone;
+		this.tech = tech;
+		this.address = address;
+		this.ceoName = ceoName;
+	}
 }

@@ -17,4 +17,19 @@ public class Person {
 	private String degree;
 	private Integer career;
 	private Timestamp createdAt;
+	
+	
+	public Person(Integer userId, String personName, String personEmail, boolean isGender, String address,
+			String degree, Integer career) {
+		super();
+		this.userId = userId;
+		this.personName = personName;
+		this.personEmail = personEmail;
+		this.isGender = isGender;
+		this.address = address;
+		this.degree = degree;
+		this.career = career;
+	}
+	
+	
 }

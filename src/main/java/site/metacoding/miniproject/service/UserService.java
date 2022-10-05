@@ -23,4 +23,11 @@ public class UserService {
 		}
 		return null;
 	}
+
+	
+	public User 유저네임으로유저찾기(String Username) {
+		User userPS = userDao.findByUsername(Username);
+		return userPS; 
+	}
+
 }
