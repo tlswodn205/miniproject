@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
-import site.metacoding.miniproject.web.dto.LoginDto;
+import site.metacoding.miniproject.web.dto.request.LoginDto;
 
 @RequiredArgsConstructor
 @Service
@@ -24,10 +24,9 @@ public class UserService {
 		return null;
 	}
 
-	
 	public User 유저네임으로유저찾기(String Username) {
 		User userPS = userDao.findByUsername(Username);
-		return userPS; 
+		return userPS;
 	}
 
 }

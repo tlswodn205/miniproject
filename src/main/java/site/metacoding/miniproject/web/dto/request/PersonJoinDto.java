@@ -1,4 +1,4 @@
-package site.metacoding.miniproject.web.dto;
+package site.metacoding.miniproject.web.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,12 +17,13 @@ public class PersonJoinDto {
 	private String address;
 	private String degree;
 	private Integer career;
-	
+
 	public User toUser() {
 		return new User(this.username, this.password, this.role);
 	}
-	
+
 	public Person toPerson(int userId) {
-		return new Person(userId, this.personName, this.personEmail, this.isGender, this.address, this.degree, this.career);
+		return new Person(userId, this.personName, this.personEmail, this.isGender, this.address, this.degree,
+				this.career);
 	}
 }

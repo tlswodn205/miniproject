@@ -1,4 +1,4 @@
-package site.metacoding.miniproject.web.dto;
+package site.metacoding.miniproject.web.dto.request;
 
 import lombok.Getter;
 import site.metacoding.miniproject.domain.company.Company;
@@ -16,13 +16,12 @@ public class CompanyJoinDto {
 	private String tech;
 	private String address;
 	private String ceoName;
-	
 
 	public User toUser() {
 		return new User(this.username, this.password, this.role);
 	}
-	
-	public Company toCompany(Integer userId){
+
+	public Company toCompany(Integer userId) {
 		return new Company(userId, this.companyName, this.companyEmail, this.companyPhone, this.tech,
 				this.address, this.ceoName);
 	}

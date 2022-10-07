@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
-import site.metacoding.miniproject.web.dto.CompanyJoinDto;
+import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 
 @RequiredArgsConstructor
 @Service
@@ -14,10 +14,10 @@ public class CompanyService {
 
 	private final CompanyDao companyDao;
 	private final UserDao userDao;
-	
+
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
-		User userPS = userDao.findByUsername(companyJoinDto.getUsername());		
-		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId())); 
+		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
+		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
 }

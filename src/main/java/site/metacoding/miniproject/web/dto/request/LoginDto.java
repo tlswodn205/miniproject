@@ -1,4 +1,4 @@
-package site.metacoding.miniproject.web.dto;
+package site.metacoding.miniproject.web.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,4 +9,3 @@ public class LoginDto {
     private String username;
     private String password;
 }
-

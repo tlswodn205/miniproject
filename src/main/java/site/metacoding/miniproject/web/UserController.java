@@ -3,7 +3,6 @@ package site.metacoding.miniproject.web;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.UserService;
-import site.metacoding.miniproject.web.dto.CMRespDto;
-import site.metacoding.miniproject.web.dto.LoginDto;
+import site.metacoding.miniproject.web.dto.request.LoginDto;
+import site.metacoding.miniproject.web.dto.response.CMRespDto;
 
 @RequiredArgsConstructor
 @Controller
