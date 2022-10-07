@@ -19,7 +19,6 @@ public class Company {
 	private String introduction;
 	private String photo;
 	private String companyGoal;
-	private String companyMind;
 	private String ceoName;
 	private Timestamp createdAt;
 	

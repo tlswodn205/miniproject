@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class Resume {
 	private Integer resumeId;
 	private Integer personId;
+	private String resumeTitle;
 	private String photo;
 	private String introduction;
 	private String myCloud;

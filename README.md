@@ -12,6 +12,7 @@ GRANT ALL PRIVILEGES ON greendb.* TO 'green'@'%';
 USE greendb;
 
 
+
 create table user(
    user_id INT primary KEY auto_increment,
    username VARCHAR(20),
@@ -24,7 +25,7 @@ create table user(
 create table recommend(
    recommend_id INT primary KEY auto_increment,
    subject_id INT,
-   subject_id INT,
+   isRecommand BOOLEAN,
    content longtext,
    created_at TIMESTAMP
 );
@@ -60,6 +61,7 @@ create table person_skill(
 create table resume(
   resume_id INT primary KEY auto_increment,
   person_id INT,
+  resume_title VARCHAR(20),
   photo blob,
   introduction LONGTEXT,
   my_cloud LONGTEXT,
@@ -79,7 +81,6 @@ create table company (
    introduction LONGTEXT,
    photo LONGTEXT,
    company_goal LONGTEXT,
-   company_mind LONGTEXT,
    ceo_name VARCHAR(20),
    created_at TIMESTAMP
 );
@@ -87,6 +88,7 @@ create table company (
 create table notice(
    notice_id INT primary KEY auto_increment,
    company_id INT,
+   notice_title VARCHAR(20),
    job VARCHAR(20),
    salary VARCHAR(20),
    degree VARCHAR(20),

@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class Notice {
 	private Integer noticeId;
 	private Integer companyId;
+	private String noticeTitle;
 	private String job;
 	private Integer salary;
 	private Timestamp createdAt;
