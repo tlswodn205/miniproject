@@ -30,8 +30,4 @@ public class PersonController {
 		return new CMRespDto<>(1, "회원가입 성공", null);
 	}
 
-	@GetMapping("/person/resume")
-	public String resumeJoin() {
-		return "/person/resumeSaveForm";
-	}
 }
