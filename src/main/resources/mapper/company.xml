@@ -17,10 +17,11 @@
 	</select>
 
 	<insert id="insert">
-		INSERT INTO company(user_Id, company_Name, company_Email, company_Phone,
+		INSERT INTO company(user_Id, company_Name,
+		company_Email, company_Phone,
 		tech, address, ceoName, created_At)
-		VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone}, #{tech},
-		#{address}, #{ceoName}, now())
+		VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone},
+		#{tech}, #{address}, #{ceoName}, now())
 	</insert>
 
 	<delete id="deleteById">
@@ -30,13 +31,17 @@
 
 	<update id="update">
 		Update company
-		SET company_name = #{companyName}, company_email = #{companyEmail},
-		company_phone = #{companyPhone}, tech = #{tech}, address = #{address},
+		SET company_name = #{companyName},
+		company_email = #{companyEmail},
+		company_phone = #{companyPhone}, tech
+		= #{tech}, address = #{address},
 		ceoName = #{ceoName}
-		WHERE company_id = #{companyId}
+		WHERE company_id =
+		#{companyId}
 	</update>
 
-	<select id="findToRecommned" resultType="site.metacoding.miniproject.web.dto.response.CompanyRecommendDto">
+	<select id="findToRecommned"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyRecommendDto">
 		SELECT COUNT(subject_id) AS recommend_count , FIRST.*
 		FROM recommend LEFT OUTER JOIN (SELECT company.user_id,
 		company.company_id, company.company_name,company.address,
@@ -44,7 +49,8 @@
 		FROM company LEFT OUTER JOIN notice
 		ON company.company_id = notice.company_id) FIRST
 		ON recommend.subject_id = FIRST.user_id
-		GROUP BY (subject_id) DESC
+		GROUP BY (subject_id)
+		ORDER BY subject_id
 	</select>
 
 </mapper>
