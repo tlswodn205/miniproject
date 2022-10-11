@@ -2,16 +2,22 @@
 <%@ include file="../layout/header.jsp"%>
 <div class="d-flex justify-content-center">
 	<div style="width: 400px;">
+		<br>
 		<form>
-			<div class="mb-3 mt-3">
-				<input id="username" type="text" class="form-control" placeholder="Enter username">
+			<div class="d-flex justify-content-between">
+				<div class="d-flex" style="margin-bottom: 20px;">
+					아이디 &nbsp;&nbsp;&nbsp;<input style="width: 400px;" id="username" type="text" class="form-control"
+						placeholder="아이디를 입력하세요">
+				</div>
 			</div>
-			<div class="mb-3">
-				<input id="password" type="password" class="form-control" placeholder="Enter password">
+			<div class="d-flex justify-content-between">
+				<div class="d-flex" style="margin-bottom: 20px;">
+					비밀번호 &nbsp;&nbsp;&nbsp;<input style="width: 400px;" id="password" type="password" class="form-control"
+						placeholder="아이디를 입력하세요">
+				</div>
 			</div>
 			<div class="d-flex justify-content-center">
-				<button id="btnPersonJoin" type="button" class="btn btn-primary" style="margin-right: 30px">개인
-					회원가입</button>
+				<button id="btnPersonJoin" type="button" class="btn btn-primary" style="margin-right: 30px">개인 회원가입</button>
 				<button id="btnCompanyJoin" type="button" class="btn btn-primary">기업 회원가입</button>
 			</div>
 			<div class="d-flex justify-content-center">
