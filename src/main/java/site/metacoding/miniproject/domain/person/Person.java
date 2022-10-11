@@ -12,6 +12,7 @@ public class Person {
 	private Integer userId;
 	private String personName;
 	private String personEmail;
+	private String personPhone;
 	private boolean isGender;
 	private String address;
 	private String degree;
