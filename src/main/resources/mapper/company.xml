@@ -21,8 +21,7 @@
 		company_Email, company_Phone,
 		tech, address, ceoName, created_At)
 		VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone},
-		#{tech},
-		#{address}, #{ceoName}, now())
+		#{tech}, #{address}, #{ceoName}, now())
 	</insert>
 
 	<delete id="deleteById">

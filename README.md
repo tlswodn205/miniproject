@@ -24,8 +24,9 @@ create table user(
 
 create table recommend(
    recommend_id INT primary KEY auto_increment,
+   user_id INT,
    subject_id INT,
-   isRecommand BOOLEAN,
+   is_recommend BOOLEAN,
    content longtext,
    created_at TIMESTAMP
 );
