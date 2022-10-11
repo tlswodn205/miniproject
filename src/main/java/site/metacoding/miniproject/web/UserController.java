@@ -3,6 +3,8 @@ package site.metacoding.miniproject.web;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +23,7 @@ public class UserController {
 
     @PostMapping("/login")
     public @ResponseBody CMRespDto<?> login(@RequestBody LoginDto loginDto) {
-
+ 
         User principal = userService.로그인(loginDto);
         if (principal == null) {
             return new CMRespDto<>(-1, "로그인실패", null);
@@ -30,5 +32,11 @@ public class UserController {
 
         User isLogin = (User) session.getAttribute("principal");
         return new CMRespDto<>(1, "로그인성공", null);
+    }
+    
+    //로그인 페이지
+    @GetMapping("/loginForm")
+    public String loginForm() {
+    	return "user/login";
     }
 }
