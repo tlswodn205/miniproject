@@ -18,7 +18,17 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
 	rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="/css/applicationhistory.css" rel="stylesheet" />
+<link href="/css/clmatchinglist.css" rel="stylesheet" />
+<link href="/css/companyenter.css" rel="stylesheet" />
 <link href="/css/main_styles.css" rel="stylesheet" />
+<link href="/css/plmatchinglist.css" rel="stylesheet" />
+<link href="/css/resume_viewdetail.css" rel="stylesheet" />
+<link href="/css/select_resume.css" rel="stylesheet" />
+<link href="/css/styles.css" rel="stylesheet" />
+<link href="/css/workenter.css" rel="stylesheet" />
+
+
 <style>
 .flex {
 	display: flex;
