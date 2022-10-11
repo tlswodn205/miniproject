@@ -24,6 +24,7 @@ public class CompanyController {
 	private final CompanyService companyService;
 	private final UserService userService;
 
+	// 기업회원가입
 	@PostMapping("/company/join")
 	public @ResponseBody CMRespDto<?> joinPerson(@RequestBody CompanyJoinDto companyJoinDto) {
 		companyService.기업회원가입(companyJoinDto);
@@ -34,6 +35,7 @@ public class CompanyController {
 		return new CMRespDto<>(1, "회원가입 성공", null);
 	}
 	
+	//기업추천 리스트 페이지
 	@GetMapping("/company/recommendList")
 	public String recommendList(Model model) {
 		List<CompanyRecommendDto> companyRecommendDto = companyService.기업추천리스트보기();
