@@ -18,15 +18,20 @@ public class CompanyService {
 
 	private final CompanyDao companyDao;
 	private final UserDao userDao;
-	
-	@Transactional(rollbackFor = {RuntimeException.class})
+
+	@Transactional(rollbackFor = { RuntimeException.class })
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
+
 	public List<CompanyRecommendDto> 기업추천리스트보기() {
-		
+
 		return companyDao.findToRecommned();
+	}
+
+	public void 기업이력등록(Integer Company_id, CompanyDetailFormDto companyDetailFormDto) {
+		companyDao.updateIntroduction(companyDetailFormDto);
 	}
 }
