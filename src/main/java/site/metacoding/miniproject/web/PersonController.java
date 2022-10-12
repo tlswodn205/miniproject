@@ -18,8 +18,11 @@ import site.metacoding.miniproject.service.PersonService;
 import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
+import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
+import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -40,6 +43,21 @@ public class PersonController {
 		return new CMRespDto<>(1, "회원가입 성공", null);
 	}
 
+  //이력서 등록 페이지
+	@GetMapping("/person/resumeWrite/{personId}")
+	public String resumeForm(@PathVariable Integer personId, Model model) {
+		ResumeFormDto personPS = personService.이력서내용가져오기(personId);
+		model.addAttribute("person", personPS);
+		return "person/resumeSaveForm";
+	}
+
+	@PostMapping("/save/resume/{personId}")
+	public @ResponseBody CMRespDto<?> resumeWrite(@RequestBody ResumeWriteDto resumeWriteDto,
+			@PathVariable Integer personId) {
+		personService.이력서등록(resumeWriteDto, personId);
+		return new CMRespDto<>(1, "이력서 등록 성공", null);
+	}
+
 	//개인 회원가입 페이지
 	@GetMapping("/personJoinForm")
 	public String  perseonJoinForm(Model model) {
@@ -56,5 +74,6 @@ public class PersonController {
 		model.addAttribute("personSkillInfoDto", personSkillInfoDto);
 		return "person/PersonInfo";
 	}	
+
 
 }
