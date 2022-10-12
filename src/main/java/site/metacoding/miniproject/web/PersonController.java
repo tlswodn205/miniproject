@@ -1,6 +1,6 @@
 package site.metacoding.miniproject.web;
 
-import java.util.List;
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.PersonService;
 import site.metacoding.miniproject.service.UserService;
+import site.metacoding.miniproject.util.BasicSkillList;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
@@ -27,14 +28,24 @@ public class PersonController {
 
 	@PostMapping("/person/join")
 	public @ResponseBody CMRespDto<?> joinPerson(@RequestBody PersonJoinDto personJoinDto) {
-		personService.회원가입(personJoinDto);
+			
+		
 		User userPS = userService.유저네임으로유저찾기(personJoinDto.getUsername());
-		if (userPS == null) {
+		if (userPS != null) {
 			return new CMRespDto<>(-1, "회원가입 실패", null);
 		}
+		personService.회원가입(personJoinDto);
 		return new CMRespDto<>(1, "회원가입 성공", null);
 	}
 
+	//개인 회원가입 페이지
+	@GetMapping("/personJoinForm")
+	public String  perseonJoinForm(Model model) {
+		model.addAttribute("skillList",BasicSkillList.getSkill());
+		return "person/personJoinForm";
+
+	}
+  //구직자 상세보기 페이지
 	@GetMapping("PersonInfo/{personId}")
 	public String 구직자상세보기(@PathVariable Integer personId, Model model) {
 		List<PersonInfoDto> personInfoDto = personService.개인정보보기(personId);

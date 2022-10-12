@@ -3,6 +3,7 @@ package site.metacoding.miniproject.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.person.PersonDao;
@@ -20,6 +21,7 @@ public class PersonService {
 	private final PersonDao personDao;
 	private final UserDao userDao;
 
+	@Transactional(rollbackFor = {RuntimeException.class})
 	public void 회원가입(PersonJoinDto personJoinDto) {
 		userDao.insert(personJoinDto.toUser());
 		User userPS = userDao.findByUsername(personJoinDto.getUsername());
