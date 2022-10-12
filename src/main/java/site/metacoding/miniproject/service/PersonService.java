@@ -15,8 +15,8 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
-import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 
 
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class PersonService {
 	private final PersonDao personDao;
 	private final UserDao userDao;
 	private final ResumeDao resumeDao;
-	private final PersonSkillDao personSkillDao;
+
 
 	@Transactional(rollbackFor = {RuntimeException.class})
 	public void 회원가입(PersonJoinDto personJoinDto) {

@@ -17,8 +17,8 @@
 				</div>
 			</div>
 			<div class="d-flex justify-content-center">
-				<button id="btnPersonJoin" type="button" class="btn btn-primary" style="margin-right: 30px">개인 회원가입</button>
-				<button id="btnCompanyJoin" type="button" class="btn btn-primary">기업 회원가입</button>
+				<a href="/personJoinForm"><button id="btnPersonJoin" type="button" class="btn btn-primary" style="margin-right: 30px">개인 회원가입</button></a>
+				<a href="/companyJoinForm"><button id="btnCompanyJoin" type="button" class="btn btn-primary">기업 회원가입</button></a>
 			</div>
 			<div class="d-flex justify-content-center">
 				<button id="btnLogin" type="button" class="btn btn-primary" style="margin-top: 20px">로그인</button>

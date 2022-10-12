@@ -47,7 +47,7 @@
 		<!-- Navigation-->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container px-5">
-				<a class="navbar-brand" href="index.html">로고 이름</a>
+				<a class="navbar-brand" href="/mainForm">이력서</a>
 				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span
@@ -70,9 +70,8 @@
 						<li class="nav-item"><a class="nav-link" href="index.html">구독 페이지</a></li>
 						<c:if test="${principal == null }">
 							<li class="nav-item" style="margin: 0 30px 0 30px;"><a href="/loginForm">
-									<button id="btnUpdate" type="button" class="btn btn-primary">로그인</button>
+									<button id="btnUpdate" type="button" class="btn btn-primary">로그인/회원가입</button>
 							</a></li>
-							<li class="nav-item"><button id="btnUpdate" type="button" class="btn btn-primary">회원가입</button></li>
 						</c:if>
 						<c:if test="${principal != null}">
 							<li class="nav-item"><a href="/logout"><button id="btnUpdate" type="button"
