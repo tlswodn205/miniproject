@@ -39,10 +39,18 @@ public class UserController {
     public String loginForm() {
     	return "user/login";
     }
+    
     //로그아웃
     @GetMapping("/logout")
 	public String logout() {
 		session.invalidate();
 		return "redirect:/loginForm";
 	}
+    
+  //메인 페이지
+    @GetMapping("/mainForm")
+    public String mainForm() {
+    	return "board/main";
+    }
+    
 }
