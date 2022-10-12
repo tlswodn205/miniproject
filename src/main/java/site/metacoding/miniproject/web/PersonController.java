@@ -4,6 +4,8 @@ package site.metacoding.miniproject.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 @RequiredArgsConstructor
 @Controller
 public class PersonController {
-
+	private final HttpSession session;
 	private final PersonService personService;
 	private final UserService userService;
 
@@ -44,9 +46,11 @@ public class PersonController {
 	}
 
   //이력서 등록 페이지
-	@GetMapping("/person/resumeWrite/{personId}")
-	public String resumeForm(@PathVariable Integer personId, Model model) {
-		ResumeFormDto personPS = personService.이력서내용가져오기(personId);
+	@GetMapping("/person/resumeWrite")
+	public String resumeForm(Model model) {
+		User userPS = (User)session.getAttribute("principal");
+		Integer id = personService.개인번호갖고오기(userPS.getUserId());
+		ResumeFormDto personPS = personService.이력서내용가져오기(id);
 		model.addAttribute("person", personPS);
 		return "person/resumeSaveForm";
 	}

@@ -47,7 +47,7 @@
 		<!-- Navigation-->
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container px-5">
-				<a class="navbar-brand" href="/mainForm">이력서</a>
+				<a class="navbar-brand" href="/">이력서</a>
 				<!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span
@@ -61,7 +61,7 @@
 								<li><a class="dropdown-item" href="blog-post.html">백엔드 개발</a></li>
 								<li><a class="dropdown-item" href="blog-post.html">앱 개발</a></li>
 							</ul></li>
-						<li class="nav-item"><a class="nav-link" href="index.html">이력서 등록</a></li>
+						<li class="nav-item"><a class="nav-link" href="/person/resumeWrite">이력서 등록</a></li>
 						<li class="nav-item"><a class="nav-link" href="index.html">기업 등록</a></li>
 						<li class="nav-item"><a class="nav-link" href="index.html">관심구직자 매칭</a></li>
 						<li class="nav-item"><a class="nav-link" href="index.html">관심기업 매칭</a></li>

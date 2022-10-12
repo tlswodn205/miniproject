@@ -12,4 +12,5 @@ public interface PersonDao {
 	public List<Person> findAll();
 	public void update(Person person); //dto생각
 	public void deleteById(Integer personId);
+	public Integer findToId(Integer userId);
 }

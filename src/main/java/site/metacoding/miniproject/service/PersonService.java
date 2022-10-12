@@ -38,7 +38,6 @@ public class PersonService {
 
 
 	public ResumeFormDto 이력서내용가져오기(Integer personId) {
-		System.out.println(personId);
 		Person person = personDao.findById(personId);
 		ResumeFormDto resumeFormDto = new ResumeFormDto(personId, person.getPersonName(), person.getPersonEmail(),
 				person.getDegree(), personSkillDao.findByPersonId(personId));
@@ -51,7 +50,9 @@ public class PersonService {
 		resumeDao.insert(resume);
 	}
 
-
+	public Integer 개인번호갖고오기(Integer userId) {
+		return personDao.findToId(userId);
+	}
 	
 	public List<PersonInfoDto> 개인정보보기(Integer personId){
 		return personDao.personInfo(personId);

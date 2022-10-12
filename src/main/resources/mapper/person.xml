@@ -18,6 +18,12 @@
     FROM person
     WHERE person_id = #{personId}
   </select>
+  
+  <select id="findToId" resultType="Integer">
+  	SELECT person_id
+  	FROM person
+  	WHERE user_id = #{personId}
+  </select>
 
   <insert id="insert">
     INSERT INTO person(user_id, person_name, person_phone, person_email, is_Gender, address, degree, career, created_At )
