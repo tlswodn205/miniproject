@@ -45,7 +45,7 @@
 		SELECT COUNT(subject_id) AS recommend_count , FIRST.*
 		FROM recommend LEFT OUTER JOIN (SELECT company.user_id,
 		company.company_id, company.company_name,company.address,
-		notice.salary
+		notice.salary, company.tech
 		FROM company LEFT OUTER JOIN notice
 		ON company.company_id = notice.company_id) FIRST
 		ON recommend.subject_id = FIRST.user_id

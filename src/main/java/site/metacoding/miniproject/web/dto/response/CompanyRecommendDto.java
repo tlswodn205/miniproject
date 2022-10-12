@@ -12,4 +12,5 @@ public class CompanyRecommendDto {
 	private String companyName;
 	private String address;
 	private String salary;
+	private String tech;
 }
