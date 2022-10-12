@@ -19,9 +19,9 @@
 	<insert id="insert">
 		INSERT INTO company(user_Id, company_Name,
 		company_Email, company_Phone,
-		tech, address, ceoName, created_At)
+		history, address, introduction, created_At)
 		VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone},
-		#{tech}, #{address}, #{ceoName}, now())
+		#{history}, #{address}, #{introduction}, now())
 	</insert>
 
 	<delete id="deleteById">

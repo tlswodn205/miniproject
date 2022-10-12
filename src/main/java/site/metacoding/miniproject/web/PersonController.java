@@ -20,8 +20,8 @@ import site.metacoding.miniproject.util.BasicSkillList;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
-import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 
 
 @RequiredArgsConstructor
