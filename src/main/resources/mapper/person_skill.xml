@@ -6,6 +6,12 @@
     SELECT *
     FROM Person_Skill
   </select>
+  
+   <select id="personSkillInfo" resultType="site.metacoding.miniproject.web.dto.response.PersonInfoDto">
+   SELECT *
+    FROM Person_Skill
+    WHERE person_id = #{personId}
+  </select>
 
   <select id="findById" resultType="site.metacoding.miniproject.domain.person_skill.PersonSkill">
     SELECT *

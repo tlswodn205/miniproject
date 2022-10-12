@@ -13,6 +13,12 @@
     WHERE person_id = #{personId}
   </select>
 
+  <select id="personInfo" resultType="site.metacoding.miniproject.web.dto.response.PersonInfoDto">
+    SELECT *
+    FROM person
+    WHERE person_id = #{personId}
+  </select>
+
   <insert id="insert">
     INSERT INTO person(user_id, person_name, person_email, is_Gender, address, degree, career, created_At )
     VALUE(#{userId}, #{personName}, #{personEmail}, #{isGender}, #{address}, #{degree}, #{career}, now())
