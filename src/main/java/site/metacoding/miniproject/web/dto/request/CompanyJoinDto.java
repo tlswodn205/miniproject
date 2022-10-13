@@ -18,7 +18,6 @@ public class CompanyJoinDto {
 	private String address;
 	private String history;
 	private String introduction;
-	
 	private String tech;
 	private String ceoName;
 
@@ -28,6 +27,6 @@ public class CompanyJoinDto {
 
 	public Company toCompany(Integer userId) {
 		return new Company(userId, this.companyName, this.companyEmail, this.companyPhone, this.history,
-				this.address, this.introduction);
+				this.address, this.tech, this.introduction);
 	}
 }
