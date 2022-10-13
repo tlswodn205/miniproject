@@ -34,14 +34,15 @@ public class PersonService {
 	
 	public List<Integer> 기술별관심구직자찾기(List<String> skillList){
 
-		List<Integer> interesPersonIdList = new ArrayList<>();
-		
+		List<Integer> interesPersonIdList = new ArrayList<Integer>();
+
 		List<Person> personList = personDao.findAll();
-		for (Person person : personList) {
+		
+		for(int i=0; i<personList.size(); i++) {
 			int count = 0;
-			int personId = person.getPersonId();
-			for (String skill : skillList) {
-				if(personSkillDao.findBySkillAndPersonId(skill, personId) ==null) {
+			int personId = personList.get(i).getPersonId();
+			for(int j=0; j<skillList.size(); j++) {
+				if(personSkillDao.findBySkillAndPersonId(skillList.get(j) , personId) ==null) {
 					continue;
 				}
 				count++;
@@ -53,34 +54,34 @@ public class PersonService {
 		
 		return interesPersonIdList;
 	}
-	
-	public List<Integer> 학력별관심구직자찾기(String degree){
+
+	public List<Integer> 학력별관심구직자찾기(String degree) {
 		List<Integer> personIdList = personDao.findByDegree(degree);
 		return personIdList;
 	}
 	
-
 	public List<Integer> 경력별관심구직자찾기(Integer career){
-		System.out.println(career);
 		List<Integer> personIdList = personDao.findByCareer(career);
-		System.out.println(personIdList.get(0));
 		return personIdList; 
 	}
-	
+
+
 	public List<InterestPersonDto> 관심구직자리스트(List<Integer> personIdList){
-		int count = 0;
 		List<InterestPersonDto> interestPersonDtoList = new ArrayList<InterestPersonDto>();
+		int count = 0;
 		
-		for (Integer personId : personIdList) {
+		for (int i = 0; i < personIdList.size(); i++) {
 			count++;
-			Person person = personDao.findById(personId);
-			InterestPersonDto  interestPersonDto = new InterestPersonDto(person.getPersonName(), person.getCareer(), person.getDegree(), person.getAddress(), personSkillDao.findByPersonId(personId));
+			Person person = personDao.findById(personIdList.get(i));
+			InterestPersonDto  interestPersonDto = new InterestPersonDto(person.getPersonId(), person.getPersonName(), person.getCareer(), person.getDegree(), person.getAddress(), personSkillDao.findByPersonId(personIdList.get(i)));
 			
 			interestPersonDtoList.add(interestPersonDto);
 			if(count>=20) {
 				break;
 			}
 		}
+		
 		return interestPersonDtoList;
 	}
+	
 }

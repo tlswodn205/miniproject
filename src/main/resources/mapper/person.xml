@@ -44,7 +44,7 @@
 	(SELECT person_id, career
 	FROM person
 	WHERE career >= #{career}
-	ORDER BY career desc
+	ORDER BY career asc
 	FETCH NEXT 20 ROWS ONLY
 	) pp;
   </select>

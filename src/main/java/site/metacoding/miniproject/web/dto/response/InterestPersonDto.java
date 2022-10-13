@@ -11,6 +11,7 @@ import site.metacoding.miniproject.domain.person_skill.PersonSkill;
 @AllArgsConstructor
 @Getter
 public class InterestPersonDto {
+	private Integer personId;
 	private String personName;
 	private Integer career;
 	private String degree;
