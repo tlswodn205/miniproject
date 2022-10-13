@@ -2,10 +2,12 @@ package site.metacoding.miniproject.domain.person_skill;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 
 public interface PersonSkillDao {
-	public void insert(PersonSkill personSkill);
+	public void insert(@Param("personId") Integer personId, @Param("skill") String skill);
 
 	public PersonSkill findById(Integer personSkillId);
 

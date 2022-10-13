@@ -94,8 +94,9 @@
 			let chk = $(this).val();
 			skillArr.push(chk);
 		});
-		let personSkillList = toString(skillArr);
 
+
+		console.log(skillArr);
 		
 		let data={
 				username : username,
@@ -106,8 +107,8 @@
 				gender : gender,
 				address : address,
 				degree : degree,
-				career : career
-				//personSkillList : personSkillList
+				career : career,
+				personSkillList : skillArr
 		}
 		
 		$.ajax("/person/join",{
