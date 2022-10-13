@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
+import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 
@@ -31,7 +32,12 @@ public class CompanyService {
 		return companyDao.findToRecommned();
 	}
 
-	public void 기업이력등록(Integer Company_id, CompanyDetailFormDto companyDetailFormDto) {
-		companyDao.updateIntroduction(companyDetailFormDto);
+	public CompanyInsertDto 기업이력등록(Integer CompanyId, CompanyInsertDto companyInsertDto) {
+		companyDao.companyInsert(CompanyId, companyInsertDto);
+		return companyInsertDto;
+	}
+
+	public Integer 컴퍼니아이디로찾기(Integer companyId) {
+		return companyDao.findById(companyId);
 	}
 }

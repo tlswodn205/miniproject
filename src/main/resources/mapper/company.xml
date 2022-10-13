@@ -53,4 +53,14 @@
 		ORDER BY subject_id
 	</select>
 
+    <update id="companyInsert">
+	Update company 
+	set photo = #{photo}, 
+	introduction = #{introduction},
+	history = #{history}
+	company_goal = #{companyGoal}
+	where company_id = #{companyId}
+  	</update>
+
+
 </mapper>
