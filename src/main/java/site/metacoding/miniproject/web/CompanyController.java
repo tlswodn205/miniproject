@@ -63,6 +63,12 @@ public class CompanyController {
 		return "/company/companyRecommendList";
 	}
 
+	@GetMapping("/companyInsert")
+	public String companyInsertForm() {
+		User userPs = (User) session.getAttribute("principal");
+		return "/company/companyInsert";
+	}
+
 	  // 기업 이력서 등록 페이지
 	@PostMapping("/companyInsert/{companyId}")
 	public @ResponseBody CMRespDto<?> resumeWrite(@RequestBody CompanyInsertDto companyInsertDto,
@@ -71,13 +77,13 @@ public class CompanyController {
 		return new CMRespDto<>(1, "이력서 등록 성공", null);
 	}
 
-	  //이력서 등록 페이지
-	@GetMapping("/company/CompanyInsertDto")
-	public String companyInsert(Model model) {
-		User userPS = (User)session.getAttribute("principal");
-		Integer id = companyService.컴퍼니아이디로찾기(null);
-		CompanyInsertDto companyPS = companyService.기업이력등록(id, null);
-		model.addAttribute("company", companyPS);
-		return "/company/CompanyInsertDto";
-	}
+	//   //이력서 등록 페이지
+	// @GetMapping("/company/CompanyInsertDto")
+	// public String companyInsert(Model model) {
+	// 	User userPS = (User)session.getAttribute("principal");
+	// 	Integer id = companyService.컴퍼니아이디로찾기(null);
+	// 	CompanyInsertDto companyPS = companyService.기업이력등록(id, null);
+	// 	model.addAttribute("company", companyPS);
+	// 	return "/company/CompanyInsertDto";
+	// }
 }
