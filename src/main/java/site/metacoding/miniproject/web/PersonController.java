@@ -85,5 +85,4 @@ public class PersonController {
 		model.addAttribute("personRecommendListDto", personRecommendListDto);
 		return "/person/personRecommendList";
 	}
-
 }
