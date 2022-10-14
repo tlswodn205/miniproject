@@ -13,6 +13,7 @@
 				<th>근무지</th>
 				<th>기업명</th>
 				<th>급여</th>
+				<th>기술</th>
 				<th>기업상세보기</th>
 			</tr>
 		</thead>
@@ -23,6 +24,7 @@
 					<td>${company.address}</td>
 					<td>${company.companyName}</td>
 					<td>${company.salary}</td>
+					<td>${company.tech}</td>
 					<td>
 						<button type="button" class="btn btn-primary">기업 상세보기</button>
 					</td>

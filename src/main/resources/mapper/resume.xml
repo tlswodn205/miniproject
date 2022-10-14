@@ -13,8 +13,8 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO resume(person_id, photo, introduction, my_cloud, created_At )
-    VALUE(#{personId}, #{photo}, #{introduction}, #{myCloud}, now())
+    INSERT INTO resume(person_id, resume_title, photo, introduction, my_cloud, created_At )
+    VALUE( #{personId}, #{resumeTitle}, #{photo}, #{introduction}, #{myCloud}, now())
   </insert>
 
   <delete id="deleteById">
@@ -28,4 +28,9 @@
     WHERE resume_id = #{resumeId}
   </update>
 
+  <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.person_skill.PersonSkill">
+    SELECT *
+    FROM Person_Skill
+    WHERE person_id = #{personId}
+  </select>
 </mapper>

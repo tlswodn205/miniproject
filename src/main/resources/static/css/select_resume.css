@@ -691,6 +691,7 @@ progress {
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
+  position: relative;
 }
 
 @media (min-width: 576px) {
@@ -2282,7 +2283,7 @@ progress {
 
 .form-control {
   display: block;
-  width: 100%;
+  width: 70%;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -4629,7 +4630,6 @@ fieldset:disabled .btn {
 }
 
 .navbar-nav .nav-link {
-
   padding-right: 0;
   padding-left: 0;
 }
@@ -8354,7 +8354,7 @@ fieldset:disabled .btn {
 }
 
 .ms-auto {
-  margin: auto;
+  margin-left: auto !important;
 }
 
 .p-0 {
@@ -8438,7 +8438,8 @@ fieldset:disabled .btn {
 
 .py-5 {
   padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
+  /*padding-bottom: 3rem !important;*/
+  border-bottom: #000 solid 1px;
 }
 
 .pt-0 {
@@ -8591,6 +8592,7 @@ fieldset:disabled .btn {
 
 .fw-bolder {
   font-weight: bolder !important;
+  margin-bottom: 3rem !important;
 }
 
 .lh-1 {
@@ -12260,4 +12262,92 @@ html {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 15rem;
+}
+
+.container .view {
+  width: 60%;
+  padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem)
+}
+
+.container .idpicture {
+  position: absolute;
+  right: 2%;
+  top: 0%;
+}
+
+.container .idpicture .nav-item {
+  position: absolute;
+  width: 100%;
+  right: 0%;
+  bottom: -44%;
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 48
+}
+
+
+.bellicon {
+  display: inline-flex;
+  float: right;
+}
+
+.card-body .company-ex {
+  position: relative;
+  left: 30%;
+  bottom: 10%;
+}
+
+.button {
+  text-align: right;
+  float: right;
+  margin-right: 5%;
+  font-size: 1.5em;
+  padding-bottom: 2%;
+}
+
+.chk_resume {
+  float: left;
+  margin-left: 2%;
+}
+
+
+.button .deletebutton,
+.updatebutton {
+  background-color: gray;
+}
+
+.writeday {
+  float: right;
+  margin-right: 5%;
+}
+
+
+.ex-complete {
+  margin-left: 50%;
+}
+
+.resumer {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  margin-bottom: 200px;
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
+
+.resumer-title {
+  padding-left: 2%;
+  padding-bottom: 10%;
 }
