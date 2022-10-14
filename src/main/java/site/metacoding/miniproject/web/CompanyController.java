@@ -17,6 +17,7 @@ import com.fasterxml.jackson.core.sym.Name;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
+import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.CompanyService;
 import site.metacoding.miniproject.service.UserService;
@@ -30,6 +31,7 @@ import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 @Controller
 public class CompanyController {
 
+	private final CompanyDao companyDao;
 	private final HttpSession session;
 	private final CompanyService companyService;
 	private final UserService userService;
@@ -64,26 +66,23 @@ public class CompanyController {
 	}
 
 	@GetMapping("/companyInsert")
-	public String companyInsertForm() {
+	public String companyInsertForm(Model model) {
 		User userPs = (User) session.getAttribute("principal");
+		Company companyPs = companyService.유저아이디로찾기(userPs.getUserId());
+		model.addAttribute("company", companyPs);
 		return "/company/companyInsert";
 	}
 
-	  // 기업 이력서 등록 페이지
+	//  기업 이력서 등록 페이지
 	@PostMapping("/companyInsert/{companyId}")
-	public @ResponseBody CMRespDto<?> resumeWrite(@RequestBody CompanyInsertDto companyInsertDto,
-			@PathVariable Integer personId) {
-		companyService.기업이력등록(personId, companyInsertDto);
+	public @ResponseBody CMRespDto<?> CompanyWrite(@PathVariable Integer companyId, CompanyInsertDto companyInsertDto) {
+		System.out.println(companyInsertDto.getCompanyId());
+		System.out.println("======================================");
+		System.out.println(companyInsertDto.getCompanyGoal());
+		System.out.println("======================================");
+		companyService.기업이력등록(companyId, companyInsertDto);
 		return new CMRespDto<>(1, "이력서 등록 성공", null);
 	}
 
-	//   //이력서 등록 페이지
-	// @GetMapping("/company/CompanyInsertDto")
-	// public String companyInsert(Model model) {
-	// 	User userPS = (User)session.getAttribute("principal");
-	// 	Integer id = companyService.컴퍼니아이디로찾기(null);
-	// 	CompanyInsertDto companyPS = companyService.기업이력등록(id, null);
-	// 	model.addAttribute("company", companyPS);
-	// 	return "/company/CompanyInsertDto";
-	// }
+
 }

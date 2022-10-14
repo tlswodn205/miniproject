@@ -7,24 +7,55 @@
 			<main class="flex-shrink-0">
 				<!-- Body-->
 				<div class="container mt-3">
-					<div class="flex">
-						<h2>기업명</h2>
-						<div style="width: 400px;"><img class="card-img-top"
-								src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="comment">기업소개</label>
-						<textarea id="content" class="form-control" rows="5" placeholder="내용을 입력해주세요."></textarea>
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="comment">연혁</label>
-						<textarea id="content" class="form-control" rows="5" placeholder="내용을 입력해주세요."></textarea>
-					</div>
-					<div class="mb-3 mt-3">
-						<label for="comment">기업목표</label>
-						<textarea id="content" class="form-control" rows="5" placeholder="내용을 입력해주세요."></textarea>
-					</div>
-
-					<button type="submit" class="btn btn-primary">작성완료</button>
+					<from action="/companyInsert/${company.companyId}" method="post">
+						<div class="flex">
+							<h2>${company.companyName}</h2>
+							<div style="width: 400px;"><img class="card-img-top"
+									src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+						</div>
+						<div class="mb-3 mt-3">
+							<label for="comment">기업소개</label>
+							<textarea id="introduction" class="form-control" rows="5"
+								placeholder="내용을 입력해주세요.">${company.introduction}</textarea>
+						</div>
+						<div class="mb-3 mt-3">
+							<label for="comment">연혁</label>
+							<textarea id="history" class="form-control" rows="5"
+								placeholder="내용을 입력해주세요.">${company.history}</textarea>
+						</div>
+						<div class="mb-3 mt-3">
+							<label for="comment">기업목표</label>
+							<textarea id="companyGoal" class="form-control" rows="5"
+								placeholder="내용을 입력해주세요.">${company.companyGoal}</textarea>
+						</div>
+						<button id="companyInsert" type="submit" class="btn btn-primary">작성완료</button>
+						</form>
 				</div>
+				<!-- <script>
+					$("#btnInsert").click(() => {
+						insert();
+					});
+
+					function insert() {
+						let data = {
+							introduction: $("#introduction").val(),
+							history: $("#history").val(),
+							companyGoal: $("#companyGoal").val()
+						}
+						$.ajax("/player", {
+							type: "POST",
+							dataType: "json",
+							data: JSON.stringify(data), // http body에 들고갈 요청 데이터
+							headers: { // http header에 들고갈 요청 데이터
+								"Content-Type": "application/json; charset=utf-8"
+							}
+						}).done((res) => {
+							if (res.code == 1) { // 성공
+								location.href = "/companyInsert";
+							} else { // 실패
+								alert("기업이력등록에 실패하였습니다.");
+							}
+						});
+					}
+				</script> -->
 				<%@ include file="../layout/footer.jsp" %>

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
@@ -33,11 +34,16 @@ public class CompanyService {
 	}
 
 	public CompanyInsertDto 기업이력등록(Integer CompanyId, CompanyInsertDto companyInsertDto) {
-		companyDao.companyInsert(CompanyId, companyInsertDto);
+		companyInsertDto.setCompanyId(CompanyId);
+		companyDao.companyInsert(companyInsertDto);
 		return companyInsertDto;
 	}
 
-	public Integer 컴퍼니아이디로찾기(Integer companyId) {
-		return companyDao.findById(companyId);
+	public Company 유저아이디로찾기(Integer userId) {
+		return companyDao.findByUserId(userId);
 	}
+	
+
+
+
 }

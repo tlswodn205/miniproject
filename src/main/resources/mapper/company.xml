@@ -57,10 +57,18 @@
 	Update company 
 	set photo = #{photo}, 
 	introduction = #{introduction},
-	history = #{history}
+	history = #{history},
 	company_goal = #{companyGoal}
 	where company_id = #{companyId}
   	</update>
+	
+		<!-- resultType="site.metacoding.miniproject.domain.company.CompanyInsertDto" -->
 
+	<select id="findByUserId"
+		resultType="site.metacoding.miniproject.domain.company.Company">
+		SELECT *
+		FROM company
+		WHERE user_Id = #{userId}
+	</select>
 
 </mapper>
