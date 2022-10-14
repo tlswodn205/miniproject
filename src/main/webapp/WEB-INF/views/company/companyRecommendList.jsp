@@ -8,9 +8,6 @@
 	align-items: center;
 }
 
-.my_list_style_none {
-	
-}
 
 .person-table td {
 	align-items: center;
@@ -20,29 +17,18 @@
 	<h2>기업 추천 리스트</h2>
 	<hr />
 	<div class="my_box d-flex justify-content-between">
-		<div>
-			<label>java</label> <input onclick="getSkill(1)" name="id" type="checkbox" class="form-check-input" value="java">
-			<label>javaScript</label> <input onclick="getSkill(2)" name="id" type="checkbox" class="form-check-input"
-				value="javaScript"> <label>HTML/CSS</label> <input onclick="getSkill(3)" name="id" type="checkbox"
-				class="form-check-input" value="HTML/CSS"> <label>MySQL</label> <input onclick="getSkill(4)" name="id"
-				type="checkbox" class="form-check-input" value="MySQL"> <label>AWS</label> <input onclick="getSkill(5)"
-				name="id" type="checkbox" class="form-check-input" value="AWS"> <label>Flutter</label> <input
-				onclick="getSkill(6)" name="id" type="checkbox" class="form-check-input" value="Flutter">
-		</div>
-
-		<button id="skillBtn" type="button" class="btn btn-primary">기술별 기업 찾기</button>
 	</div>
 
-	<table class="table table-hover">
+	<table class=" my_box table table-hover">
 		<thead>
 		</thead>
 		<tbody>
 			<c:forEach var="company" items="${companyRecommendList}">
 				<tr>
-					<td>${company.companyName} </br> ${company.recommendCount}</td>
-					<td> | ${company.address} | ${company.salary}</td>
-					<td></td>
-					<td></td>
+					<td>${company.companyName} </br> 추천수 : ${company.recommendCount}</td>
+					<td>${company.noticeTitle}</br>
+					${company.career==0 ? "신입": company.career} | ${company.degree} | ${company.address} | ${company.salary}</br>
+					${company.createdAt}</td>
 					<td>
 						<button type="button" class="btn btn-primary">기업 상세보기</button>
 					</td>
