@@ -5,6 +5,7 @@
   <select id="findAll" resultType="site.metacoding.miniproject.domain.person.Person">
     SELECT *
     FROM person
+	FETCH NEXT 20 ROWS ONLY
   </select>
 
   <select id="findById" resultType="site.metacoding.miniproject.domain.person.Person">
@@ -41,5 +42,23 @@
     is_Gender=#{isGender}, address=#{address}, degree=#{degree}, career =#{career}
     WHERE person_id = #{personId}
   </update>
+  
+  <select id="findByDegree" resultType="Integer">
+    SELECT person_id
+    FROM person
+    WHERE degree = #{degree}
+    FETCH NEXT 20 ROWS ONLY
+  </select>
+  
+  <select id="findByCareer" resultType="Integer">
+	SELECT person_id
+	FROM
+	(SELECT person_id, career
+	FROM person
+	WHERE career >= #{career}
+	ORDER BY career asc
+	FETCH NEXT 20 ROWS ONLY
+	) pp;
+  </select>
 
 </mapper>

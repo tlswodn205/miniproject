@@ -84,5 +84,38 @@ public class PersonController {
 		model.addAttribute("personSkillInfoDto", personSkillInfoDto);
 		return "person/PersonInfo";
 	}
+	
+	
+	
+	@PostMapping("/person/interestPersonList/personSkill")
+	public @ResponseBody CMRespDto<List<InterestPersonDto>> interestPersonSkillList(@RequestBody List<String> skillList, Model model){		
+		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.기술별관심구직자찾기(skillList));
+		model.addAttribute("interestPersonDto", interestPersonDto);
+		return new CMRespDto<>(1, "기술별 관심 구칙자 불러오기 완료", interestPersonDto);
+	}
+	
 
+	
+	@PostMapping("/person/interestPersonList/degree")
+	public @ResponseBody CMRespDto<List<InterestPersonDto>> interestPersonDegreeList(String degree, Model model){
+		System.out.println(degree);
+		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.학력별관심구직자찾기(degree));
+		model.addAttribute("interestPersonDto", interestPersonDto);
+		return new CMRespDto<>(1, "학력별 관심 구칙자 불러오기 완료", interestPersonDto);
+	}
+
+	@GetMapping("/person/interestPersonList/{career}/career")
+	public @ResponseBody CMRespDto<List<InterestPersonDto>> interestPersonDegreeList(@PathVariable Integer career, Model model){
+		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.경력별관심구직자찾기(career));		
+		model.addAttribute("interestPersonDto", interestPersonDto);
+		return new CMRespDto<>(1, "경력별 관심 구칙자 불러오기 완료", interestPersonDto);
+	}
+	
+	@GetMapping("/person/personRecommendList")
+	public String personRecommendList(Model model) {
+		int career=0;
+		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.경력별관심구직자찾기(career));		
+		model.addAttribute("interestPersonDto", interestPersonDto);
+		return "/person/personRecommendList";
+	}
 }

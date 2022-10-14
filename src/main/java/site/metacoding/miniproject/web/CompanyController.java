@@ -54,4 +54,6 @@ public class CompanyController {
 		model.addAttribute("companyRecommendList", companyRecommendDto);
 		return "/company/companyRecommendList";
 	}
+	
+	
 }

@@ -40,5 +40,22 @@
     SET skill = #{skill}
     WHERE person_Skill_Id = #{personSkillId}
   </update>
-
+  
+  <select id="findBySkill" resultType="Integer">
+    SELECT person_id
+    FROM Person_Skill
+    WHERE skill = #{skill}
+  </select>
+  
+   <select id="findBySkillAndPersonId" resultType="Integer">
+    SELECT person_id
+    FROM Person_Skill
+    WHERE skill = #{skill} and person_id = #{personId}
+  </select>
+  
+   <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.person_skill.PersonSkill">
+    SELECT *
+    FROM Person_Skill
+    WHERE person_id = #{personId}
+  </select>
 </mapper>
