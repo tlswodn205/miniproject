@@ -11,4 +11,5 @@ public interface PersonDao {
 	public void deleteById(Integer personId);
 	public List<Integer> findByDegree(String degree);
 	public List<Integer> findByCareer(Integer career);
+	public Integer findToId(Integer userId);
 }

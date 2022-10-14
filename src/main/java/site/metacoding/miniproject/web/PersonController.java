@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,8 @@ import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
+import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 
 @RequiredArgsConstructor
 @Controller

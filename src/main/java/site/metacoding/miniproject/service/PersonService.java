@@ -5,16 +5,25 @@ import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.person.Person;
 import site.metacoding.miniproject.domain.person.PersonDao;
 import site.metacoding.miniproject.domain.person_skill.PersonSkillDao;
+import site.metacoding.miniproject.domain.resume.Resume;
+import site.metacoding.miniproject.domain.resume.ResumeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
+import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
+import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 
 @RequiredArgsConstructor
@@ -24,6 +33,7 @@ public class PersonService {
 	private final PersonDao personDao;
 	private final UserDao userDao;
 	private final PersonSkillDao personSkillDao;
+	private final ResumeDao resumeDao;
 
 	public void 회원가입(PersonJoinDto personJoinDto) {
 		userDao.insert(personJoinDto.toUser());
@@ -83,5 +93,21 @@ public class PersonService {
 		
 		return interestPersonDtoList;
 	}
+
+	public void 이력서등록(ResumeWriteDto resumeWriteDto, Integer personId) {
+		Resume resume = resumeWriteDto.toEntity(personId);
+		resumeDao.insert(resume);
+	}
+
+	public Integer 개인번호갖고오기(Integer userId) {
+		return personDao.findToId(userId);
+	}
 	
+	public List<PersonInfoDto> 개인정보보기(Integer personId){
+		return personDao.personInfo(personId);
+	}
+
+	public List<PersonInfoDto> 개인기술보기(Integer personId){
+		return personSkillDao.personSkillInfo(personId);
+	}
 }
