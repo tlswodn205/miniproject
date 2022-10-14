@@ -12,7 +12,7 @@
 	}
 	
 	.person-table td{
-	 
+	 	
 		align-items: center;
 	}
 
