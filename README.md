@@ -24,10 +24,8 @@ create table user(
 
 create table recommend(
    recommend_id INT primary KEY auto_increment,
-   user_id INT,
+   users_id INT,
    subject_id INT,
-   is_recommend BOOLEAN,
-   content longtext,
    created_at TIMESTAMP
 );
 
@@ -90,7 +88,7 @@ create table notice(
    notice_id INT primary KEY auto_increment,
    company_id INT,
    notice_title VARCHAR(20),
-   job VARCHAR(20),
+   is_closed boolean,
    salary VARCHAR(20),
    degree VARCHAR(20),
    created_at TIMESTAMP
@@ -106,7 +104,7 @@ create table need_skill(
 create table submit_resume(
   submit_resume_id int primary KEY auto_increment,
   resume_id INT,
-  company_id INT,
+  notice_id INT,
   created_at TIMESTAMP
 );
 

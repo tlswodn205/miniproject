@@ -52,10 +52,5 @@
     FROM Person_Skill
     WHERE skill = #{skill} and person_id = #{personId}
   </select>
-  
-   <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.person_skill.PersonSkill">
-    SELECT *
-    FROM Person_Skill
-    WHERE person_id = #{personId}
-  </select>
+
 </mapper>
