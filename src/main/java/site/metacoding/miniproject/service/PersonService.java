@@ -1,5 +1,6 @@
 package site.metacoding.miniproject.service;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,9 +14,11 @@ import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.resume.ResumeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
+
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 
 
@@ -60,6 +63,15 @@ public class PersonService {
 
 	public List<PersonInfoDto> 개인기술보기(Integer personId){
 		return personSkillDao.personSkillInfo(personId);
+	}
+	
+	public List<PersonRecommendListDto>구직자추천리스트보기(){
+		List<PersonRecommendListDto> personRecommendListDto = personDao.findToPersonRecommned();
+		for (int i = 0; i < personRecommendListDto.size(); i++) {
+			Integer personId = personRecommendListDto.get(i).getPersonId();
+			personRecommendListDto.get(i).setSkill(personSkillDao.findByPersonId(personId));
+		}
+		return  personRecommendListDto;
 	}
 
 }
