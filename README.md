@@ -91,6 +91,7 @@ create table notice(
    is_closed boolean,
    salary VARCHAR(20),
    degree VARCHAR(20),
+   career INT,
    created_at TIMESTAMP
 );
 
@@ -132,8 +133,8 @@ VALUES('2', '멋진이력서', '사진값', '안녕하세요',"www.naver.com", N
 insert into company (user_id, company_name , company_email , company_phone ,tech , address , history ,  introduction ,photo,company_goal, ceo_name, created_at) 
 VALUES('2', '그린회사', 'cos@nate.com', '01000000000', 'C언어', '부산','2016','안녕하세요','사진값','주식상장이 목표','호날두', NOW());
 
-insert into notice(company_id , notice_title, is_closed , salary ,degree, created_at) 
-VALUES('2','개발자 모셔갑니다',0, '3천만원','4년제', NOW());
+insert into notice(company_id , notice_title, is_closed , salary ,degree, career created_at) 
+VALUES('2','개발자 모셔갑니다',0, '3천만원','4년제', 10 ,  NOW());
 
 insert into need_skill(notice_id , skill , created_at) VALUES('2', '자바스크립트', NOW());
 

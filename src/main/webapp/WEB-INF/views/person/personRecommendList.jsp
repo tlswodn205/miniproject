@@ -17,6 +17,13 @@
 	}
 
 </style>
+java
+javaScript
+HTML/CSS
+MySQL
+AWS
+Flutter
+
 
 <!-- Body-->
 <div class="container mt-3">
@@ -24,19 +31,13 @@
 	<hr/>
 	<div class="my_box d-flex justify-content-between">
 			<div>
-				<label>Python</label> <input onclick="getSkill(1)" name="id" type="checkbox"
-				class="form-check-input" value="Python"> <label>Spring Framework</label> <input onclick="getSkill(2)"
-				name="id" type="checkbox" class="form-check-input" value="Spring Framework"> <label>AWS</label> <input
-				onclick="getSkill(3)" name="id" type="checkbox" class="form-check-input" value="AWS"> <label>Git</label> <input
-				onclick="getSkill(4)" name="id" type="checkbox" class="form-check-input" value="Git"> <label>iOS</label> <input
-				onclick="getSkill(5)" name="id" type="checkbox" class="form-check-input" value="iOS"> <label>HTML</label> <input
-				onclick="getSkill(6)" name="id" type="checkbox" class="form-check-input" value="HTML"> <label>JavaScript</label>
-				<input onclick="getSkill(7)" name="id" type="checkbox" class="form-check-input" value="JavaScript"> <label>MySQL</label>
-				<input onclick="getSkill(8)" name="id" type="checkbox" class="form-check-input" value="MySQL"> <label>Linux</label>
-				<input onclick="getSkill(9)" name="id" type="checkbox" class="form-check-input" value="Linux"> <label>Android</label>
-				<input onclick="getSkill(10)" name="id" type="checkbox" class="form-check-input" value="Android"> <label>Kotlin</label>
-				<input onclick="getSkill(11)" name="id" type="checkbox" class="form-check-input" value="Kotlin"> <label>Swift</label>
-				<input onclick="getSkill(12)" name="id" type="checkbox" class="form-check-input" value="Swift">
+				<label>java</label> <input onclick="getSkill(1)" name="id" type="checkbox"
+				class="form-check-input" value="java"> <label>javaScript</label> <input onclick="getSkill(2)"
+				name="id" type="checkbox" class="form-check-input" value="javaScript"> <label>HTML/CSS</label> <input
+				onclick="getSkill(3)" name="id" type="checkbox" class="form-check-input" value="HTML/CSS"> <label>MySQL</label> <input
+				onclick="getSkill(4)" name="id" type="checkbox" class="form-check-input" value="MySQL"> <label>AWS</label> <input
+				onclick="getSkill(5)" name="id" type="checkbox" class="form-check-input" value="AWS"> <label>Flutter</label> <input
+				onclick="getSkill(6)" name="id" type="checkbox" class="form-check-input" value="Flutter">
 			</div>
 
 		<button id="skillBtn" type="button" class="btn btn-primary">기술별 구직자 찾기</button>

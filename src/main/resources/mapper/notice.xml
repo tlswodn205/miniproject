@@ -13,8 +13,8 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO Notice(company_id, is_closed, salary, created_At)
-    VALUE(#{companyId}, #{isClosed}, #{salary}, now())
+    INSERT INTO Notice(company_id, notice_title, is_closed, salary, degree, career, created_At)
+    VALUE(#{companyId}, #{noticeTitle}, #{isClosed}, #{salary}, #{degree}, #{career}, now())
   </insert>
 
   <delete id="deleteById">

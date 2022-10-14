@@ -43,9 +43,9 @@
 	<select id="findToRecommned"
 		resultType="site.metacoding.miniproject.web.dto.response.CompanyRecommendDto">
 		SELECT COUNT(subject_id) AS recommend_count , FIRST.*
-		FROM recommend LEFT OUTER JOIN (SELECT company.user_id,
-		company.company_id, company.company_name,company.address,
-		notice.salary, company.tech
+		FROM recommend LEFT OUTER JOIN (SELECT company.user_id user_id,
+		company.company_id company_id, company.company_name company_name,company.address address,notice.career , notice.degree degree,
+		notice.salary salary, company.tech tech
 		FROM company LEFT OUTER JOIN notice
 		ON company.company_id = notice.company_id) FIRST
 		ON recommend.subject_id = FIRST.user_id

@@ -66,9 +66,13 @@
 				<div class="tech">
 					<p>기술 스택</p>
 					<div>
-						<c:forEach var="skill" items="${skillList}">
-							<label><input id = "skill" type="checkbox"  name="skill" value="${skill}">${skill}</label>
-						</c:forEach>
+						<label>java</label> <input onclick="getSkill(1)" name="id" type="checkbox"
+						class="form-check-input" value="java"> <label>javaScript</label> <input onclick="getSkill(2)"
+						name="id" type="checkbox" class="form-check-input" value="javaScript"> <label>HTML/CSS</label> <input
+						onclick="getSkill(3)" name="id" type="checkbox" class="form-check-input" value="HTML/CSS"> <label>MySQL</label> <input
+						onclick="getSkill(4)" name="id" type="checkbox" class="form-check-input" value="MySQL"> <label>AWS</label> <input
+						onclick="getSkill(5)" name="id" type="checkbox" class="form-check-input" value="AWS"> <label>Flutter</label> <input
+						onclick="getSkill(6)" name="id" type="checkbox" class="form-check-input" value="Flutter">
 					</div>
 
 				</div>
@@ -79,6 +83,8 @@
 </div>
 
 <script>
+
+
 	$("#btnJoin").click(()=>{
 		let username = $("#username").val();
 		let password = $("#password").val();
