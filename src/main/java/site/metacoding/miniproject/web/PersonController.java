@@ -77,13 +77,6 @@ public class PersonController {
 		return new CMRespDto<>(1, "이력서 등록 성공", null);
 	}
 
-	// 개인 회원가입 페이지
-	@GetMapping("/personJoinForm")
-	public String perseonJoinForm(Model model) {
-		model.addAttribute("skillList", BasicSkillList.getSkill());
-		return "person/personJoinForm";
-
-	}
 	// 구직자 상세보기 페이지
 	@GetMapping("PersonInfo/{personId}")
 	public String 구직자상세보기(@PathVariable Integer personId, Model model) {
@@ -99,7 +92,8 @@ public class PersonController {
 	public String PersonRecommendList(Model model) {
 		List<PersonRecommendListDto> personRecommendListDto = personService.구직자추천리스트보기();
 		model.addAttribute("personRecommendListDto", personRecommendListDto);
-	
+		return "/person/personRecommendList";
+	}
 	
 	
 	@PostMapping("/person/interestPersonList/personSkill")
@@ -126,11 +120,11 @@ public class PersonController {
 		return new CMRespDto<>(1, "경력별 관심 구칙자 불러오기 완료", interestPersonDto);
 	}
 	
-	@GetMapping("/person/personRecommendList")
+	@GetMapping("/person/skillPersonMatching")
 	public String personRecommendList(Model model) {
 		int career=0;
 		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.경력별관심구직자찾기(career));		
 		model.addAttribute("interestPersonDto", interestPersonDto);
-		return "/person/personRecommendList";
+		return "/person/skillPersonMatching";
 	}
 }
