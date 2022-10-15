@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class SubmitResume {
     private Integer submitResumeId;
     private Integer resumeId;
-    private Integer companyId;
+    private Integer noticeId;
     private Timestamp createdAt;
 }
 

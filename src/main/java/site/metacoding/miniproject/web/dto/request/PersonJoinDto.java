@@ -20,7 +20,7 @@ public class PersonJoinDto {
 	private String address;
 	private String degree;
 	private Integer career;
-	//private List<String> personSkillList;
+	private List<String> personSkillList;
 
 	public User toUser() {
 		return new User(this.username, this.password, "person");

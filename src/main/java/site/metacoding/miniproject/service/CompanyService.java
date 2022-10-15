@@ -25,8 +25,8 @@ public class CompanyService {
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
-	public List<CompanyRecommendDto> 기업추천리스트보기() {
-		
+	
+	public List<CompanyRecommendDto> 기업추천리스트보기() {	
 		return companyDao.findToRecommned();
 	}
 }

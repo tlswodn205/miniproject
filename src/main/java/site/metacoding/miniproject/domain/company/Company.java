@@ -15,7 +15,7 @@ public class Company {
 	private String companyPhone;
 	private String tech;
 	private String address;
-	private Integer history;
+	private String history;
 	private String introduction;
 	private String photo;
 	private String companyGoal;
@@ -23,14 +23,15 @@ public class Company {
 	private Timestamp createdAt;
 	
 	public Company(Integer userId, String companyName, String companyEmail, String companyPhone, String history,
-			String address, String introduction) {
+			String address, String tech, String introduction) {
 		super();
 		this.userId = userId;
 		this.companyName = companyName;
 		this.companyEmail = companyEmail;
 		this.companyPhone = companyPhone;
-		this.tech = history;
+		this.history = history;
+		this.tech = tech;
 		this.address = address;
-		this.ceoName = introduction;
+		this.introduction = introduction;
 	}
 }

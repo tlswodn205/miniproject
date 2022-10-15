@@ -37,6 +37,7 @@ public class CompanyController {
 		companyService.기업회원가입(companyJoinDto);
 		return new CMRespDto<>(1, "회원가입 성공", null);
 
+
 	}
 
 	// 기업 회원가입 페이지
@@ -53,4 +54,6 @@ public class CompanyController {
 		model.addAttribute("companyRecommendList", companyRecommendDto);
 		return "/company/companyRecommendList";
 	}
+	
+	
 }
