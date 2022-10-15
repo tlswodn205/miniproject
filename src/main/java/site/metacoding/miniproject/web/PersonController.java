@@ -19,11 +19,13 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.PersonService;
 import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
+
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 
 @RequiredArgsConstructor
@@ -75,6 +77,13 @@ public class PersonController {
 		return new CMRespDto<>(1, "이력서 등록 성공", null);
 	}
 
+	// 개인 회원가입 페이지
+	@GetMapping("/personJoinForm")
+	public String perseonJoinForm(Model model) {
+		model.addAttribute("skillList", BasicSkillList.getSkill());
+		return "person/personJoinForm";
+
+	}
 	// 구직자 상세보기 페이지
 	@GetMapping("PersonInfo/{personId}")
 	public String 구직자상세보기(@PathVariable Integer personId, Model model) {
@@ -84,6 +93,12 @@ public class PersonController {
 		model.addAttribute("personSkillInfoDto", personSkillInfoDto);
 		return "person/PersonInfo";
 	}
+
+	// 구직자 추천 페이지
+	@GetMapping("/person/recommendList")
+	public String PersonRecommendList(Model model) {
+		List<PersonRecommendListDto> personRecommendListDto = personService.구직자추천리스트보기();
+		model.addAttribute("personRecommendListDto", personRecommendListDto);
 	
 	
 	

@@ -6,7 +6,7 @@
 <section class="py-5">
 	<div class="container">
 		<div class="view">
-			<c:forEach var="personInfo" items="${personInfoDto}">
+			<c:forEach var="personInfo" items="  ${personInfoDto}"  >
 				<form>
 					<input id="id" type="hidden" value="${personInfo.personId}" />
 

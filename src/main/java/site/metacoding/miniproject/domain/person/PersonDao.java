@@ -2,7 +2,9 @@ package site.metacoding.miniproject.domain.person;
 
 import java.util.List;
 
+
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
+import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 
 
 public interface PersonDao {
@@ -15,4 +17,5 @@ public interface PersonDao {
 	public List<Integer> findByDegree(String degree);
 	public List<Integer> findByCareer(Integer career);
 	public Integer findToId(Integer userId);
+	public List<PersonRecommendListDto> findToPersonRecommned();
 }
