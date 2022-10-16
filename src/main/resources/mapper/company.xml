@@ -45,10 +45,28 @@
 		FROM (SELECT n.*, c.user_id user_id, c.company_name company_name, c.address address
 		FROM (select * FROM notice ORDER BY notice_id desc) n INNER JOIN company c
 		ON n.company_id = c.company_id
-		WHERE is_closed =0 GROUP BY (user_id) ) FIRST LEFT OUTER JOIN recommend
+		WHERE is_closed =0 ) FIRST LEFT OUTER JOIN recommend
 		ON recommend.subject_id = FIRST.user_id
 		GROUP BY (notice_id)
 		ORDER BY subject_id desc
+	</select>
+	
+	<select id="findToNoticeId"
+		resultType="site.metacoding.miniproject.web.dto.response.CompanyRecommendDto">
+		SELECT COUNT(recommend.subject_id) as recommend_count , FIRST.*
+		FROM (SELECT n.*, c.user_id user_id, c.company_name company_name, c.address address
+		FROM (select * FROM notice where notice_id = #{noticeId}) n INNER JOIN company c
+		ON n.company_id = c.company_id
+		WHERE is_closed =0 GROUP BY (user_id) ) FIRST LEFT OUTER JOIN recommend
+		ON recommend.subject_id = FIRST.user_id
+		ORDER BY subject_id desc
+	</select>
+	
+	<select id="findByUserId"
+		resultType="site.metacoding.miniproject.domain.company.Company">
+		SELECT *
+		FROM company
+		WHERE user_Id = #{userId}
 	</select>
 
 </mapper>

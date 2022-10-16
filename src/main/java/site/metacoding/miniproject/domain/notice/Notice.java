@@ -12,7 +12,7 @@ public class Notice {
 	private Integer companyId;
 	private String noticeTitle;
 	private boolean isClosed;
-	private Integer salary;
+	private String salary;
 	private String degree;
 	private Timestamp createdAt;
 }

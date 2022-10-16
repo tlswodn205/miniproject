@@ -28,6 +28,11 @@
 					<td>${company.companyName} </br> 추천수 : ${company.recommendCount}</td>
 					<td>${company.noticeTitle}</br>
 					${company.career==0 ? "신입": company.career} | ${company.degree} | ${company.address} | ${company.salary}</br>
+
+					<c:forEach var="Skills" items="${company.needSkillList}">
+					${Skills.skill} 
+					</c:forEach>
+					</br>
 					${company.createdAt}</td>
 					<td>
 						<button type="button" class="btn btn-primary">기업 상세보기</button>

@@ -28,9 +28,9 @@
     WHERE resume_id = #{resumeId}
   </update>
 
-  <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.person_skill.PersonSkill">
+  <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.resume.Resume">
     SELECT *
-    FROM Person_Skill
+    FROM resume
     WHERE person_id = #{personId}
   </select>
 </mapper>

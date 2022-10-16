@@ -11,4 +11,6 @@ public interface CompanyDao {
 	public void update(Company company); //dto생각
 	public void deleteById(Integer companyId);
 	public List<CompanyRecommendDto> findToRecommned();
+	public CompanyRecommendDto findToNoticeId(Integer noticeId);
+	public Company findByUserId(Integer userId);
 }

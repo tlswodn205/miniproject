@@ -7,10 +7,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.person.Person;
 import site.metacoding.miniproject.domain.person.PersonDao;
 import site.metacoding.miniproject.domain.person_skill.PersonSkillDao;
@@ -35,7 +34,7 @@ public class PersonService {
 	private final UserDao userDao;
 	private final PersonSkillDao personSkillDao;
 	private final ResumeDao resumeDao;
-
+	private final CompanyDao companyDao;
 
 	@Transactional(rollbackFor = {RuntimeException.class})
 	public void 회원가입(PersonJoinDto personJoinDto) {
@@ -135,4 +134,19 @@ public class PersonService {
 		}
 		return  personRecommendListDto;
 	}
+	
+	public List<Resume> 이력서목록가져오기(Integer userId){
+		System.out.println(personDao.findToId(userId));
+		List<Resume> resumeList = resumeDao.findByPersonId(personDao.findToId(userId));
+		if(resumeList.size()==0) {
+			return null;
+		}
+		System.out.println(resumeList.get(0));
+		return resumeList;
+	}
+	
+	public void 이력서삭제하기(Integer resumeId) {
+		resumeDao.deleteById(resumeId);
+	}
+
 }

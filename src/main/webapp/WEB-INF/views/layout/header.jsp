@@ -49,15 +49,15 @@
 
 					<li class="nav-item"><a class="nav-link" href="*">채용공고</a></li>
 					<c:if test="${principal.role == 'company' || principal.role == null}">
-						<li class="nav-item"><a class="nav-link" href="index.html">관심구직자 매칭</a></li>
+						<li class="nav-item"><a class="nav-link" href="/person/skillPersonMatching">관심구직자 매칭</a></li>
 						<li class="nav-item"><a class="nav-link" href="index.html">기업 등록</a></li>
 						<li class="nav-item"><a class="nav-link" href="index.html">구직자추천 리스트</a></li>
 					</c:if>
 					<c:if test="${principal.role == 'person' || principal.role == null}">
 						<li class="nav-item"><a class="nav-link" href="/person/resumeWrite">이력서 등록</a></li>
-						<li class="nav-item"><a class="nav-link" href="index.html">관심기업 매칭</a></li>
+						<li class="nav-item"><a class="nav-link" href="/company/matchingList">관심기업 매칭</a></li>
 						<li class="nav-item"><a class="nav-link" href="/company/recommendList">기업추천 리스트</a></li>
-						<li class="nav-item"><a class="nav-link" href="index.html">구독 페이지</a></li>
+						<li class="nav-item"><a class="nav-link" href="/company/subscribeManage">구독 페이지</a></li>
 					</c:if>
 					<c:if test="${principal == null }">
 						<li class="nav-item" style="margin: 0 30px 0 30px;"><a href="/loginForm">

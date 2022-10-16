@@ -17,12 +17,6 @@
 	}
 
 </style>
-java
-javaScript
-HTML/CSS
-MySQL
-AWS
-Flutter
 
 
 <!-- Body-->
@@ -127,7 +121,7 @@ $("#careerBtn").click(() => {
 $("#skillBtn").click((id) => {
 	let ids = getSkill(id);
 
-	$.ajax("/person/interestPersonList/personSkill", {
+	$.ajax("/person/skillPersonMatching/personSkill", {
 		type: "Post",
 		dataType: "json",
 		data: JSON.stringify(ids),

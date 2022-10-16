@@ -23,7 +23,7 @@
   <select id="findToId" resultType="Integer">
   	SELECT person_id
   	FROM person
-  	WHERE user_id = #{personId}
+  	WHERE user_id = #{userId}
   </select>
 
   <insert id="insert">
