@@ -2,6 +2,8 @@ package site.metacoding.miniproject.domain.subscribe;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 
 public interface SubscribeDao {
 	public List<Subscribe> findAll();
@@ -10,5 +12,6 @@ public interface SubscribeDao {
 	public void update(Subscribe subscribe);
 	public void deleteById(int subscribeId);
 	public List<Subscribe> findByUserId(int userId);
+	public Integer findByUserIdAndSubjectId(@Param("userId") Integer userId, @Param("subjectId") Integer subjectId);
 
 }

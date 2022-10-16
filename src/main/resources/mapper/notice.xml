@@ -27,6 +27,12 @@
     is_closed = #{isClosed}
     WHERE notice_id = #{noticeId}
   </update>
+  
+    <select id="findByCompanyId" resultType="site.metacoding.miniproject.web.dto.response.NoticeRespDto">
+    SELECT notice_id, notice_title, salary, degree, is_closed, created_At
+    FROM Notice
+    WHERE company_id = #{companyId}
+  </select>
 
 
 </mapper>

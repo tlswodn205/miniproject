@@ -8,17 +8,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.need_skill.NeedSkill;
 import site.metacoding.miniproject.domain.need_skill.NeedSkillDao;
 import site.metacoding.miniproject.domain.notice.Notice;
 import site.metacoding.miniproject.domain.notice.NoticeDao;
+import site.metacoding.miniproject.domain.recommend.Recommend;
+import site.metacoding.miniproject.domain.recommend.RecommendDao;
 import site.metacoding.miniproject.domain.subscribe.Subscribe;
 import site.metacoding.miniproject.domain.subscribe.SubscribeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
+import site.metacoding.miniproject.web.dto.response.CompanyDetailRecomDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
+import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
 
 @RequiredArgsConstructor
@@ -30,6 +35,7 @@ public class CompanyService {
 	private final NeedSkillDao needSkillDao;
 	private final NoticeDao noticeDao;
 	private final SubscribeDao subscribeDao;
+	private final RecommendDao recommendDao;
 	
 	@Transactional(rollbackFor = {RuntimeException.class})
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
@@ -69,30 +75,65 @@ public class CompanyService {
 	}
 	
 	public List<CompanyRecommendDto> NoticeId로공고불러오기(List<Integer> noticeList){
-		List<CompanyRecommendDto> CompanyRecommendDtoList = new ArrayList<>();
+		List<CompanyRecommendDto> companyRecommendDtoList = new ArrayList<>();
 		for (int i = 0; i < noticeList.size(); i++) {
 			CompanyRecommendDto companyRecommendDto = companyDao.findToNoticeId(noticeList.get(i));
 			companyRecommendDto.setNeedSkillList(needSkillDao.findByNoticeId(noticeList.get(i)));
-			CompanyRecommendDtoList.add(companyRecommendDto);
+			companyRecommendDtoList.add(companyRecommendDto);
 			if(i>=19) {
 				break;
 			}
 		}
-		return CompanyRecommendDtoList;
+		return companyRecommendDtoList;
 	}
 	
 
 	
 	public List<SubscribeDto> 구독목록불러오기(int userId){
+		System.out.println(userId);
 		List<Subscribe> subscribeList = subscribeDao.findByUserId(userId);
 		List<SubscribeDto> subscribeDtoList = new ArrayList<>();
 		for (int i = 0; i < subscribeList.size(); i++) {
-			subscribeDtoList.add(new SubscribeDto(subscribeList.get(i).getSubscribeId(), companyDao.findByUserId(subscribeList.get(0).getSubjectId()).getCompanyId(), companyDao.findByUserId(subscribeList.get(0).getSubjectId()).getCompanyName()));
+			subscribeDtoList.add(new SubscribeDto(subscribeList.get(i).getSubscribeId(), companyDao.findByUserId(subscribeList.get(i).getSubjectId()).getCompanyId(), companyDao.findByUserId(subscribeList.get(i).getSubjectId()).getCompanyName()));
 		}
 		return subscribeDtoList;
 	}
 	
-	public void 구독취소(int subscribeId) {
+	public void 구독취소(Integer subscribeId) {
 		subscribeDao.deleteById(subscribeId);
 	}
+	
+	public Company 기업한건불러오기(int companyId) {
+		return companyDao.findById(companyId);
+	}
+	
+	public List<NoticeRespDto> CompanyId로공고불러오기(Integer companyId){
+		List<NoticeRespDto> noticeRespDtoList = noticeDao.findByCompanyId(companyId);
+		for (int i = 0; i < noticeRespDtoList.size(); i++) {
+			noticeRespDtoList.get(i).setNeedSkill((needSkillDao.findByNoticeId(noticeRespDtoList.get(i).getNoticeId())));
+		}
+		return noticeRespDtoList;
+	}	
+	public CompanyDetailRecomDto 기업추천불러오기(Integer userId, Integer subjectId) {
+		return recommendDao.findAboutsubject(userId, subjectId);
+	}
+	
+	public void 기업추천하기(Integer userId, Integer subjectId) {
+		Recommend recommend = new Recommend(null, userId, subjectId, null);
+		recommendDao.insert(recommend);
+	}
+	
+	public void 기업추천취소(Integer recommendId) {;
+		recommendDao.delete(recommendId);
+	}
+	
+	public Integer 구독Id불러오기(Integer userId, Integer subjectId) {
+		return subscribeDao.findByUserIdAndSubjectId(userId, subjectId);
+	}
+	
+	public void 구독하기(Integer userId, Integer subjectId) {
+		Subscribe subscribe = new Subscribe(null, userId, subjectId, null);
+		subscribeDao.insert(subscribe);
+	}
+	
 }
