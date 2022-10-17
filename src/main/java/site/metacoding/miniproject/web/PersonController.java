@@ -42,6 +42,7 @@ public class PersonController {
 	private final PersonService personService;
 	private final UserService userService;
 
+	// 회원가입 응답
 	@PostMapping("/person/join")
 	public @ResponseBody CMRespDto<?> joinPerson(@RequestBody PersonJoinDto personJoinDto) {
 		System.out.println("===================");
@@ -66,7 +67,8 @@ public class PersonController {
 		return "person/personJoinForm";
 
 	}
-
+	
+	// 이력서 응답
 	@PostMapping("/save/resume/{personId}")
 	public @ResponseBody CMRespDto<?> resumeWrite(@RequestBody ResumeWriteDto resumeWriteDto,
 			@PathVariable Integer personId) {
@@ -90,7 +92,7 @@ public class PersonController {
 	}
 
 	// 구직자 상세보기 페이지
-	@GetMapping("PersonInfo/{personId}")
+	@GetMapping("/PersonInfo/{personId}")
 	public String 구직자상세보기(@PathVariable Integer personId, Model model) {
 		User userPS = (User) session.getAttribute("principal");
 		List<PersonInfoDto> personInfoDto = personService.개인정보보기(personId);

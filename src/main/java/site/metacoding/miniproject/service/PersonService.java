@@ -1,8 +1,6 @@
 package site.metacoding.miniproject.service;
 
-import java.util.Iterator;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,17 +17,18 @@ import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.resume.ResumeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
-
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
+import site.metacoding.miniproject.web.dto.response.CompanyDetailRecomDto;
+import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
+import site.metacoding.miniproject.web.dto.response.ResumeDetailFormDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
-
 
 @RequiredArgsConstructor
 @Service
@@ -57,10 +56,9 @@ public class PersonService {
 
 	public ResumeFormDto 이력서내용가져오기(Integer personId) {
 		Person person = personDao.findById(personId);
-		ResumeFormDto resumeFormDto = new ResumeFormDto(personId, person.getPersonName(), person.getPersonEmail(),
+		ResumeFormDto resumeFormDto = new ResumeFormDto(personId, person.getUserId(), person.getPersonName(), person.getPersonEmail(),
 				person.getDegree(), person.getAddress(), person.getCareer(), personSkillDao.findByPersonId(personId));
 		return resumeFormDto;
-
 	}
 	
 	

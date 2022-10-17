@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,6 +22,7 @@ import site.metacoding.miniproject.service.PersonService;
 import site.metacoding.miniproject.service.ResumeService;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
+import site.metacoding.miniproject.web.dto.response.ResumeDetailFormDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 
 @RequiredArgsConstructor
@@ -69,5 +71,17 @@ public class ResumeController {
 		resumeService.이력서등록하기(resumeWriteDto);
 		return new CMRespDto<>(1, "업로드 성공", imgName);
 	}
-	
+
+	// 이력서 상세보기 페이지
+	@GetMapping("/person/resumeDetail/{resumeId}")
+	public String resumeDetail(Model model, @PathVariable Integer resumeId) {
+		User userPS = (User) session.getAttribute("principal");
+		ResumeDetailFormDto personPS2 = resumeService.이력서상세보기(resumeId);
+		ResumeFormDto personPS = personService.이력서내용가져오기(personPS2.getPersonId()); // 이력서내용가져오기
+		model.addAttribute("person", personPS);
+		model.addAttribute("person2", personPS2);
+		model.addAttribute("principal", userPS);
+		return "person/resumeDetail";
+	}
+
 }
