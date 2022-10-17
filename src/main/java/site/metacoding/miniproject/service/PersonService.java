@@ -19,7 +19,6 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
-import site.metacoding.miniproject.web.dto.response.CompanyDetailRecomDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
