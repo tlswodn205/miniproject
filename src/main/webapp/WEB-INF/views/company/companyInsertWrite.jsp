@@ -85,6 +85,7 @@
 				enctype : 'multipart/form-data'
 			}).done((res) => {
 				if (res.code == 1) { // 성공
+					alert($("#companyId").val());
 					location.href = "/";
 				} else { // 실패
 					alert("기업 이력등록에 실패하였습니다.");

@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,30 +19,26 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.sym.Name;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
-import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.CompanyService;
 import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
 import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
-import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
+
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
-import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
+
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
 
 @RequiredArgsConstructor
 @Controller
 public class CompanyController {
-
-	private final CompanyDao companyDao;
 	private final HttpSession session;
 	private final CompanyService companyService;
 	private final UserService userService;
@@ -69,6 +64,7 @@ public class CompanyController {
 		model.addAttribute("skillList",BasicSkillList.getSkill());
 		return "/company/companyJoinForm";
 	}
+	
 
 	// 기업추천 리스트 페이지
 	@GetMapping("/company/recommendList")
