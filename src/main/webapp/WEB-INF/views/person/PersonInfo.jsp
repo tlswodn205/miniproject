@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/workEnter.css">
 <%@ include file="../layout/header.jsp"%>
@@ -6,9 +6,9 @@
 <section class="py-5">
 	<div class="container">
 		<div class="view">
-			<c:forEach var="personInfo" items="  ${personInfoDto}"  >
+			<c:forEach var="personInfo" items="${personInfoDto}"  >
 				<form>
-					<input id="id" type="hidden" value="${personInfo.personId}" />
+					<input id="personId" type="hidden" value="${personInfo.personId}" />
 
 
 					<div class="mb-3 mt-3">
@@ -38,8 +38,7 @@
 					<p>
 						기술 스택 : 
 						<c:forEach var="personSkillInfo" items="${personSkillInfoDto}" >
-								<input id="id" type="hidden" value="${personSkillInfo.personId}" />
-								<input id="id" type="hidden" value="${personSkillInfo.personSkillId}" />		
+								<input id="personSkillId" type="hidden" value="${personSkillInfo.personSkillId}" />		
 								${personSkillInfo.skill}
 						</c:forEach>
 					</p>

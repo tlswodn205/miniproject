@@ -12,6 +12,7 @@ import site.metacoding.miniproject.domain.person_skill.PersonSkill;
 @AllArgsConstructor
 public class ResumeFormDto {
     private Integer personId;
+    private Integer userId;
     private String personName;
     private String personEmail;
     private String degree;
@@ -19,3 +20,4 @@ public class ResumeFormDto {
     private Integer career;
     private List<PersonSkill> personSkillList;
 }
+
