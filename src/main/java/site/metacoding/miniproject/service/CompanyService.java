@@ -151,7 +151,6 @@ public class CompanyService {
 	}
 
 
-
 	public void 공고등록하기(NoticeInsertDto noticeInsertDto) {
 		noticeDao.insert(noticeInsertDto.toNotice());
 		System.out.println(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()));
@@ -159,5 +158,9 @@ public class CompanyService {
 			needSkillDao.insert(noticeInsertDto.toNeedSkill(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()), i));
 		}
 		
+	}
+
+	public List<NeedSkill> noticeId로필요기술들고오기(Integer noticeId) {
+		return needSkillDao.findByNoticeId(noticeId);
 	}
 }

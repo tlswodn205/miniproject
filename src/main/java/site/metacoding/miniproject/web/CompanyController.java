@@ -22,8 +22,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
+import site.metacoding.miniproject.domain.need_skill.NeedSkill;
+import site.metacoding.miniproject.domain.notice.Notice;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.CompanyService;
+import site.metacoding.miniproject.service.PersonService;
 import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
 import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
@@ -42,6 +45,7 @@ public class CompanyController {
 	private final HttpSession session;
 	private final CompanyService companyService;
 	private final UserService userService;
+	private final PersonService personService;
 
 	// 기업회원가입
 	@PostMapping("/company/join")
@@ -217,5 +221,13 @@ public class CompanyController {
 		return new CMRespDto<>(1, "공고 등록 완료", null);
 	}
 	
-	
+	@GetMapping("/company/noticeDetail/{noticeId}")
+	public String noticeDetail(@PathVariable Integer noticeId, Model model){
+		Notice notice = personService.공고하나불러오기(noticeId);
+		List<NeedSkill> needSkillList = companyService.noticeId로필요기술들고오기(noticeId);
+		System.out.println(notice.getNoticeContent());
+		model.addAttribute("notice", notice);
+		model.addAttribute("needSkillList", needSkillList);
+		return "/company/noticeDetail";
+	}
 }
