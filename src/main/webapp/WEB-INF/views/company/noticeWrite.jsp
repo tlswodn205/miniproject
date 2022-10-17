@@ -158,11 +158,10 @@
         		}
         	}).done((res)=>{
         		if(res.code == 1){
-        			alert("회원가입성공!!");
-        			location.href="/loginForm";
+        			alert("공고 등록 완료!!");
+        			location.href="/company/noticeLoad";
         		}
-        		else
-        			alert("이미 가입된 아이디가 있습니다!!");
+        		else{}
         	});
         });
         
