@@ -116,25 +116,6 @@ public class CompanyController {
 		return new CMRespDto<>(1, "업로드 성공", imgName);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@GetMapping("/company/matchingList")
 	public String skillCompanyMatching(Model model) {
@@ -220,20 +201,6 @@ public class CompanyController {
 		List<NoticeRespDto> noticeRespDtoList = companyService.CompanyId로공고불러오기(company.getCompanyId());
 		model.addAttribute("noticeRespDtoList", noticeRespDtoList);
 		return "/company/noticeLoad";
-	}
-	
-	@GetMapping("/company/noticeWrite")
-	public String noticeWrite(Model model) {
-		User userPS = (User) session.getAttribute("principal");
-		Company company = companyService.유저아이디로찾기(userPS.getUserId());
-		model.addAttribute("company", company);
-		return "/company/noticeWrite";
-	}
-	
-	@PostMapping("/company/noticeInsert")
-	public @ResponseBody CMRespDto<?> noticeInsert(@RequestBody NoticeInsertDto noticeInsertDto){
-		companyService.공고등록하기(noticeInsertDto);
-		return new CMRespDto<>(1, "공고 등록 완료", null);
 	}
 	
 	@GetMapping("/company/noticeWrite")
