@@ -1,9 +1,12 @@
 package site.metacoding.miniproject.web;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +15,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.sym.Name;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
-import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.CompanyService;
 import site.metacoding.miniproject.service.UserService;
@@ -29,15 +32,13 @@ import site.metacoding.miniproject.web.dto.request.NoticeInsertDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
-import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
+
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
 
 @RequiredArgsConstructor
 @Controller
 public class CompanyController {
-
-	private final CompanyDao companyDao;
 	private final HttpSession session;
 	private final CompanyService companyService;
 	private final UserService userService;
@@ -63,6 +64,7 @@ public class CompanyController {
 		model.addAttribute("skillList",BasicSkillList.getSkill());
 		return "/company/companyJoinForm";
 	}
+	
 
 	// 기업추천 리스트 페이지
 	@GetMapping("/company/recommendList")
@@ -72,6 +74,10 @@ public class CompanyController {
 		return "/company/companyRecommendList";
 	}
 
+	
+	
+	
+	
 	@GetMapping("/company/companyInsertWrite")
 	public String companyInsertForm(Model model) {
 		User userPs = (User) session.getAttribute("principal");
@@ -80,13 +86,55 @@ public class CompanyController {
 		return "/company/companyInsertWrite";
 	}
 
-	//  기업 이력서 등록 페이지
-	@PostMapping("/company/companyInsert/{companyId}")
-	public @ResponseBody CMRespDto<?> CompanyWrite(@PathVariable Integer companyId, @RequestBody CompanyInsertDto companyInsertDto) {
-		companyService.기업이력등록(companyId, companyInsertDto);
-		return new CMRespDto<>(1, "이력서 등록 성공", null);
-	}
+	
+	
+	@PostMapping(value = "/company/companyInsert/{companyId}")
+	public @ResponseBody CMRespDto<?> create(@RequestPart("file") MultipartFile file,@PathVariable Integer companyId,
+			@RequestPart("companyInsertDto") CompanyInsertDto companyInsertDto) throws Exception {
+		int pos = file.getOriginalFilename().lastIndexOf(".");
+		String extension = file.getOriginalFilename().substring(pos + 1);
+		String filePath = "C:\\temp\\img\\";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
 
+		File makeFileFolder = new File(filePath);
+		if (!makeFileFolder.exists()) {
+			if (!makeFileFolder.mkdir()) {
+				throw new Exception("File.mkdir():Fail.");
+			}
+		}
+
+		File dest = new File(filePath, imgName);
+		try {
+			Files.copy(file.getInputStream(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("사진저장");
+		}
+		companyInsertDto.setPhoto(imgName);
+		companyService.기업이력등록(companyId,companyInsertDto);
+		return new CMRespDto<>(1, "업로드 성공", imgName);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	@GetMapping("/company/matchingList")
 	public String skillCompanyMatching(Model model) {
@@ -172,6 +220,20 @@ public class CompanyController {
 		List<NoticeRespDto> noticeRespDtoList = companyService.CompanyId로공고불러오기(company.getCompanyId());
 		model.addAttribute("noticeRespDtoList", noticeRespDtoList);
 		return "/company/noticeLoad";
+	}
+	
+	@GetMapping("/company/noticeWrite")
+	public String noticeWrite(Model model) {
+		User userPS = (User) session.getAttribute("principal");
+		Company company = companyService.유저아이디로찾기(userPS.getUserId());
+		model.addAttribute("company", company);
+		return "/company/noticeWrite";
+	}
+	
+	@PostMapping("/company/noticeInsert")
+	public @ResponseBody CMRespDto<?> noticeInsert(@RequestBody NoticeInsertDto noticeInsertDto){
+		companyService.공고등록하기(noticeInsertDto);
+		return new CMRespDto<>(1, "공고 등록 완료", null);
 	}
 	
 	@GetMapping("/company/noticeWrite")
