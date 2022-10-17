@@ -235,4 +235,20 @@ public class CompanyController {
 		companyService.공고등록하기(noticeInsertDto);
 		return new CMRespDto<>(1, "공고 등록 완료", null);
 	}
+	
+	@GetMapping("/company/noticeWrite")
+	public String noticeWrite(Model model) {
+		User userPS = (User) session.getAttribute("principal");
+		Company company = companyService.유저아이디로찾기(userPS.getUserId());
+		model.addAttribute("company", company);
+		return "/company/noticeWrite";
+	}
+	
+	@PostMapping("/company/noticeInsert")
+	public @ResponseBody CMRespDto<?> noticeInsert(@RequestBody NoticeInsertDto noticeInsertDto){
+		companyService.공고등록하기(noticeInsertDto);
+		return new CMRespDto<>(1, "공고 등록 완료", null);
+	}
+	
+	
 }

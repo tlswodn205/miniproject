@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
+import site.metacoding.miniproject.domain.notice.Notice;
 import site.metacoding.miniproject.domain.person.PersonDao;
 import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.subscribe.Subscribe;
@@ -27,6 +28,7 @@ import site.metacoding.miniproject.util.BasicSkillList;
 
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
+import site.metacoding.miniproject.web.dto.response.AppliersDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
@@ -168,5 +170,21 @@ public class PersonController {
 		List<PersonRecommendListDto> personRecommendListDto = personService.구직자추천리스트보기();
 		model.addAttribute("personRecommendListDto", personRecommendListDto);
 		return "/person/personRecommendList";
+	}
+	
+
+	@GetMapping("/person/noticePerApplier/{noticeId}")
+	public String findNoticePerApplier(@PathVariable Integer noticeId, Model model) {
+		List<AppliersDto> appliersDtoList = personService.공고별구직자찾기(noticeId);
+		Notice notice = personService.공고하나불러오기(noticeId);
+		model.addAttribute("appliersDtoList", appliersDtoList);
+		model.addAttribute("notice", notice);
+		return "/person/noticePerApplier";
+	}
+	
+	@PostMapping("/company/noticeClose/{noticeId}")
+	public CMRespDto<?> closeNotice(@PathVariable Integer noticeId){
+		personService.공고마감하기(noticeId);
+		return new CMRespDto<>(1, "마감 완료", null);
 	}
 }

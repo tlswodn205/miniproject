@@ -214,20 +214,20 @@ h2 {
 <!-- Core theme JS-->
 <script>
 	$("#subscribeBtn").click(() => {
-		    $.ajax("/company/subscribe/" + $("#userId").val(), {
-		        type: "post",
-		        dataType: "json"
-		    }).done((res) => {
-		    	if(res.data==null){
-		    		$("#subscribeBtn").removeClass("blueBtn");
-		    		$("#subscribeBtn").addClass("greyBtn");
-		    		$("#subscribeBtn").text("구독");
-		    	}else{
-		    		$("#subscribeBtn").removeClass("greyBtn");
-		    		$("#subscribeBtn").addClass("blueBtn");
-		    		$("#subscribeBtn").text("구독취소");
-		    	}
-		    });
+		$.ajax("/company/subscribe/" + $("#userId").val(), {
+	        type: "post",
+	        dataType: "json"
+		}).done((res) => {
+	    	if(res.data==null){
+	    		$("#subscribeBtn").removeClass("blueBtn");
+	    		$("#subscribeBtn").addClass("greyBtn");
+	    		$("#subscribeBtn").text("구독");
+	    	}else{
+	    		$("#subscribeBtn").removeClass("greyBtn");
+	    		$("#subscribeBtn").addClass("blueBtn");
+	    		$("#subscribeBtn").text("구독취소");
+	    	}
+	    });
 	});
 
 

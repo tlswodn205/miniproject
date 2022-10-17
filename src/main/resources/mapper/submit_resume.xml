@@ -22,6 +22,12 @@
     DELETE FROM submit_resume
     WHERE submit_resume_Id = #{submitResumeId}
   </delete>
+  
+    <select id="findByNoticeId" resultType="site.metacoding.miniproject.domain.submit_resume.SubmitResume">
+    SELECT *
+    FROM submit_resume
+    WHERE notice_id = #{noticeId}
+  </select>
 
   <update id="update"></update>
 </mapper>

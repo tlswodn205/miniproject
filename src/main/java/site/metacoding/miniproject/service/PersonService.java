@@ -1,5 +1,6 @@
 package site.metacoding.miniproject.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,13 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.CompanyDao;
+import site.metacoding.miniproject.domain.notice.Notice;
+import site.metacoding.miniproject.domain.notice.NoticeDao;
 import site.metacoding.miniproject.domain.person.Person;
 import site.metacoding.miniproject.domain.person.PersonDao;
+import site.metacoding.miniproject.domain.person_skill.PersonSkill;
 import site.metacoding.miniproject.domain.person_skill.PersonSkillDao;
 import site.metacoding.miniproject.domain.recommend.Recommend;
 import site.metacoding.miniproject.domain.recommend.RecommendDao;
 import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.resume.ResumeDao;
+import site.metacoding.miniproject.domain.submit_resume.SubmitResume;
+import site.metacoding.miniproject.domain.submit_resume.SubmitResumeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
@@ -25,6 +31,7 @@ import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 import site.metacoding.miniproject.web.dto.response.ResumeDetailFormDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
+import site.metacoding.miniproject.web.dto.response.AppliersDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
@@ -39,6 +46,8 @@ public class PersonService {
 	private final ResumeDao resumeDao;
 	private final CompanyDao companyDao;
 	private final RecommendDao recommendDao; 
+	private final SubmitResumeDao submitResumeDao;
+	private final NoticeDao noticeDao;
 
 	@Transactional(rollbackFor = {RuntimeException.class})
 	public void 회원가입(PersonJoinDto personJoinDto) {
@@ -174,4 +183,30 @@ public class PersonService {
 	public void 구직자추천취소(Integer recommendId) {
 		recommendDao.delete(recommendId);
 	}
+	
+	public List<AppliersDto> 공고별구직자찾기(Integer noticeId) {
+		List<SubmitResume> submitResumedList = submitResumeDao.findByNoticeId(noticeId);
+		List<AppliersDto> appliersDtoList = new ArrayList<>();
+		for (int i = 0; i < submitResumedList.size(); i++) {
+			Integer personId = resumeDao.findById(submitResumedList.get(i).getResumeId()).getPersonId();
+			Person person = personDao.findById(personId);
+			personDao.findById(personId);
+			List<PersonSkill> personSkillList =  personSkillDao.findByPersonId(personId);
+			appliersDtoList.add(new AppliersDto(submitResumedList.get(i).getResumeId(), personId, person.getPersonName(), person.getCareer(), personSkillList, submitResumedList.get(i).getCreatedAt()));
+		}
+		return appliersDtoList;
+	}
+	
+	public Notice 공고하나불러오기(int noticeId) {
+		return noticeDao.findById(noticeId);
+	}
+
+
+	public void 공고마감하기(Integer noticeId) {
+		noticeDao.closeNotice(noticeId, true);
+		
+	}
+
+
+	
 }
