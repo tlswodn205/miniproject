@@ -41,5 +41,11 @@
     ORDER BY created_At desc
     FETCH NEXT 1 ROWS ONLY
   </select>
+  
+  <update id="closeNotice">
+    Update Notice
+    SET is_closed = #{isClosed}
+    WHERE notice_id = #{noticeId}
+  </update>
 
 </mapper>

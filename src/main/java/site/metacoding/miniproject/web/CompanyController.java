@@ -187,4 +187,6 @@ public class CompanyController {
 		companyService.공고등록하기(noticeInsertDto);
 		return new CMRespDto<>(1, "공고 등록 완료", null);
 	}
+	
+	
 }
