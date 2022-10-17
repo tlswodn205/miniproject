@@ -92,6 +92,7 @@ create table notice(
    salary VARCHAR(20),
    degree VARCHAR(20),
    career INT,
+   notice_content LONGTEXT,
    created_at TIMESTAMP
 );
 

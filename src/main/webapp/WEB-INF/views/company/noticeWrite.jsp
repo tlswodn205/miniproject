@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+    
+<%@ include file="../layout/header.jsp"%>
     <style>
         h2 {
             text-align: center;
@@ -29,24 +32,21 @@
 
 
         .flex div {
-            margin: 10px 50px 10px 10px;
+            margin: 10px 5px 10px 10px;
         }
     </style>
-    
-<%@ include file="../layout/header.jsp"%>
         <div class="container mt-3">
-
+			<input type="hidden" id="companyId" value="${company.companyId}">
             <div class="noticeWrite_container">
-            	<input id="companyId"> 
                     <h2>
                     	채용공고등록
                     </h2>
                     <div>
-                        <div class="noticeWrite_title">제목 : <input id="" type="text" placeholder="제목을 입력해주세요."></br></div>
+                        <div class="noticeWrite_title">제목 : <input id="noticeTitle" type="text" placeholder="제목을 입력해주세요."></br></div>
                         <div class="flex">
                             <div class="flex_1">
-                            	급여 : <input id="salary" type="text" style="border: 1px solid lightslategray;"> ë§ì
-                            </div>
+                            	급여 : <input id="salary" type="text" style="border: 1px solid lightslategray;">만원
+                           </div>
                             <div class="flex_1">
                             	학력 : <select id = "degree">
                                     <option selected="selected">고졸</option>
@@ -69,21 +69,25 @@
                                     <option>10</option>
                                 </select>
                             </div>
-
-							<div>
+                       		<div>
+                       		
+                       		<span>기술스택 : </span>
 								<label>java</label> <input onclick="getSkill(1)" name="id" type="checkbox"
-								class="form-check-input" value="java"> <label>javaScript</label> <input onclick="getSkill(2)"
+								class="form-check-input" value="java"> <label>javaScript </label> <input onclick="getSkill(2)"
 								name="id" type="checkbox" class="form-check-input" value="javaScript"> <label>HTML/CSS</label> <input
-								onclick="getSkill(3)" name="id" type="checkbox" class="form-check-input" value="HTML/CSS"> <label>MySQL</label> <input
-								onclick="getSkill(4)" name="id" type="checkbox" class="form-check-input" value="MySQL"> <label>AWS</label> <input
-								onclick="getSkill(5)" name="id" type="checkbox" class="form-check-input" value="AWS"> <label>Flutter</label> <input
+								onclick="getSkill(3)" name="id" type="checkbox" class="form-check-input" value="HTML/CSS">  <label>MySQL </label> <input
+								onclick="getSkill(4)" name="id" type="checkbox" class="form-check-input" value="MySQL"> <label>AWS </label> <input
+								onclick="getSkill(5)" name="id" type="checkbox" class="form-check-input" value="AWS"> <label>Flutter </label>	<input
 								onclick="getSkill(6)" name="id" type="checkbox" class="form-check-input" value="Flutter">
 							</div>
+
                        </div>
+                       
+                       
                     </div>
                     <div class="mb-3 mt-3">
                         <label for="comment"></label>
-                        <textarea id="content" class="form-control" rows="5" placeholder="내용을 입력하세요" style="height: 500px;"></textarea>
+                        <textarea id="noticeContent" class="form-control" rows="5" placeholder="내용을 입력하세요" style="width:1145px; height: 500px;"></textarea>
                     </div>
                     <div>
                         <button id="noticeInsertBtn" class="btn btn-primary" style="margin: 0 0 0 1020px; ">작성완료</button>
@@ -91,7 +95,6 @@
             </div>
             </br>
             </br>
-
         </div>
 
 
@@ -115,4 +118,53 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script>
+        
+        let skillList = new Array();
+        
+        function getSkill(id){
+
+        	var arr = new Array();
+
+        	$("input:checkbox[name='id']").each(function() {
+        		if ($(this).is(":checked") == true) {
+        			arr.push($(this).val());
+        		}
+        	});
+        	console.log(arr);
+        	skillList = arr
+        }
+
+
+        $("#noticeInsertBtn").click(()=>{
+        	let data={
+        			companyId : $("#companyId").val(),
+        			noticeTitle : $("#noticeTitle").val(),
+        			career : $("#career").val(),
+        			salary : $("#salary").val(),
+        			degree : $("#degree").val(),
+        			noticeContent : $("#noticeContent").val(),
+        			needSkill : skillList
+        	}
+        	
+        	console.log(data);
+        	
+        	$.ajax("/company/noticeInsert",{
+        		type:"POST",
+        		dataType: "json",
+        		data: JSON.stringify(data),
+        		headers: {
+        			"Content-Type": "application/json"
+        		}
+        	}).done((res)=>{
+        		if(res.code == 1){
+        			alert("공고 등록 완료!!");
+        			location.href="/company/noticeLoad";
+        		}
+        		else{}
+        	});
+        });
+        
+        
+        
+        </script>

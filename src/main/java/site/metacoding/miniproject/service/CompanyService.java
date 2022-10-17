@@ -22,6 +22,7 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
+import site.metacoding.miniproject.web.dto.request.NoticeInsertDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
@@ -147,5 +148,16 @@ public class CompanyService {
 	public void 구독하기(Integer userId, Integer subjectId) {
 		Subscribe subscribe = new Subscribe(null, userId, subjectId, null);
 		subscribeDao.insert(subscribe);
+	}
+
+
+
+	public void 공고등록하기(NoticeInsertDto noticeInsertDto) {
+		noticeDao.insert(noticeInsertDto.toNotice());
+		System.out.println(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()));
+		for (int i = 0; i < noticeInsertDto.getNeedSkill().size(); i++) {
+			needSkillDao.insert(noticeInsertDto.toNeedSkill(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()), i));
+		}
+		
 	}
 }

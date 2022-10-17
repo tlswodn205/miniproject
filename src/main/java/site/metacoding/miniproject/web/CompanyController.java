@@ -28,7 +28,7 @@ import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
 import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
-
+import site.metacoding.miniproject.web.dto.request.NoticeInsertDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
@@ -166,14 +166,14 @@ public class CompanyController {
 	
 	@GetMapping("/company/companyDetail/{companyId}")
 	public String companyDetail(@PathVariable Integer companyId, Model model) {
-		User principal = (User) session.getAttribute("principal");
+		User userPS = (User) session.getAttribute("principal");
 		Company company = companyService.기업한건불러오기(companyId);
 		List<NoticeRespDto> noticeRespDtoList = companyService.CompanyId로공고불러오기(companyId);
-		if(principal != null) {
-			RecommendDetailDto recommendDetailDto = companyService.기업추천불러오기(principal.getUserId(), company.getUserId());
-			Integer subscribeId = companyService.구독Id불러오기(principal.getUserId(), company.getUserId());
+		if(userPS != null) {
+			RecommendDetailDto recommendDetailDto = companyService.기업추천불러오기(userPS.getUserId(), company.getUserId());
+			Integer subscribeId = companyService.구독Id불러오기(userPS.getUserId(), company.getUserId());
 			model.addAttribute("subscribeId", subscribeId);
-			model.addAttribute("principal", principal);
+			model.addAttribute("principal", userPS);
 			model.addAttribute("recommendDetailDto", recommendDetailDto);
 		}else {
 			RecommendDetailDto recommendDetailDto = companyService.기업추천불러오기(null, company.getUserId());
@@ -220,6 +220,19 @@ public class CompanyController {
 		List<NoticeRespDto> noticeRespDtoList = companyService.CompanyId로공고불러오기(company.getCompanyId());
 		model.addAttribute("noticeRespDtoList", noticeRespDtoList);
 		return "/company/noticeLoad";
-		
+	}
+	
+	@GetMapping("/company/noticeWrite")
+	public String noticeWrite(Model model) {
+		User userPS = (User) session.getAttribute("principal");
+		Company company = companyService.유저아이디로찾기(userPS.getUserId());
+		model.addAttribute("company", company);
+		return "/company/noticeWrite";
+	}
+	
+	@PostMapping("/company/noticeInsert")
+	public @ResponseBody CMRespDto<?> noticeInsert(@RequestBody NoticeInsertDto noticeInsertDto){
+		companyService.공고등록하기(noticeInsertDto);
+		return new CMRespDto<>(1, "공고 등록 완료", null);
 	}
 }
