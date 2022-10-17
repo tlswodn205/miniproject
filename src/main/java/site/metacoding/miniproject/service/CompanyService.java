@@ -20,6 +20,7 @@ import site.metacoding.miniproject.domain.subscribe.Subscribe;
 import site.metacoding.miniproject.domain.subscribe.SubscribeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
+import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.response.CompanyDetailRecomDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
@@ -32,17 +33,44 @@ public class CompanyService {
 
 	private final CompanyDao companyDao;
 	private final UserDao userDao;
+<<<<<<< HEAD
+
+	@Transactional(rollbackFor = { RuntimeException.class })
+=======
 	private final NeedSkillDao needSkillDao;
 	private final NoticeDao noticeDao;
 	private final SubscribeDao subscribeDao;
 	private final RecommendDao recommendDao;
 	
 	@Transactional(rollbackFor = {RuntimeException.class})
+>>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
+<<<<<<< HEAD
+
+	public List<CompanyRecommendDto> 기업추천리스트보기() {
+
+		return companyDao.findToRecommned();
+	}
+
+	public CompanyInsertDto 기업이력등록(Integer CompanyId, CompanyInsertDto companyInsertDto) {
+		companyInsertDto.setCompanyId(CompanyId);
+		companyDao.companyInsert(companyInsertDto);
+		return companyInsertDto;
+	}
+
+	public Company 유저아이디로찾기(Integer userId) {
+		return companyDao.findByUserId(userId);
+	}
+	
+
+
+
+}
+=======
 	
 	public List<CompanyRecommendDto> 기업추천리스트보기() {	
 		List<CompanyRecommendDto> companyRecommendDtoList = companyDao.findToRecommned();
@@ -137,3 +165,4 @@ public class CompanyService {
 	}
 	
 }
+>>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff

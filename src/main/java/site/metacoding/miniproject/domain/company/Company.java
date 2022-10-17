@@ -32,6 +32,11 @@ public class Company {
 		this.history = history;
 		this.tech = tech;
 		this.address = address;
+<<<<<<< HEAD
+		this.ceoName = introduction;
+
+=======
 		this.introduction = introduction;
+>>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff
 	}
 }
