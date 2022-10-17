@@ -13,8 +13,8 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO Notice(company_id, notice_title, is_closed, salary, degree, career, created_At)
-    VALUE(#{companyId}, #{noticeTitle}, #{isClosed}, #{salary}, #{degree}, #{career}, now())
+    INSERT INTO Notice(company_id, notice_title, is_closed, salary, degree, career, notice_content, created_At)
+    VALUE(#{companyId}, #{noticeTitle}, #{isClosed}, #{salary}, #{degree}, #{career}, #{noticeContent}, now())
   </insert>
 
   <delete id="deleteById">
@@ -33,6 +33,13 @@
     FROM Notice
     WHERE company_id = #{companyId}
   </select>
-
+  
+  <select id="findRecentNoticeId" resultType="Integer">
+    SELECT notice_id
+    FROM Notice
+    WHERE company_id = #{companyId}
+    ORDER BY created_At desc
+    FETCH NEXT 1 ROWS ONLY
+  </select>
 
 </mapper>

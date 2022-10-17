@@ -90,10 +90,13 @@
 	                                <div class="title">${noticeRespDto.noticeTitle}</div>
 	                                <div class="second">
 	                                    <div class="date">${noticeRespDto.createdAt}</div>
+	                                    <div class="skill">
                 						<c:forEach var="Skills" items="${noticeRespDto.needSkill}">
-	                                    <div class="skill">${Skills.skill}</div>
-	                                    
+	                                    ${Skills.skill}
                     					</c:forEach>
+	                                    
+	                                    </div>
+	                                    
 	                                </div>
 	                            </div>
 	                            <div class="category">
