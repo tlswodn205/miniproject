@@ -137,9 +137,9 @@ h2 {
 	</div>
 	<div class="companyInfoWrite_container">
 		<div class="flex">
-			<div style="width: 400px;">
-				<img class="card-img-top"
-					src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." />
+			<div class="form-group">
+				<img src="/img/${company.photo}" style="width: 400px; height: 156px;">
+				<div id="imageContainer"></div>
 			</div>
 		</div>
 		<div class="mb-3 mt-3">
