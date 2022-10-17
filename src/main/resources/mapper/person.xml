@@ -63,23 +63,18 @@
   
   	<select id="findToPersonRecommned"
 		resultType="site.metacoding.miniproject.web.dto.response.PersonRecommendListDto">
-		SELECT COUNT(subject_id) AS subjectId, FIRST.*, person_skill.skill
-		FROM recommend LEFT OUTER JOIN
+		SELECT COUNT(subject_id) AS recommendCount, FIRST.*
+		FROM recommend Right OUTER JOIN
 		(
 		SELECT person.user_id, person.person_id,
-		person.person_name, resume.resume_title,
+		person.person_name, person.degree,
 		person.career, person.address
-		FROM person LEFT OUTER JOIN resume
-		ON person.person_id =
-		resume.person_id
+		FROM person 
 		) FIRST
-		ON recommend.subject_id = FIRST.user_id
-		LEFT OUTER
-		JOIN person_skill
-		ON FIRST.person_id = person_skill.person_id
+		ON FIRST.user_id = recommend.subject_id 
 		GROUP BY
-		(subject_id)
-		ORDER BY subject_id
+		(FIRST.user_id)
+		ORDER BY COUNT( recommend.subject_id) desc
 	</select>
   
 

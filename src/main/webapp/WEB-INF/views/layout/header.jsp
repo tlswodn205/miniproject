@@ -50,7 +50,7 @@
 					<c:if test="${principal.role == 'company' || principal.role == null}">
 						<li class="nav-item"><a class="nav-link" href="/person/skillPersonMatching">관심구직자 매칭</a></li>
 						<li class="nav-item"><a class="nav-link" href="/company/companyInsertWrite">기업소개등록</a></li>
-						<li class="nav-item"><a class="nav-link" href="index.html">구직자추천 리스트</a></li>
+						<li class="nav-item"><a class="nav-link" href="/person/personRecommendList">구직자추천 리스트</a></li>
 					</c:if>
 					<c:if test="${principal.role == 'person' || principal.role == null}">
 						<li class="nav-item"><a class="nav-link" href="/person/resumeWrite">이력서 등록</a></li>

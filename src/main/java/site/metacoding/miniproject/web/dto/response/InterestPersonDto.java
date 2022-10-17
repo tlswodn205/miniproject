@@ -12,6 +12,7 @@ import site.metacoding.miniproject.domain.person_skill.PersonSkill;
 @Getter
 public class InterestPersonDto {
 	private Integer personId;
+	private Integer recommendCount;
 	private String personName;
 	private Integer career;
 	private String degree;
