@@ -3,10 +3,7 @@ package site.metacoding.miniproject.web;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-<<<<<<< HEAD
 import javax.websocket.Session;
-=======
->>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,7 +40,6 @@ public class CompanyController {
 	private final HttpSession session;
 	private final CompanyService companyService;
 	private final UserService userService;
-	private final HttpSession session;
 
 	// 기업회원가입
 	@PostMapping("/company/join")
@@ -74,19 +70,18 @@ public class CompanyController {
 		model.addAttribute("companyRecommendList", companyRecommendDto);
 		return "/company/companyRecommendList";
 	}
-<<<<<<< HEAD
 
-	@GetMapping("/companyInsert")
+	@GetMapping("/company/companyInsertWrite")
 	public String companyInsertForm(Model model) {
 		User userPs = (User) session.getAttribute("principal");
 		Company companyPs = companyService.유저아이디로찾기(userPs.getUserId());
 		model.addAttribute("company", companyPs);
-		return "/company/companyInsert";
+		return "/company/companyInsertWrite";
 	}
 
 	//  기업 이력서 등록 페이지
-	@PostMapping("/companyInsert/{companyId}")
-	public @ResponseBody CMRespDto<?> CompanyWrite(@PathVariable Integer companyId, CompanyInsertDto companyInsertDto) {
+	@PostMapping("/company/companyInsert/{companyId}")
+	public @ResponseBody CMRespDto<?> CompanyWrite(@PathVariable Integer companyId, @RequestBody CompanyInsertDto companyInsertDto) {
 		System.out.println(companyInsertDto.getCompanyId());
 		System.out.println("======================================");
 		System.out.println(companyInsertDto.getCompanyGoal());
@@ -96,8 +91,6 @@ public class CompanyController {
 	}
 
 
-=======
-	
 	@GetMapping("/company/matchingList")
 	public String skillCompanyMatching(Model model) {
 		List<CompanyRecommendDto> companyRecommendDto = companyService.기업추천리스트보기();
@@ -174,5 +167,4 @@ public class CompanyController {
 		companyDetailRecomDto = companyService.기업추천불러오기(principal.getUserId(), subjectId);
 		return new CMRespDto<CompanyDetailRecomDto> (1, "추천 취소 완료", companyDetailRecomDto);
 	}
->>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff
 }

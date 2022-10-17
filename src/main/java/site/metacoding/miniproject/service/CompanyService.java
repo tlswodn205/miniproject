@@ -33,28 +33,18 @@ public class CompanyService {
 
 	private final CompanyDao companyDao;
 	private final UserDao userDao;
-<<<<<<< HEAD
-
-	@Transactional(rollbackFor = { RuntimeException.class })
-=======
 	private final NeedSkillDao needSkillDao;
 	private final NoticeDao noticeDao;
 	private final SubscribeDao subscribeDao;
 	private final RecommendDao recommendDao;
 	
-	@Transactional(rollbackFor = {RuntimeException.class})
->>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
-<<<<<<< HEAD
 
-	public List<CompanyRecommendDto> 기업추천리스트보기() {
 
-		return companyDao.findToRecommned();
-	}
 
 	public CompanyInsertDto 기업이력등록(Integer CompanyId, CompanyInsertDto companyInsertDto) {
 		companyInsertDto.setCompanyId(CompanyId);
@@ -67,11 +57,6 @@ public class CompanyService {
 	}
 	
 
-
-
-}
-=======
-	
 	public List<CompanyRecommendDto> 기업추천리스트보기() {	
 		List<CompanyRecommendDto> companyRecommendDtoList = companyDao.findToRecommned();
 		
@@ -165,4 +150,3 @@ public class CompanyService {
 	}
 	
 }
->>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff

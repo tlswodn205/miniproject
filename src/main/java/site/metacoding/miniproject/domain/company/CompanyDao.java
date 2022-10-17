@@ -13,13 +13,10 @@ public interface CompanyDao {
 	public void deleteById(Integer companyId);
 
 	public List<CompanyRecommendDto> findToRecommned();
-<<<<<<< HEAD
 	
 	public void companyInsert(CompanyInsertDto companyInsertDto);
 
 	
-=======
 	public CompanyRecommendDto findToNoticeId(Integer noticeId);
->>>>>>> 5a200edbb386d22819d257ae4c2563dbfe3d13ff
 	public Company findByUserId(Integer userId);
 }
