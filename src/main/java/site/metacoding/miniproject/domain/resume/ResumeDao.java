@@ -2,7 +2,12 @@ package site.metacoding.miniproject.domain.resume;
 
 import java.util.List;
 
+import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
+
 public interface ResumeDao {
+	
+	public void save(ResumeWriteDto resumeWriteDto);
+	
 	public void insert(Resume resume);
 
 	public Resume findById(Integer resumeId);

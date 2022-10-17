@@ -66,16 +66,6 @@ public class PersonController {
 
 	}
 
-	// 이력서 등록 페이지
-	@GetMapping("/person/resumeWrite")
-	public String resumeForm(Model model) {
-		User userPS = (User) session.getAttribute("principal");
-		Integer id = personService.개인번호갖고오기(userPS.getUserId());
-		ResumeFormDto personPS = personService.이력서내용가져오기(id);
-		model.addAttribute("person", personPS);
-		return "person/resumeSaveForm";
-	}
-
 	@PostMapping("/save/resume/{personId}")
 	public @ResponseBody CMRespDto<?> resumeWrite(@RequestBody ResumeWriteDto resumeWriteDto,
 			@PathVariable Integer personId) {
