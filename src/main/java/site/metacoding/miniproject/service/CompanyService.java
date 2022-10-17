@@ -22,7 +22,7 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
-import site.metacoding.miniproject.web.dto.response.CompanyDetailRecomDto;
+import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
@@ -127,7 +127,7 @@ public class CompanyService {
 		}
 		return noticeRespDtoList;
 	}	
-	public CompanyDetailRecomDto 기업추천불러오기(Integer userId, Integer subjectId) {
+	public RecommendDetailDto 기업추천불러오기(Integer userId, Integer subjectId) {
 		return recommendDao.findAboutsubject(userId, subjectId);
 	}
 	
@@ -136,7 +136,7 @@ public class CompanyService {
 		recommendDao.insert(recommend);
 	}
 	
-	public void 기업추천취소(Integer recommendId) {;
+	public void 기업추천취소(Integer recommendId) {
 		recommendDao.delete(recommendId);
 	}
 	
@@ -148,5 +148,4 @@ public class CompanyService {
 		Subscribe subscribe = new Subscribe(null, userId, subjectId, null);
 		subscribeDao.insert(subscribe);
 	}
-	
 }

@@ -11,6 +11,7 @@ import site.metacoding.miniproject.domain.company.CompanyDao;
 import site.metacoding.miniproject.domain.person.Person;
 import site.metacoding.miniproject.domain.person.PersonDao;
 import site.metacoding.miniproject.domain.person_skill.PersonSkillDao;
+import site.metacoding.miniproject.domain.recommend.Recommend;
 import site.metacoding.miniproject.domain.recommend.RecommendDao;
 import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.resume.ResumeDao;
@@ -24,7 +25,10 @@ import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 import site.metacoding.miniproject.web.dto.response.ResumeDetailFormDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
-
+import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
+import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
+import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
+import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
 
 @RequiredArgsConstructor
 @Service
@@ -56,7 +60,6 @@ public class PersonService {
 				person.getDegree(), person.getAddress(), person.getCareer(), personSkillDao.findByPersonId(personId));
 		return resumeFormDto;
 	}
-	
 	
 	
 	public List<Integer> 기술별관심구직자찾기(List<String> skillList){
@@ -100,7 +103,7 @@ public class PersonService {
 		for (int i = 0; i < personIdList.size(); i++) {
 			count++;
 			Person person = personDao.findById(personIdList.get(i));
-			CompanyDetailRecomDto CompanyDetailRecomDto = recommendDao.findAboutsubject(null, person.getUserId());
+			RecommendDetailDto CompanyDetailRecomDto = recommendDao.findAboutsubject(null, person.getUserId());
 			InterestPersonDto  interestPersonDto = new InterestPersonDto(person.getPersonId(), CompanyDetailRecomDto.getRecommendCount(), person.getPersonName(), person.getCareer(), person.getDegree(), person.getAddress(), personSkillDao.findByPersonId(personIdList.get(i)));
 			
 			interestPersonDtoList.add(interestPersonDto);
@@ -129,6 +132,7 @@ public class PersonService {
 	public List<PersonInfoDto> 개인기술보기(Integer personId){
 		return personSkillDao.personSkillInfo(personId);
 	}
+	
 	public List<PersonRecommendListDto>구직자추천리스트보기(){
 		List<PersonRecommendListDto> personRecommendListDto = personDao.findToPersonRecommned();
 		for (int i = 0; i < personRecommendListDto.size(); i++) {
@@ -159,4 +163,16 @@ public class PersonService {
 		return PersonRecommendDtoList;
 	}
 
+
+	public RecommendDetailDto 구직자추천불러오기(Integer userId, Integer subjectId) {
+		return recommendDao.findAboutsubject(userId, subjectId);
+	}
+	
+	public void 구직자추천하기(Integer userId, Integer subjectId) {
+		Recommend recommend = new Recommend(null, userId, subjectId, null);
+		recommendDao.insert(recommend);
+	}
+	public void 구직자추천취소(Integer recommendId) {
+		recommendDao.delete(recommendId);
+	}
 }

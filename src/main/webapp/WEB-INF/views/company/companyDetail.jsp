@@ -118,7 +118,7 @@ h2 {
 	<input id="userId" type="hidden" value="${company.userId}">
 	<div>
 		<span>${company.companyName}</span>
-		추천수 : <span id="recommendCount">${companyDetailRecomDto.recommendCount}</span>
+		추천수 : <span id="recommendCount">${recommendDetailDto.recommendCount}</span>
 		<div>
 			<c:if test="${principal.role =='person' }">
 				<div id= "subscribeBtnDiv">
@@ -127,8 +127,8 @@ h2 {
 					</button>
 				</div>
 				<div id= "recommendBtnDiv">
-					<button id = "recommendBtn" class ="${companyDetailRecomDto.recommendId != null ? 'blueBtn' : 'greyBtn'}">
-						${companyDetailRecomDto.recommendId != null ? '추천취소' : '추천'}
+					<button id = "recommendBtn" class ="${recommendDetailDto.recommendId != null ? 'blueBtn' : 'greyBtn'}">
+						${recommendDetailDto.recommendId != null ? '추천취소' : '추천'}
 					</button>
 				</div>
 			</c:if>

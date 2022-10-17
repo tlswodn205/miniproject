@@ -31,6 +31,7 @@ import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
+import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.ResumeFormDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
 
@@ -75,11 +76,34 @@ public class PersonController {
 		return new CMRespDto<>(1, "이력서 등록 성공", null);
 	}
 
+	
+	@PostMapping("/person/recommend/{subjectId}")
+	public @ResponseBody CMRespDto<RecommendDetailDto> companyRecommend(@PathVariable Integer subjectId){
+		User principal = (User) session.getAttribute("principal");
+		RecommendDetailDto recommendDetailDto = personService.구직자추천불러오기(principal.getUserId() , subjectId);
+		if(recommendDetailDto.getRecommendId()==null) {
+			personService.구직자추천하기(principal.getUserId(), subjectId);
+			recommendDetailDto = personService.구직자추천불러오기(principal.getUserId(), subjectId);
+			return new CMRespDto<RecommendDetailDto> (1, "추천 완료", recommendDetailDto);
+		}
+		personService.구직자추천취소(recommendDetailDto.getRecommendId());
+		recommendDetailDto = personService.구직자추천불러오기(principal.getUserId(), subjectId);
+		return new CMRespDto<RecommendDetailDto> (1, "추천 취소 완료", recommendDetailDto);
+	}
+
 	// 구직자 상세보기 페이지
 	@GetMapping("/PersonInfo/{personId}")
 	public String 구직자상세보기(@PathVariable Integer personId, Model model) {
+		User userPS = (User) session.getAttribute("principal");
 		List<PersonInfoDto> personInfoDto = personService.개인정보보기(personId);
 		List<PersonInfoDto> personSkillInfoDto = personService.개인기술보기(personId);
+		RecommendDetailDto recommendDetailDto = new RecommendDetailDto();
+		if(userPS==null) {
+			recommendDetailDto = personService.구직자추천불러오기(null , personInfoDto.get(0).getUserId());
+		}else {
+			recommendDetailDto = personService.구직자추천불러오기(userPS.getUserId(), personInfoDto.get(0).getUserId());
+		}
+		model.addAttribute("recommendDetailDto",recommendDetailDto);
 		model.addAttribute("personInfoDto", personInfoDto);
 		model.addAttribute("personSkillInfoDto", personSkillInfoDto);
 		return "person/PersonInfo";
@@ -105,7 +129,6 @@ public class PersonController {
 	
 	@PostMapping("/person/skillPersonMatching/degree")
 	public @ResponseBody CMRespDto<List<InterestPersonDto>> interestPersonDegreeList(String degree, Model model){
-		System.out.println(degree);
 		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.학력별관심구직자찾기(degree));
 		model.addAttribute("interestPersonDto", interestPersonDto);
 		return new CMRespDto<>(1, "학력별 관심 구칙자 불러오기 완료", interestPersonDto);

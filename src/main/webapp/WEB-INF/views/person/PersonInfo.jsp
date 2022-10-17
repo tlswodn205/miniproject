@@ -2,13 +2,34 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="css/workEnter.css">
 <%@ include file="../layout/header.jsp"%>
-
+<style>
+        .blueBtn{
+            background-color: #0d6efd;
+        }
+        .greyBtn{
+            background-color: lightslategray;
+        }
+</style>
 <section class="py-5">
+
 	<div class="container">
-		<div class="view">
+		<div class="view">	<div>
+		추천수 : <span id="recommendCount">${recommendDetailDto.recommendCount}</span>
+		<div>
+			<c:if test="${principal.role =='company'}">
+				<div id= "recommendBtnDiv">
+					<button id = "recommendBtn" class ="${recommendDetailDto.recommendId != null ? 'blueBtn' : 'greyBtn'}">
+						${recommendDetailDto.recommendId != null ? '추천취소' : '추천'}
+					</button>
+				</div>
+			</c:if>
+		</div>
+	</div>
 			<c:forEach var="personInfo" items="${personInfoDto}"  >
 				<form>
+				
 					<input id="personId" type="hidden" value="${personInfo.personId}" />
+					<input id="userId" type="hidden" value="${personInfo.userId}" />
 
 
 					<div class="mb-3 mt-3">
@@ -49,5 +70,29 @@
 		</div>
 	</div>
 </section>
+
+<script>
+
+$("#recommendBtn").click(() => {
+    $.ajax("/person/recommend/" + $("#userId").val(), {
+        type: "post",
+        dataType: "json"
+    }).done((res) => {
+    	if(res.code==1){
+	    	if(res.data.recommendId==null){
+	    		$("#recommendBtn").removeClass("blueBtn");
+	    		$("#recommendBtn").addClass("greyBtn");
+	    		$("#recommendBtn").text("추천");
+	    		$("#recommendCount").text(res.data.recommendCount);
+	    	}else{
+	    		$("#recommendBtn").removeClass("greyBtn");
+	    		$("#recommendBtn").addClass("blueBtn");
+	    		$("#recommendBtn").text("추천취소");
+	    		$("#recommendCount").text(res.data.recommendCount);
+	    	}
+    	}
+    });
+});
+</script>
 
 <%@ include file="../layout/footer.jsp"%>
