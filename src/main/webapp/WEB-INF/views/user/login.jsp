@@ -50,7 +50,7 @@
 		}).done((res) => {
 			if (res.code == 1) {
 				alert("성공!");
-				location.href = "/loginForm";
+				location.href = "/";
 			}
 			else
 				alert("아이디 혹은 비밀번호를 다시 입력하세요!");

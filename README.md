@@ -26,8 +26,6 @@ create table recommend(
    recommend_id INT primary KEY auto_increment,
    user_id INT,
    subject_id INT,
-   is_recommend BOOLEAN,
-   content longtext,
    created_at TIMESTAMP
 );
 
@@ -90,9 +88,10 @@ create table notice(
    notice_id INT primary KEY auto_increment,
    company_id INT,
    notice_title VARCHAR(20),
-   job VARCHAR(20),
+   is_closed boolean,
    salary VARCHAR(20),
    degree VARCHAR(20),
+   career INT,
    created_at TIMESTAMP
 );
 
@@ -106,7 +105,7 @@ create table need_skill(
 create table submit_resume(
   submit_resume_id int primary KEY auto_increment,
   resume_id INT,
-  company_id INT,
+  notice_id INT,
   created_at TIMESTAMP
 );
 
@@ -117,9 +116,11 @@ create table submit_resume(
 insert into user(username, password, role, created_at) values('ssar', '1234', 'company', NOW());
 insert into user(username, password, role, created_at) values('cos', '1234', 'person', NOW());
 
-insert into recommend(subject_id, content, created_at) VALUES('1', '추천', NOW());
-
+ 
+insert into recommend(user_id, subject_id, created_at) VALUES('1', '2', NOW());
+ 
 insert into subscribe(user_id, subject_id, created_at) VALUES('2', '3', NOW());
+
 
 insert into person(user_id, person_name, person_email, person_phone, is_gender, address,degree, career, created_at)
 values('1', '홍길동', 'ssar@nate.com', '01000000000', 0 , '부산광역시' , '4년제', '1', NOW());
@@ -132,8 +133,8 @@ VALUES('2', '멋진이력서', '사진값', '안녕하세요',"www.naver.com", N
 insert into company (user_id, company_name , company_email , company_phone ,tech , address , history ,  introduction ,photo,company_goal, ceo_name, created_at) 
 VALUES('2', '그린회사', 'cos@nate.com', '01000000000', 'C언어', '부산','2016','안녕하세요','사진값','주식상장이 목표','호날두', NOW());
 
-insert into notice(company_id , notice_title,job , salary ,degree, created_at) 
-VALUES('2','개발자 모셔갑니다','프론트 엔드', '3천만원','4년제', NOW());
+insert into notice(company_id , notice_title, is_closed , salary ,degree, career, created_at) 
+VALUES('2','개발자 모셔갑니다',0, '3천만원','4년제', 10 ,  NOW());
 
 insert into need_skill(notice_id , skill , created_at) VALUES('2', '자바스크립트', NOW());
 

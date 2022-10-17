@@ -29,5 +29,21 @@
         WHERE Need_Skill_Id = #{needSkillId}
       </update>
 
-
+    <select id="findByNoticeId" resultType="site.metacoding.miniproject.domain.need_skill.NeedSkill">
+        SELECT *
+        FROM Need_Skill
+        WHERE notice_id = #{noticeId}
+    </select>
+      
+    <select id="findBySkill" resultType="Integer">
+        SELECT notice_id
+        FROM Need_Skill
+        WHERE skill = #{skill}
+    </select>
+      
+    <select id="findBySkillAndNoticeId" resultType="Integer">
+	    SELECT notice_id
+	    FROM Need_Skill
+	    WHERE skill = #{skill} and notice_id = #{noticeId}
+  	</select>
 </mapper>

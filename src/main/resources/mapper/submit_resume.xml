@@ -14,8 +14,8 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO submit_resume(resumeId, companyId, created_At)
-    VALUE(#{resumeId}, #{companyId}, now())
+    INSERT INTO submit_resume(resumeId, noticeId, created_At)
+    VALUE(#{resumeId}, #{noticeId}, now())
   </insert>
 
   <delete id="deleteById">
@@ -24,5 +24,4 @@
   </delete>
 
   <update id="update"></update>
-
 </mapper>

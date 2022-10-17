@@ -4629,6 +4629,7 @@ fieldset:disabled .btn {
 }
 
 .navbar-nav .nav-link {
+
   padding-right: 0;
   padding-left: 0;
 }
@@ -8353,7 +8354,7 @@ fieldset:disabled .btn {
 }
 
 .ms-auto {
-  margin-left: auto !important;
+  margin: auto;
 }
 
 .p-0 {
