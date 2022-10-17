@@ -56,7 +56,7 @@ public class PersonService {
 	public ResumeFormDto 이력서내용가져오기(Integer personId) {
 		Person person = personDao.findById(personId);
 		ResumeFormDto resumeFormDto = new ResumeFormDto(personId, person.getPersonName(), person.getPersonEmail(),
-				person.getDegree(), personSkillDao.findByPersonId(personId));
+				person.getDegree(), person.getAddress(), person.getCareer(), personSkillDao.findByPersonId(personId));
 		return resumeFormDto;
 
 	}
