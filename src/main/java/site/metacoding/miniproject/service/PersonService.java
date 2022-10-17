@@ -26,6 +26,7 @@ import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
+import site.metacoding.miniproject.web.dto.response.NoticeApplyDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 import site.metacoding.miniproject.web.dto.response.ResumeDetailFormDto;
@@ -205,6 +206,11 @@ public class PersonService {
 	public void 공고마감하기(Integer noticeId) {
 		noticeDao.closeNotice(noticeId, true);
 		
+	}
+
+
+	public List<NoticeApplyDto> 지원공고목록(Integer userId) {
+		return noticeDao.findNoticeApply(userId);
 	}
 
 

@@ -22,6 +22,7 @@ import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.subscribe.Subscribe;
 import site.metacoding.miniproject.domain.subscribe.SubscribeDao;
 import site.metacoding.miniproject.domain.user.User;
+import site.metacoding.miniproject.service.CompanyService;
 import site.metacoding.miniproject.service.PersonService;
 import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
@@ -31,6 +32,7 @@ import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.AppliersDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
+import site.metacoding.miniproject.web.dto.response.NoticeApplyDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
@@ -43,7 +45,7 @@ public class PersonController {
 	private final HttpSession session;
 	private final PersonService personService;
 	private final UserService userService;
-
+	private final CompanyService companyService;
 	// 회원가입 응답
 	@PostMapping("/person/join")
 	public @ResponseBody CMRespDto<?> joinPerson(@RequestBody PersonJoinDto personJoinDto) {
@@ -186,5 +188,16 @@ public class PersonController {
 	public CMRespDto<?> closeNotice(@PathVariable Integer noticeId){
 		personService.공고마감하기(noticeId);
 		return new CMRespDto<>(1, "마감 완료", null);
+	}
+	
+	@GetMapping("/person/personApply")
+	public String personApply(Model model) {
+		User userPS = (User) session.getAttribute("principal");
+		List<NoticeApplyDto> noticeApplyDtoList = personService.지원공고목록(userPS.getUserId());
+		for (int i = 0; i < noticeApplyDtoList.size(); i++) {
+			noticeApplyDtoList.get(i).setNeedSkillList(companyService.noticeId로필요기술들고오기(noticeApplyDtoList.get(i).getNoticeId()));
+		}
+		model.addAttribute("noticeApplyDtoList", noticeApplyDtoList);
+		return "/person/personApply";
 	}
 }
