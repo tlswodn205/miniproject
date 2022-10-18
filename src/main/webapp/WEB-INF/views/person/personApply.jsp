@@ -108,8 +108,8 @@
                                 </div>
                             </div>
                             <div class="category">
-                                <button class="update">기업상세보기</button>
-                                <button class="update">공고별지원자보기</button>
+                                <button onClick="goDetail(${noticeApplyDto.companyId})" class="update">기업상세보기</button>
+                                <button onClick="goNotice(${noticeApplyDto.noticeId})" class="update">공고별지원자보기</button>
                             </div>
                         </div>
                     </li>
@@ -119,6 +119,9 @@
         </div>
         <br>
         <br>
+        
+        임무
+        명령 
 
 
         <!-- Footer-->

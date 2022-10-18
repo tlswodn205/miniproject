@@ -5,7 +5,7 @@ ul {
 	list-style: none;
 }
 
-h2 {
+.resumeManage_container h2 {
 	text-align: center;
 	margin: 20px 0 30px 50px;
 }
@@ -116,7 +116,7 @@ h2 {
 								<div class="date">${person.createdAt}</div>
 							</div>
 						</div>
-						<div class="category">
+						<div onclick="goApply(${person.personId})" class="category">
 							<p class="update">지원자 이력서보기</p>
 						</div>
 					</div>
@@ -146,6 +146,9 @@ h2 {
 </footer>
 
 <script>
+function goApply(id){
+	location.href = "";
+}
 
 $("#closed").click(() => {
 	$.ajax("/company/noticeClose/" + $("#noticeId").val(), {

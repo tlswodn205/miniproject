@@ -32,7 +32,7 @@
 			</div>
 			<div class="d-flex justify-content-between" >
 				<p>기업대표기술</p>
-					<label for>메타버스</label><input type = "radio"  name="tech"  value="메타버스" >
+					<label>메타버스</label><input type = "radio"  name="tech"  value="메타버스" >
 					<label>AI</label><input type = "radio" name="tech" value="AI">
 					<label>블록체인</label><input type = "radio" name="tech" value="블록체인">
 			</div>	 

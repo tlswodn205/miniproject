@@ -47,6 +47,7 @@
 					<c:if test="${principal.role == 'company'}">
 						<li class="nav-item"><a class="nav-link" href="/company/companyDetail">기업상세보기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/company/companyInsertWrite">기업소개등록</a></li>
+						<li class="nav-item"><a class="nav-link" href="/company/noticeLoad">등록공고보기</a></li>	
 						<li class="nav-item"><a class="nav-link" href="/company/noticeWrite">공고등록</a></li>	
 					</c:if>
 					<c:if test="${principal.role == 'company' || principal.role == null}">

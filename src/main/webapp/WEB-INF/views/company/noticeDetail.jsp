@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <style>
-        h2 {
+        .noticeWrite_container h2 {
             text-align: center;
             margin: 10px 0 40px 0;
         }
@@ -8,10 +8,16 @@
         .noticeWrite_container {
             width: 1200px;
             border: 2px solid lightslategray;
-            border-radius: 1%;
+            border-radius: 0.5rem;
             padding: 25px;
         }
-
+      
+      .noticeWrite_container #content{
+      width:100%;
+                  border: 2px solid lightslategray;
+            border-radius: 0.5rem;
+            padding: 25px;
+      }
         .noticeWrite_title {
             margin: 10px;
         }
@@ -26,7 +32,6 @@
         }
 
 
-
         .flex div {
             margin: 10px 50px 10px 10px;
         }
@@ -34,19 +39,21 @@
         .info_box {
             padding: 10px;
             border: 2px solid lightslategray;
+            border-radius: 0.5rem;
         }
 
         .btn_post {
             width: 180px;
-            margin-top: 10px;
+            padding: 5px 20px;
             background-color: lightslategray;
             color: white;
-            border-radius: 5%;
+            border:2px solid lightslategray;
+            border-radius: 0.25rem;
         }
 
         .btn_post:hover {
             background-color: #0d6efd;
-            color: white;
+            border:2px solid #0d6efd;
         }
     </style>
 </head>
@@ -81,12 +88,14 @@
                     </div>
                     <div class="mb-3 mt-3">
                         <label for="comment"></label>
-                        <textarea id="content" class="form-control" rows="5" placeholder="${notice.noticeContent}"
-                            style="height: 500px;"></textarea>
+                        <div id="content" class="form-control" rows="5" placeholder=""
+                            style="height: 500px;">${notice.noticeContent}</div>
                     </div>
-                    <div>
-                        <button id="closed" class="btn btn-primary btn_post"
-                            style="margin: 0 0 0 965px; ">마감하기</button>
+                    <div class="d-flex justify-content-end">
+                        <button id="goBack" class="btn_post"
+                            style="margin: 0 0 0 745px; ">뒤로가기</button>
+                        <button id="closed" class="btn_post"
+                            style="margin: 0 0 0 20px; ">마감하기</button>
                     </div>
             </div>
             </br>
@@ -112,8 +121,12 @@
                 </div>
             </div>
         </footer>
-        
         <script>
+
+        $("#goBack").click(() => {
+        	history.back();
+        });
+        
         $("#closed").click(() => {
         	$.ajax("/company/noticeClose/" + $("#noticeId").val(), {
         		type: "Post",

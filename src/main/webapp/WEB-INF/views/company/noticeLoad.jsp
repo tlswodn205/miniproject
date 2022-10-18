@@ -98,7 +98,7 @@
 	                                    
 	                                </div>
 	                            </div>
-	                            <div class="category">
+	                            <div onClick="goDetail(${noticeRespDto.noticeId})" id="goDetail" class="category">
 	                                <p class="update">공고상세보기</p>
 	                            </div>
 	                        </div>
@@ -128,10 +128,12 @@
                 </div>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script>
+        function goDetail(id){
+        	alert(id);
+			location.href = "/company/noticeDetail/"+id;
+        }
+        </script>
 
 </body>
 
