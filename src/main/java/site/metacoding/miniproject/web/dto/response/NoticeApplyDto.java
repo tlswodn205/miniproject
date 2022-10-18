@@ -10,7 +10,7 @@ import site.metacoding.miniproject.domain.need_skill.NeedSkill;
 @Setter
 public class NoticeApplyDto {
 	private Integer noticeId;
-	private Integer company;
+	private Integer companyId;
 	private String noticeTitle;
 	private String resumeTitle;
 	private String address;

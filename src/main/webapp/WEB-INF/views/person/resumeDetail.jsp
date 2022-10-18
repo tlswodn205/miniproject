@@ -16,8 +16,6 @@
 				<div id="imageContainer"></div>
 			</div>
 
-			<div>
-
 				이름 : ${person.personName}</br> 이메일 : ${person.personEmail}</br> 경력 :
 				${person.career}년차</br> 학력 : ${person.degree}</br> 거주지 : ${person.address}
 				<div>
@@ -27,7 +25,6 @@
 				</div>
 				링크 : ${person2.myCloud} </br>
 				간단소개 : ${person2.introduction}
-
 			</div>
 		</div>
 		<button id="btnsave" type="button" class="btn btn-primary"

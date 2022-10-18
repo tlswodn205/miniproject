@@ -83,15 +83,15 @@ h2 {
 			<h2>이력서 관리</h2>
 			<ul>
 				<c:forEach var="resume" items="${resumeList}">
-					<li>
+					<li >
 						<div class="info">
 							<div class="div">
-								<div class="title">${resume.resumeTitle}</div>
+								<div class="title" >${resume.resumeTitle}</div>
 								<div class="date">${resume.createdAt}</div>
 							</div>
 							<div class="category">
 								<p onclick = "getDelete(${resume.resumeId})" class="delete">삭제하기</p>
-								<p class="update">수정하기</p>
+								<p onclick = "goDetail(${resume.resumeId})" class="update" >상세보기</p>
 							</div>
 						</div>
 					</li>
@@ -139,7 +139,11 @@ h2 {
 				alert("이력서 삭제 실패");
 			}
 		});
-}</script>
+	}
+		function goDetail(id){
+			location.href = "/person/resumeDetail/"+id;
+		}
+</script>
 
 	</body>
 

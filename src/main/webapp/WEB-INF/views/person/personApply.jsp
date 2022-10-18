@@ -90,6 +90,8 @@
                 <ul>
                 <c:forEach var ="noticeApplyDto" items="${noticeApplyDtoList}">
                     <li>
+                    <input id="noticeId" type="hidden" value="${noticeApplyDto.noticeId}">
+                    <input id="companyId" type="hidden" value="${noticeApplyDto.companyId}">
                         <div class="info">
                             <div class="title">${noticeApplyDto.noticeTitle}</div>
                             <div class="d-flex justify-content-start">
@@ -120,8 +122,6 @@
         <br>
         <br>
         
-        임무
-        명령 
 
 
         <!-- Footer-->
@@ -141,10 +141,15 @@
                 </div>
             </div>
         </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+        <script>
+        	function goNotice(id){
+        		location.href = "/person/noticePerApplier/" + id;
+        	}
+        	
+        	function goDetail(id){
+        		location.href = "/company/companyDetail/" + id;
+        	}
+        </script>
 
 </body>
 
