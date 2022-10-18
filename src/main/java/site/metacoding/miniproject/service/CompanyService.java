@@ -42,6 +42,7 @@ public class CompanyService {
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
+		System.out.println(companyJoinDto.getCeoName());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
 

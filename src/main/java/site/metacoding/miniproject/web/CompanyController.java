@@ -87,11 +87,7 @@ public class CompanyController {
 		User userPS = (User) session.getAttribute("principal");
 		Company companyPS = companyService.유저아이디로찾기(userPS.getUserId());
 		model.addAttribute("company", companyPS);
-<<<<<<< HEAD
 		return "/company/companyInfoWrite";
-=======
-		return "/company/companyInsertWrite";
->>>>>>> 712349c4fab821ea880b0f3b5328c9f9146bbe3d
 	}
 
 	

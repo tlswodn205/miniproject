@@ -18,15 +18,9 @@
 
 	<insert id="insert">
 		INSERT INTO company(user_Id, company_Name,
-<<<<<<< HEAD
 		company_Email, company_Phone, ceo_name, tech,
 		address, created_At)
 		VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone}, #{ceoName},
-=======
-		company_Email, company_Phone,tech,
-		address, created_At)
-		VALUE(#{userId}, #{companyName}, #{companyEmail}, #{companyPhone},
->>>>>>> 712349c4fab821ea880b0f3b5328c9f9146bbe3d
 		#{tech}, #{address}, now())
 	</insert>
 
