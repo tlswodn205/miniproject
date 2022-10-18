@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import site.metacoding.miniproject.web.dto.request.CompanyMyPageUpdateDto;
 
 @NoArgsConstructor
 @Getter

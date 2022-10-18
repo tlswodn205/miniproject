@@ -2,6 +2,8 @@ package site.metacoding.miniproject.domain.user;
 
 import java.util.List;
 
+import site.metacoding.miniproject.web.dto.request.CompanyMyPageUpdateDto;
+
 public interface UserDao {
 	public void insert(User user);
 
@@ -14,4 +16,6 @@ public interface UserDao {
 	public void deleteById(Integer userId);
 
 	public User findByUsername(String username);
+	public void updateToUser(CompanyMyPageUpdateDto companyMyPageUpdateDto);
+
 }
