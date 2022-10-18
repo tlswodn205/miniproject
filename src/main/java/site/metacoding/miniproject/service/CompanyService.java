@@ -45,6 +45,9 @@ public class CompanyService {
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
 
+	
+	
+	
 
 
 	public CompanyInsertDto 기업이력등록(Integer CompanyId, CompanyInsertDto companyInsertDto) {
