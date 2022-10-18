@@ -84,9 +84,9 @@ public class CompanyController {
 	
 	@GetMapping("/company/companyInsertWrite")
 	public String companyInsertForm(Model model) {
-		User userPs = (User) session.getAttribute("principal");
-		Company companyPs = companyService.유저아이디로찾기(userPs.getUserId());
-		model.addAttribute("company", companyPs);
+		User userPS = (User) session.getAttribute("principal");
+		Company companyPS = companyService.유저아이디로찾기(userPS.getUserId());
+		model.addAttribute("company", companyPS);
 		return "/company/companyInsertWrite";
 	}
 
@@ -229,5 +229,14 @@ public class CompanyController {
 		model.addAttribute("notice", notice);
 		model.addAttribute("needSkillList", needSkillList);
 		return "/company/noticeDetail";
+	}
+	
+	@GetMapping("/company/companyDetail")
+	public String myCompanyDetail(Model model){
+		User user = (User) session.getAttribute("principal");
+		Company company = companyService.유저아이디로찾기(user.getUserId());
+		
+		model.addAttribute("companyId", company.getCompanyId());
+		return "redirect:/company/companyDetail/"+company.getCompanyId();
 	}
 }

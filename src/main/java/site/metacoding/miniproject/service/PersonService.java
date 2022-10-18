@@ -57,7 +57,9 @@ public class PersonService {
 		personDao.insert(personJoinDto.toPerson(userPS.getUserId()));
 		Integer personId = personDao.findToId(userPS.getUserId());
 		List<String> personSkillList = personJoinDto.getPersonSkillList();
+		
 		for(int i=0;i<personSkillList.size();i++) {
+			System.out.println(personJoinDto.getPersonSkillList());
 			personSkillDao.insert(personId, personSkillList.get(i));
 		}
 	}

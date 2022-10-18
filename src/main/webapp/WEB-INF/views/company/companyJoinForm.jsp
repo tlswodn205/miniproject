@@ -30,25 +30,12 @@
 			<div class="d-flex justify-content-between" style="margin-bottom: 20px;">
 				기업주소 <input id="address" type="text" class="form-control" placeholder="기업주소를 입력하세요">
 			</div>
-			<div class="d-flex justify-content-between" style="margin-bottom: 20px;">
-				기업 설립연도 <input id="history" type="month" class="form-control" placeholder="설립연도 입력하세요">
-			</div>
 			<div class="d-flex justify-content-between" >
 				<p>기업대표기술</p>
-				<select id="tech" style="width:250px">
-					<option value="인공지능 AI">인공지능 AI</option>
-					<option value="로봇 프로세스 자동화(RPA)">로봇 프로세스 자동화(RPA)</option>
-					<option value="데이터옵스(DataOps)">데이터옵스(DataOps)</option>
-					<option value="메타버스">메타버스</option>
-					<option value="블록체인">블록체인</option>
-					<option value="AR&VR">AR&VR</option>
-				</select>
-
-			</div>
-			<div class="mb-3">
-				<label for="introduction">기업 소개글</label>
-				<textarea id="introduction" cols="100" rows="5"></textarea>
-			</div>
+					<label for>메타버스</label><input type = "radio"  name="tech"  value="메타버스" >
+					<label>AI</label><input type = "radio" name="tech" value="AI">
+					<label>블록체인</label><input type = "radio" name="tech" value="블록체인">
+			</div>	 
 		</div>
 
 
@@ -56,17 +43,17 @@
 	</div>
 </div>
 <script>
+
 $("#btnJoin").click(()=>{
+	let tech = $('input[name=tech]:checked').val();
+	alert(tech);
+	
 	let username = $("#username").val();
 	let password = $("#password").val();
 	let companyName = $("#companyName").val();
 	let companyEmail = $("#companyEmail").val();
 	let companyPhone = $("#companyPhone").val();
 	let address = $("#address").val();
-	let history = $("#history").val();
-	let introduction = $("#introduction").val();
-	let tech = $("#tech option:selected").val();
-
 	
 	let data={
 			username : username,
@@ -75,9 +62,7 @@ $("#btnJoin").click(()=>{
 			companyEmail : companyEmail,
 			companyPhone : companyPhone,
 			tech : tech,
-			address : address,
-			history : history,
-			introduction : introduction
+			address : address
 	}
 	
 	$.ajax("/company/join",{
