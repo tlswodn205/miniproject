@@ -88,7 +88,7 @@ h2 {
 					<li>
 						<div class="info">
 							<div class="div">
-								<div class="title">${subscribeDto.companyName}</div>
+								<div class="title"  onclick="goDetail(${subscribeDto.companyId})">${subscribeDto.companyName}</div>
 							</div>
 							<div class="category">
 								<button onclick = "getDelete(${subscribeDto.subscribeId})" class="delete">구독삭제하기</button>
@@ -138,11 +138,15 @@ h2 {
 			}).done((res) => {
 				if (res.code == 1) {
 					console.log("구독 취소 완료");
-					location.href = "/	
+					location.href = "/company/subscribeManage"	
 				} else {
 					alert("구독 취소 실패");
 				}
 			});
+	}
+	
+	function goDetail(id){
+		window.open("/company/companyDetail/" +id, "", "_blank");
 	}
 
 	

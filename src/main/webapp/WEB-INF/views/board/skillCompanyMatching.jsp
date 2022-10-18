@@ -141,7 +141,7 @@
                                     <div>${company.address}</div>
                                 </div>
                                 <div class="info">
-                                    <button onclick="goDetail(${company.companyId})" class="btn_companyDetail">기업 상세보기</button>
+                                    <button class="btn_companyDetail">기업 상세보기</button>
                                 </div>
                                 <div class="content flex">
                                     <div>기술스택
@@ -158,10 +158,6 @@
         </div>
 
         <script>
-    	function goDetail(id){
-    		window.open("/company/companyDetail/"+id, "", "_blank");
-    	}
-    	
             function getSkill(id) {
 
                 var arr = new Array();
@@ -200,30 +196,27 @@
 
             function renderCompanyList(CompanyRecommendDtoList) {
                 for (var CompanyRecommendDto of CompanyRecommendDtoList) {
-                    $("#companyList").append(makeCompanyItem(CompanyRecommendDto));
+                    $("#companyList").append(makePersonItem(CompanyRecommendDto));
                 }
             }
 
 
-
-            function makeCompanyItem(company) {
-                var item = `<li class="flex"><div> <div class="companyname">\${company.companyName}</div>`;
-                item += `<p>추천수 : \${company.recommendCount}</p>`;
-                item += `</div><div class="info"><div class="title">\${company.noticeTitle}</div>`;
-                item += `<div class="content flex"><div>\${company.career==0 ? "신입": company.career}</div>`;
-                item += `<div>\${company.degree}</div>`;
-                item += `<div>\${company.address}</div>`;
-                item += `</div><div class="info"><button onclick="goDetail(\${company.companyId})" class="btn_companyDetail">기업 상세보기</button>`;
-                item += `</div><div class="content flex"><div>기술스택</div><div class="skills">`;
+            function makePersonItem(company) {
+                var item = `<tr>`;
+                item += `<td>\${company.companyName} </br> 추천수 : \${company.recommendCount}</td>`;
+                item += `<td>\${company.noticeTitle}</br>`;
+                item += `\${company.career==0 ? "신입": company.career} | \${company.degree} | \${company.address} | \${company.salary}</br>`;
                 for (var companySkill of company.needSkillList) { item += makeSkillItem(companySkill); }
-                item += `</div></div></div></li>`;
+                item += `</br>\${company.createdAt}</td>`;
+                item += `<td><button type="button" class="btn btn-primary">기업 상세보기</button></td>`;
+                item += `</tr>`;
                 return item;
             }
 
 
             function makeSkillItem(companySkill) {
 
-                var item = `\${companySkill.skill}, `;
+                var item = `\${companySkill.skill} | `;
                 return item;
             }
         </script>

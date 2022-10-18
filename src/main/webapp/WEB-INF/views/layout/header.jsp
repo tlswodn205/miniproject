@@ -56,7 +56,7 @@
 					</c:if>
 					<c:if test="${principal.role == 'person'}">
 						<li class="nav-item"><a class="nav-link" href="/person/resumeWrite">이력서 등록</a></li>
-						<li class="nav-item"><a class="nav-link" href="/person/resumeDetail">이력서 목록보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/person/resumeManage">이력서 목록보기</a></li>
 						<li class="nav-item"><a class="nav-link" href="/company/subscribeManage">구독 페이지</a></li>
 					</c:if>
 					<c:if test="${principal.role == 'person' || principal.role == null}">

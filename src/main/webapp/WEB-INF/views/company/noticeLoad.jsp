@@ -128,10 +128,9 @@
                 </div>
             </div>
         </footer>
-        <script>
+        <script>        
         function goDetail(id){
-        	alert(id);
-			location.href = "/company/noticeDetail/"+id;
+			window.open("/company/noticeDetail/"+id, "", "_blank");
         }
         </script>
 

@@ -66,7 +66,7 @@ public class CompanyController {
 	@GetMapping("/companyJoinForm")
 	public String companyJoinForm(Model model) {
 		model.addAttribute("skillList",BasicSkillList.getSkill());
-		return "/company/companyJoinForm";
+		return "/company/companyJoin";
 	}
 	
 
@@ -75,7 +75,7 @@ public class CompanyController {
 	public String recommendList(Model model) {
 		List<CompanyRecommendDto> companyRecommendDto = companyService.기업추천리스트보기();
 		model.addAttribute("companyRecommendList", companyRecommendDto);
-		return "/company/companyRecommendList";
+		return "/company/companyRecommend";
 	}
 
 	
@@ -87,7 +87,7 @@ public class CompanyController {
 		User userPS = (User) session.getAttribute("principal");
 		Company companyPS = companyService.유저아이디로찾기(userPS.getUserId());
 		model.addAttribute("company", companyPS);
-		return "/company/companyInsertWrite";
+		return "/company/companyInfoWrite";
 	}
 
 	

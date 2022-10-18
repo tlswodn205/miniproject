@@ -32,7 +32,7 @@ public class Company {
 		this.history = history;
 		this.tech = tech;
 		this.address = address;
-		this.ceoName = companyName;
+		this.ceoName = ceoName;
 		this.introduction = introduction;
 	}
 }

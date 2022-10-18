@@ -165,7 +165,7 @@ public class PersonController {
 	public String personRecommendList(Model model) {
 		List<PersonRecommendListDto> personRecommendListDto = personService.구직자추천리스트보기();
 		model.addAttribute("personRecommendListDto", personRecommendListDto);
-		return "/person/personRecommendList";
+		return "/person/personRecommend";
 	}
 	
 
