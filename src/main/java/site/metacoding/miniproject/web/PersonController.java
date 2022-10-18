@@ -49,12 +49,6 @@ public class PersonController {
 	// 회원가입 응답
 	@PostMapping("/person/join")
 	public @ResponseBody CMRespDto<?> joinPerson(@RequestBody PersonJoinDto personJoinDto) {
-		System.out.println("===================");
-		List<String> testArr = personJoinDto.getPersonSkillList();
-		for(int i=0;i<testArr.size();i++) {
-			System.out.println(testArr.get(i)+ " ");
-		}
-		System.out.println("===================");
 		User userPS = userService.유저네임으로유저찾기(personJoinDto.getUsername());
 		if (userPS != null) {
 			return new CMRespDto<>(-1, "회원가입 실패", null);

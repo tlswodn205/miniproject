@@ -7,12 +7,10 @@
 h2 {
 	margin: 40px 0 0 50px;
 }
-
 .flex {
 	display: flex;
 	justify-content: space-between;
 }
-
 .mb-3 label {
 	width: 100px;
 	text-align: center;
@@ -21,11 +19,9 @@ h2 {
 	background-color: lightslategray;
 	border-radius: 5%;
 }
-
 .mb-3 .form-control {
 	width: 1140px;
 }
-
 .companyInfoWrite_container {
 	width: 1200px;
 	border: 2px solid lightslategray;
@@ -35,26 +31,20 @@ h2 {
 ul {
 	list-style: none;
 }
-
 h2 {
 	text-align: center;
 	margin: 20px 0 30px 0;
 }
-
-
         .noticeList_container {
             width: 1100px;
             padding-left: 200px;
         }
-
         .noticeList_container h2 {
             margin: 30px;
         }
-
         .noticeList_container ul {
             margin-bottom: 40px;
         }
-
         .noticeList_container ul li {
             border-top: 2px solid lightslategray;
             border-left: 2px solid lightslategray;
@@ -63,31 +53,24 @@ h2 {
             height: 110px;
             padding: 15px 20px 0 50px;
         }
-
         .noticeList_container li:hover {
             background-color: lightslategray;
             border: 1px solid lightslategray;
         }
-
         .noticeList_container .title {
-
             font-size: 25px;
         }
-
         .noticeList_container .content div {
             margin-top: 8px;
             border-right: 1px solid black;
             padding: 0 30px;
         }
-
         .noticeList_container .content div:first-child {
             padding-left: 0;
         }
-
         .noticeList_container .content div:last-child {
             border: none;
         }
-
         .noticeList_container .info .btn_companyDetail {
             float: right;
             padding: 5px 20px;
@@ -95,11 +78,9 @@ h2 {
             border-radius: 5%;
             background-color: white;
         }
-
         .noticeList_container li:hover .btn_companyDetail {
             background-color: lightslategray;
         }
-
         .noticeList_container .info .btn_companyDetail:hover {
             background-color: #0d6efd;
         }
@@ -229,9 +210,6 @@ h2 {
 	    	}
 	    });
 	});
-
-
-
 	$("#recommendBtn").click(() => {
 	    $.ajax("/company/recommend/" + $("#userId").val(), {
 	        type: "post",

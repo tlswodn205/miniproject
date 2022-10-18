@@ -83,7 +83,21 @@
 </div>
 
 <script>
+let skillList = new Array()
 
+function getSkill(id) {
+
+	var arr = new Array();
+
+	$("input:checkbox[name='id']").each(function() {
+		if ($(this).is(":checked") == true) {
+			arr.push($(this).val());
+		}
+	});
+	console.log(arr);
+	skillList = arr;
+	return skillList;
+}
 
 	$("#btnJoin").click(()=>{
 		let username = $("#username").val();
@@ -95,14 +109,9 @@
 		let address	 = $('#address').val();
 		let degree = $("#degree option:selected").val();
 		let career = $("#career option:selected").val();
-		let skillArr=[];
-		$('input[name=skill]:checked').each(function(){
-			let chk = $(this).val();
-			skillArr.push(chk);
-		});
 
-
-		console.log(skillArr);
+		console.log(skillList);
+		alert(skillList);
 		
 		let data={
 				username : username,
@@ -114,7 +123,7 @@
 				address : address,
 				degree : degree,
 				career : career,
-				personSkillList : skillArr
+				personSkillList : skillList
 		}
 		
 		$.ajax("/person/join",{
