@@ -93,7 +93,7 @@
                         <div class="d-flex justify-content-end"> <button class="btn_insert">첨부하기</button></div> -->
                         <div class="resumeWrite_container_photo form-group">
                             <div id="imageContainer"></div>
-                            <input type="file" id="file" accept="image/*" onchange="setThumbnail(event)">
+                            <input type="file" id="file" accept="image/*" onchange="setThumbnail(event)" style="">
                         </div>
                     </div>
                     <div class="resumeWrite_container_info">
@@ -158,6 +158,8 @@
                     let img = document.createElement("img");
                     img.setAttribute("src", event.target.result);
                     img.setAttribute("id", "newImg");
+                    img.style.width= '200px';
+                    img.style.height='300px';
                     document.querySelector("#imageContainer").appendChild(img);
 
                 };

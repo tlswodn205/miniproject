@@ -22,6 +22,8 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.CompanyInsertDto;
 import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
+import site.metacoding.miniproject.web.dto.request.CompanyMyPageDto;
+import site.metacoding.miniproject.web.dto.request.CompanyMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.request.NoticeInsertDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
@@ -39,14 +41,13 @@ public class CompanyService {
 	private final SubscribeDao subscribeDao;
 	private final RecommendDao recommendDao;
 	
+
+	@Transactional(rollbackFor = { RuntimeException.class })
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
-
-	
-	
 	
 
 
@@ -163,4 +164,19 @@ public class CompanyService {
 	public List<NeedSkill> noticeId로필요기술들고오기(Integer noticeId) {
 		return needSkillDao.findByNoticeId(noticeId);
 	}
+
+	// 기업 마이페이지 정보 보기 id, dto(password,email ...)
+	public CompanyMyPageDto 기업마이페이지정보보기(Integer userId) {
+		CompanyMyPageDto companyMyPageDtoPS = companyDao.findToCompanyMyPage(userId);
+		return companyMyPageDtoPS;
+	}
+
+	@Transactional
+	public void 기업회원정보수정(CompanyMyPageUpdateDto companyMyPageUpdateDto) {
+		companyDao.updateToCompany(companyMyPageUpdateDto);
+		userDao.updateToUser(companyMyPageUpdateDto);
+	}
+
+
+
 }

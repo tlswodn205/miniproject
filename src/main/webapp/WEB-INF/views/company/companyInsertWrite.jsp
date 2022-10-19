@@ -54,6 +54,8 @@
 		        let img = document.createElement("img");
 		        img.setAttribute("src", event.target.result);
 		        img.setAttribute("id", "newImg");
+		        img.style.width= '400px';
+                img.style.height='150px';
 		        document.querySelector("#imageContainer").appendChild(img);
 
 		    };
