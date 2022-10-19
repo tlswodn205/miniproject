@@ -14,7 +14,7 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO submit_resume(resumeId, noticeId, created_At)
+    INSERT INTO submit_resume(resume_Id, notice_Id, created_At)
     VALUE(#{resumeId}, #{noticeId}, now())
   </insert>
 

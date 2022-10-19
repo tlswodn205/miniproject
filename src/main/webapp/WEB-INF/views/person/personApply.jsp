@@ -86,7 +86,7 @@
         <div class="container mt-3">
 
             <div class="resumeManage_container">
-                <h2>공고지원</h2>
+                <h2>지원 공고 목록</h2>
                 <ul>
                 <c:forEach var ="noticeApplyDto" items="${noticeApplyDtoList}">
                     <li>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="second">
                                     <div class="date">${noticeApplyDto.address}</div>
-                                    <div class="skill">${noticeApplyDto.noticeTitle}</div>
+                                    <div class="skill">${noticeApplyDto.resumeTitle}</div>
                                 </div>
                             </div>
                             <div class="category">

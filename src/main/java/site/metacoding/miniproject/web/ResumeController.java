@@ -71,6 +71,34 @@ public class ResumeController {
 		resumeService.이력서등록하기(resumeWriteDto);
 		return new CMRespDto<>(1, "업로드 성공", imgName);
 	}
+	
+	@PostMapping(value = "/resume/update")
+	public @ResponseBody CMRespDto<?> update(@RequestPart("file") MultipartFile file,
+			@RequestPart("resumeWriteDto") ResumeWriteDto resumeWriteDto) throws Exception {
+		int pos = file.getOriginalFilename().lastIndexOf(".");
+		String extension = file.getOriginalFilename().substring(pos + 1);
+		String filePath = "C:\\temp\\img\\";
+		String imgSaveName = UUID.randomUUID().toString();
+		String imgName = imgSaveName + "." + extension;
+
+		File makeFileFolder = new File(filePath);
+		if (!makeFileFolder.exists()) {
+			if (!makeFileFolder.mkdir()) {
+				throw new Exception("File.mkdir():Fail.");
+			}
+		}
+
+		File dest = new File(filePath, imgName);
+		try {
+			Files.copy(file.getInputStream(), dest.toPath());
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("사진저장");
+		}
+		resumeWriteDto.setPhoto(imgName);
+		resumeService.이력서수정하기(resumeWriteDto);
+		return new CMRespDto<>(1, "수정 성공", imgName);
+	}
 
 	// 이력서 상세보기 페이지
 	@GetMapping("/person/resumeDetail/{resumeId}")

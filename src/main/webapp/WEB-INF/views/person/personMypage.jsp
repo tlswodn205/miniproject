@@ -155,28 +155,7 @@
 <div class="d-flex justify-content-center">
 
 	<div class="personJoin_container">
-		<div class="flex justify-content-center">
-
-			<div>
-				<button class="mypage_topbutton" type="button"
-					onclick="location.href='/person/likecompany'">구독 내역 확인</button>
-			</div>
-			<div>
-				<button class="mypage_topbutton" type="button"
-					onclick="location.href='/person/applicationhistory '">지원
-					이력 확인</button>
-			</div>
-			<div>
-				<button class="mypage_topbutton" type="button"
-					onclick="location.href='/company/select_resume '">이력서 확인</button>
-			</div>
-			<div>
-				<button class="mypage_topbutton" type="button"
-					onclick="location.href='/company/likecompany'">이력서 작성</button>
-			</div>
-		</div>
 		<form>
-			<div class="line"></div>
 			<input id="userId" type="hidden" value="${personMyPageDto.userId}">
 			<div class="input-group mb-3">
 				<span class=" input-group-text"> 아이디 </span> <input type="text"

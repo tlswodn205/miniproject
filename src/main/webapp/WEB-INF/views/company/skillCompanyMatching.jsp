@@ -107,7 +107,7 @@
 
         <div class="container mt-3">
             <div class="skillCompanyMatching_container">
-                <h2 class="d-flex justify-content-center">기술별 기업 매칭</h2>
+                <h2 class="d-flex justify-content-center">기술별 공고 매칭</h2>
                 <ul>
                     <li class="skillCompany">
                         <div class=" d-flex justify-content-between">
@@ -136,7 +136,7 @@
                             <div class="info">
                                 <div class="title">${company.noticeTitle}</div>
                                 <div class="content flex">
-                                    <div>${company.career==0 ? "신입": company.career}</div>
+                                    <div>${company.career}년차</div>
                                     <div>${company.degree}</div>
                                     <div>${company.address}</div>
                                 </div>
@@ -147,7 +147,7 @@
                                     <div>기술스택
                                     </div>
                                     <div class="skills">
-                                        <c:forEach var="skills" items="${person.personSkillList}"> ${skills.skill}, </c:forEach>
+                                        <c:forEach var="skills" items="${company.needSkillList}"> ${skills.skill}, </c:forEach>
                                     </div>
                                 </div>
                             </div>

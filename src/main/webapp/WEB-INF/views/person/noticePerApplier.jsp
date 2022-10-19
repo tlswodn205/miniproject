@@ -107,7 +107,7 @@ ul {
 						<div class="flex">
 							<div class="title">${person.personName}</div>
 							<div class="second">
-								<div class="career">${person.career}</div>
+								<div class="career">${person.career}년차</div>
 								<div class="skill">
 									<c:forEach var="Skills" items="${person.personSkillList}">
                                     ${Skills.skill}
@@ -116,7 +116,7 @@ ul {
 								<div class="date">${person.createdAt}</div>
 							</div>
 						</div>
-						<div onclick="goApply(${person.personId})" class="category">
+						<div onclick="goApply(${person.resumeId})" class="category">
 							<p class="update">지원자 이력서보기</p>
 						</div>
 					</div>
@@ -147,7 +147,8 @@ ul {
 
 <script>
 function goApply(id){
-	location.href = "";
+	
+	location.href = "/person/resumeDetail/" + id;
 }
 
 $("#closed").click(() => {

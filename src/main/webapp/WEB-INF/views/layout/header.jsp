@@ -50,12 +50,22 @@
 					<c:if test="${principal.role == 'person'}">
 						<li class="nav-item"><a class="nav-link" href="/person/resumeWrite">이력서 등록</a></li>
 						<li class="nav-item"><a class="nav-link" href="/person/resumeManage">이력서 목록보기</a></li>
+						<li class="nav-item"><a class="nav-link" href="/person/personApply">지원공고 목록보기</a></li>
+						
 						<li class="nav-item"><a class="nav-link" href="/company/subscribeManage">구독 페이지</a></li>
 					</c:if>
 					<c:if test="${principal.role == 'person' || principal.role == null}">
 						<li class="nav-item"><a class="nav-link" href="/company/matchingList">관심기업 매칭</a></li>
 						<li class="nav-item"><a class="nav-link" href="/company/recommendList">기업추천 리스트</a></li>
 					</c:if>
+					
+					<c:if test="${principal.role == 'person'}">
+						<li class="nav-item"><a class="nav-link" href="/personMypage">구직자마이페이지</a></li>
+					</c:if>
+					
+					<c:if test="${principal.role == 'company'}">
+						<li class="nav-item"><a class="nav-link" href="/companyMypage">기업마이페이지</a></li>
+						</c:if>
 					<c:if test="${principal == null }">
 						<li class="nav-item" style="margin: 0 30px 0 30px;"><a href="/loginForm">
 								<button id="btnUpdate" type="button" class="btn btn-primary">로그인/회원가입</button>
@@ -64,6 +74,7 @@
 						<c:if test="${principal != null}">
 						<li class="nav-item"><a href="/logout"><button id="btnUpdate" type="button" class="btn btn-primary">로그아웃</button></a></li>
 					</c:if>
+					
 				</ul>
 			</div>
 				

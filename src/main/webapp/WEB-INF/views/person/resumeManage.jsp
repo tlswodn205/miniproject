@@ -134,7 +134,8 @@ h2 {
 			dataType: "json"
 		}).done((res) => {
 			if (res.code == 1) {
-				console.log("이력서 삭제 완료");	
+				console.log("이력서 삭제 완료");
+				location.href="/person/resumeManage";
 			} else {
 				alert("이력서 삭제 실패");
 			}

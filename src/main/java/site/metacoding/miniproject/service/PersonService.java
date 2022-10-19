@@ -242,16 +242,19 @@ public class PersonService {
 			int count = 0;
 			List<PersonSkill> personSkillList = personSkillDao.findByPersonId(personIdList.get(i).getPersonId());
 			for (int j = 0; j < personSkillList.size(); j++) {
-				for (int j2 = 0; j2 < skillList.size(); j2++) {;
+				for (int j2 = 0; j2 < skillList.size(); j2++) {
 					if(personSkillList.get(j).getSkill().equals(skillList.get(j2)) ) {
 						count++;
 					}
 				}			
-				if(personSkillList.size()*0.8 <= count) {
-					personIdList.get(i).setMark(true);
-				}
 			}
-
+				System.out.print(skillList.size()*0.7999999 + "\t");
+				System.out.println(count);
+			if(skillList.size()*0.7999999999 <= count) {
+				personIdList.get(i).setMark(true);
+			}
+			System.out.println(personIdList.get(i).isMark());
+			System.out.println("============================");
 		}
 		return personIdList;
 	}

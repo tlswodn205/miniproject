@@ -14,7 +14,7 @@ public interface ResumeDao {
 
 	public List<Resume> findAll();
 
-	public void update(Resume resume); // dto생각
+	public void update(ResumeWriteDto resumeWriteDto); // dto생각
 
 	public void deleteById(Integer resumeId);
 	

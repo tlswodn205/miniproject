@@ -24,4 +24,8 @@ public class ResumeService {
 		return resumeDetailFormDto;
 	}
 
+	public void 이력서수정하기(ResumeWriteDto resumeWriteDto) {
+		resumeDao.update(resumeWriteDto);
+	}
+
 }

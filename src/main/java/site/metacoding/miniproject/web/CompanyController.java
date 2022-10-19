@@ -28,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
 import site.metacoding.miniproject.domain.need_skill.NeedSkill;
 import site.metacoding.miniproject.domain.notice.Notice;
+import site.metacoding.miniproject.domain.resume.Resume;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.service.CompanyService;
 import site.metacoding.miniproject.service.PersonService;
@@ -70,7 +71,7 @@ public class CompanyController {
 	@GetMapping("/companyJoinForm")
 	public String companyJoinForm(Model model) {
 		model.addAttribute("skillList", BasicSkillList.getSkill());
-		return "/company/companyJoinForm";
+		return "/company/companyJoin";
 	}
 	
 
@@ -84,9 +85,10 @@ public class CompanyController {
 
 
 	// 기업 마이페이지
-	@GetMapping("/companyMypage/{userId}")
-	public String update(@PathVariable Integer userId, Model model) {
-		CompanyMyPageDto companyMyPageDto = companyService.기업마이페이지정보보기(userId);
+	@GetMapping("/companyMypage")
+	public String update(Model model) {
+		User userPS = (User) session.getAttribute("principal");
+		CompanyMyPageDto companyMyPageDto = companyService.기업마이페이지정보보기(userPS.getUserId());
 		model.addAttribute("companyMyPageDto", companyMyPageDto);
 		return "company/companyMypage";
 	}
@@ -165,7 +167,7 @@ public class CompanyController {
 	}
 	
 	@DeleteMapping("/company/deleteSubscribe/{subscribeId}")
-	public CMRespDto<?> deleteSubscribe(@PathVariable Integer subscribeId) {
+	public @ResponseBody CMRespDto<?> deleteSubscribe(@PathVariable Integer subscribeId) {
 		companyService.구독취소(subscribeId);
 		return new CMRespDto<>(1, "구독 취소", null);
 	}
@@ -247,9 +249,11 @@ public class CompanyController {
 		Notice notice = personService.공고하나불러오기(noticeId);
 		List<NeedSkill> needSkillList = companyService.noticeId로필요기술들고오기(noticeId);
 		Company company = companyService.유저아이디로찾기(noticeId);
+		List<Resume> resumeList = personService.이력서목록가져오기(userPS.getUserId());
 		model.addAttribute("notice", notice);
 		model.addAttribute("company", company);
 		model.addAttribute("needSkillList", needSkillList);
+		model.addAttribute("resumeList", resumeList);
 		return "/company/noticeDetail";
 	}
 	

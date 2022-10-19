@@ -97,9 +97,11 @@
                         	<button id="closed" class="btn_post" style="margin: 0 0 0 745px; ">마감하기</button>
                         </c:when>
                         <c:when test = "${principal.role=='person'}">
-                        <select id="submitId" class="btn_post" style="margin: 0 0 0 700px;">
                         </select>
-                       		<button id="apply" class="btn_post" style="margin: 0 0 0 700px;">지원하기</button>
+                        	<select id="resumeId"  style="margin: 0 0 0 400px;">
+                        		<c:forEach var="resume" items="${resumeList}"><option value="${resume.resumeId}">${resume.resumeTitle}</option></c:forEach>
+                        	</select>
+                       		<button id="apply" class="btn_post" style="margin: 0 0 0 20px;">지원하기</button>
                         </c:when>
                     </c:choose>
                         <button id="goBack" class="btn_post"
@@ -146,4 +148,29 @@
         			alert("마감 실패");
         		}
         	});
-        });</script>
+        });
+        
+        $("#apply").click(() => {
+        	let data = {
+        			resumeId : $("#resumeId").val(),
+        			noticeId : $("#noticeId").val()
+        	}
+        	$.ajax("/company/submitResume/", {
+        		type: "Post",
+        		dataType: "json", 
+        		data: JSON.stringify(data),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+        	}).done((res) => {
+        		if (res.code == 1) {
+        			alert("지원 완료");
+        		} else {
+        			alert("마감 실패");
+        		}
+        	});
+        });
+        
+        
+        
+        </script>

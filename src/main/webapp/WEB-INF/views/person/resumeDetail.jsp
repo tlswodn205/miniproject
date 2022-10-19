@@ -40,7 +40,7 @@
         }
 
         .resumeWrite_container_info {
-            width: 80%;
+            width: 70%;
             padding: 0;
         }
 
@@ -55,9 +55,10 @@
         }
 
         .resumeWrite_container_info .input-group textarea {
-            width: 953px;
+            width: 840px;
             height: 300px;
         }
+        
 
 
 
@@ -82,12 +83,12 @@
 								</c:choose></div>
                 <div class="line" style="width: 100%;"></div>
                 <div class="d-flex justify-content-start">
-                    <div class="d-flex flex-column">
+                    <div class="d-flex flex-column" style="width: 300px;">
 						<input id="personId" type="hidden" value="${person.personId}" /> 
 						<input id="resumeId" type="hidden" value="${person2.resumeId}" />
                         
                         <div class="resumeWrite_container_photo">
-							<div id="imageContainer"></div>   
+							<div id="imageContainer" ></div>   
                         	<img  class = "photo" src="/img/${person2.photo}"  style="width: 200px; height: 300px;"> <!-- 사진 사이즈 조절 -->
                         </div>
 
@@ -139,7 +140,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-end"><c:if test="${person.userId==principal.userId}"><button class="btn_insert">수정하기</button></c:if>
+                <div class="d-flex justify-content-end"><c:if test="${person.userId==principal.userId}"><button id="updateResume" class="btn_insert">수정하기</button></c:if>
                 </div>
             </div>
         </div>
@@ -148,8 +149,8 @@
 
 <script>
 
-$("#btnsave").click(() => {
-	save();
+$("#updateResume").click(() => {
+	update();
 });
 
 function setThumbnail(event) {
@@ -174,10 +175,11 @@ function setThumbnail(event) {
 let personId = $("#personId").val();
 
 
-function save() {
+function update() {
 	let formData = new FormData();
 	
     let data = {
+            resumeId: $("#resumeId").val(),
         resumeTitle: $("#resumeTitle").val(),
         myCloud: $("#myCloud").val(),
         introduction: $("#introduction").val(),
@@ -187,7 +189,7 @@ function save() {
     formData.append('file', $("#file")[0].files[0]);
 	formData.append('resumeWriteDto', new Blob([ JSON.stringify(data) ], {type : "application/json"}));
     
-    $.ajax("/resume/save", {
+    $.ajax("/resume/update", {
         type: "POST",
         data : formData,
         processData: false,    
@@ -195,8 +197,8 @@ function save() {
 		enctype : 'multipart/form-data'
     }).done((res) => {
         if (res.code == 1) {
-        	alert("이력서 등록 성공");
-            location.href = "/";
+        	alert("이력서 수정 성공");
+        	location.reload();
         }else{
         	location.reload();
         }

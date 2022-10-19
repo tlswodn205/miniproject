@@ -23,6 +23,7 @@
 
             .companyInfoWrite_container {
                 width: 1200px;
+                height : 750px;
                 border: 2px solid lightslategray;
                 padding: 25px;
                 border-radius: 1%;

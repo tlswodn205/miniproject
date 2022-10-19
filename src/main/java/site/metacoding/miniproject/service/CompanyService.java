@@ -16,6 +16,8 @@ import site.metacoding.miniproject.domain.notice.Notice;
 import site.metacoding.miniproject.domain.notice.NoticeDao;
 import site.metacoding.miniproject.domain.recommend.Recommend;
 import site.metacoding.miniproject.domain.recommend.RecommendDao;
+import site.metacoding.miniproject.domain.submit_resume.SubmitResume;
+import site.metacoding.miniproject.domain.submit_resume.SubmitResumeDao;
 import site.metacoding.miniproject.domain.subscribe.Subscribe;
 import site.metacoding.miniproject.domain.subscribe.SubscribeDao;
 import site.metacoding.miniproject.domain.user.User;
@@ -40,6 +42,7 @@ public class CompanyService {
 	private final NoticeDao noticeDao;
 	private final SubscribeDao subscribeDao;
 	private final RecommendDao recommendDao;
+	private final SubmitResumeDao submitResumeDao;
 	
 
 	@Transactional(rollbackFor = { RuntimeException.class })
@@ -79,6 +82,7 @@ public class CompanyService {
 		
 		for (int i = 0; i < noticeIds.size(); i++) {
 			int count = 0;
+			int count2 =0;
 			for (int j = 0; j < skillList.size(); j++) {
 				if(needSkillDao.findBySkillAndNoticeId(skillList.get(j), noticeIds.get(i).getNoticeId()) !=null) {
 					count++;
@@ -154,6 +158,7 @@ public class CompanyService {
 
 
 	public void 공고등록하기(NoticeInsertDto noticeInsertDto) {
+		System.out.println(noticeInsertDto.getDegree());
 		noticeDao.insert(noticeInsertDto.toNotice());
 		for (int i = 0; i < noticeInsertDto.getNeedSkill().size(); i++) {
 			needSkillDao.insert(noticeInsertDto.toNeedSkill(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()), i));
@@ -175,6 +180,12 @@ public class CompanyService {
 	public void 기업회원정보수정(CompanyMyPageUpdateDto companyMyPageUpdateDto) {
 		companyDao.updateToCompany(companyMyPageUpdateDto);
 		userDao.updateToUser(companyMyPageUpdateDto);
+	}
+
+
+
+	public void 이력서제출하기(SubmitResume submitResume) {
+		submitResumeDao.insert(submitResume);
 	}
 
 

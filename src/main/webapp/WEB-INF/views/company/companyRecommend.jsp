@@ -95,7 +95,7 @@
                                 <button  onClick="goDetail(${company.companyId})" type="button" class="btn_companyDetail">기업상세보기</button>
                             </div>
                                 <div class="content d-flex justify-content-start">
-                                    <div>${company.career==0 ? "신입": company.career}</div>
+                                    <div>${company.career}년차</div>
                                     <div>${company.degree}</div>
                                     <div>${company.address}</div>
                                     <div> ${company.salary}</div>

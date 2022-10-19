@@ -33,7 +33,7 @@ function updateCompany() {
 	}).done((res) => {
 		if (res.code == 1) {
 			alert("게시글 수정 완료");
-			location.href = "/companyMypage/" + $("#userId").val();
+			location.href = "/companyMypage/";
 		} else {
 			alert("업데이트에 실패하였습니다");
 		}

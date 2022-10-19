@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.notice.Notice;
 import site.metacoding.miniproject.domain.person.PersonDao;
 import site.metacoding.miniproject.domain.resume.Resume;
+import site.metacoding.miniproject.domain.submit_resume.SubmitResume;
 import site.metacoding.miniproject.domain.subscribe.Subscribe;
 import site.metacoding.miniproject.domain.subscribe.SubscribeDao;
 import site.metacoding.miniproject.domain.user.User;
@@ -173,7 +174,7 @@ public class PersonController {
 		}
     
 	@DeleteMapping("/person/deleteResume/{resumeId}")
-	public CMRespDto<?> resumeDelete(@PathVariable Integer resumeId){
+	public @ResponseBody CMRespDto<?> resumeDelete(@PathVariable Integer resumeId){
 		personService.이력서삭제하기(resumeId);
 		return new CMRespDto<>(1, "이력서 삭제 성공", null);
 	}
@@ -189,12 +190,10 @@ public class PersonController {
 	@GetMapping("/person/personRecommendList")
 	public String personRecommendList(Model model) {
 		List<PersonRecommendListDto> personRecommendListDto = personService.구직자추천리스트보기();
-
 		User userPS = (User) session.getAttribute("principal");
 		if(userPS != null) {
 			List<String> skillList = personService.유저아이디로마감임박공고의기술스택찾기(userPS.getUserId());
 			if(skillList != null) {
-				System.out.println(skillList.get(0));
 				personRecommendListDto = personService.별찍기(personRecommendListDto, skillList);
 			}
 		}	
@@ -214,7 +213,7 @@ public class PersonController {
 	}
 	
 	@PostMapping("/company/noticeClose/{noticeId}")
-	public CMRespDto<?> closeNotice(@PathVariable Integer noticeId){
+	public @ResponseBody CMRespDto<?> closeNotice(@PathVariable Integer noticeId){
 		personService.공고마감하기(noticeId);
 		return new CMRespDto<>(1, "마감 완료", null);
 	}
@@ -229,4 +228,10 @@ public class PersonController {
 		model.addAttribute("noticeApplyDtoList", noticeApplyDtoList);
 		return "/person/personApply";
 	}
+	
+	@PostMapping("/company/submitResume/")
+	public @ResponseBody CMRespDto<?> submitResume(@RequestBody SubmitResume submitResume){
+		companyService.이력서제출하기(submitResume);
+		return new CMRespDto<>(1, "이력서 제출 완료", null);
+	} 
 }

@@ -162,26 +162,9 @@
 <div class="d-flex justify-content-center">
 
 	<div class="personJoin_container">
-		<div class="flex justify-content-center">
-
-			<div>
-				<button class="company_mypage_topbutton" type="button"  onclick="location.href='/company/noticePerApplier'">기업
-					지원자 확인</button>
-			</div>
-			<div>
-				<button class="company_mypage_topbutton" type="button"
-					onclick="location.href='/company/companyDetail'">공고글 이력 확인</button>
-			</div>
-			<div>
-				<button class="company_mypage_topbutton" type="button" onclick="location.href='/company/conpanyInfoWrite'
-				">기업
-					소개 등록</button>
-			</div>
-		</div>
 
 
 		<form>
-			<div class="line"></div>
 			<input id="userId" type="hidden" value="${companyMyPageDto.userId}">
 			<div class="input-group mb-3">
 				<span class=" input-group-text"> 아이디 </span> <input type="text"

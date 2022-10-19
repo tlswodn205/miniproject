@@ -30,6 +30,6 @@ public class UserService {
 	}
 	
 	public void 유저삭제하기(Integer userId) {
-		userDao.deleteUserId(userId);
+		userDao.deleteById(userId);
 	}
 }
