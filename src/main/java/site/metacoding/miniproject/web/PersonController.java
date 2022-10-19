@@ -1,5 +1,6 @@
 package site.metacoding.miniproject.web;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,6 +23,8 @@ import site.metacoding.miniproject.service.UserService;
 import site.metacoding.miniproject.util.BasicSkillList;
 
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
@@ -127,4 +131,25 @@ public class PersonController {
 		model.addAttribute("interestPersonDto", interestPersonDto);
 		return "/person/skillPersonMatching";
 	}
+	
+	// 구직자 마이페이지
+		@GetMapping("/personMypage")
+		public String PersonMypage(Model model) {
+			User userPS = (User) session.getAttribute("principal");
+			PersonMyPageDto personMyPageDto = personService.구직자마이페이지정보보기(userPS.getUserId());
+//			List<PersonMyPageDto> personMyPageSkillDto = personService.구직자기술보기();
+			model.addAttribute("personMyPageDto", personMyPageDto);
+//			model.addAttribute("personMyPageSkillDto",personMyPageSkillDto);
+			return "person/personMypage";
+		}
+		
+		// 구직자 마이페이지 수정하기
+		@PutMapping("/api/personMypage" )
+		public @ResponseBody CMRespDto<?> updateToPerson(@RequestBody PersonMyPageUpdateDto personMyPageUpdateDto){
+			System.out.println(personMyPageUpdateDto.getDegree());
+			User userPS = (User) session.getAttribute("principal");
+			System.out.println(userPS.getUserId());
+			personService.구직자회원정보수정(userPS.getUserId(), personMyPageUpdateDto);
+			return new CMRespDto<>(1,"구직자회원정보수정 성공", null);
+		}
 }

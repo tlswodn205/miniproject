@@ -20,6 +20,8 @@ import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
@@ -135,4 +137,18 @@ public class PersonService {
 		}
 		return  personRecommendListDto;
 	}
+	
+	//구직자 마이페이지 정보 보기
+		public PersonMyPageDto 구직자마이페이지정보보기(Integer userId) {
+			PersonMyPageDto personMyPageDtoPs = personDao.findToPersonMyPage(userId);
+			return personMyPageDtoPs;
+			
+		}
+		
+		// 구직자 마이페이지 정보 수정
+		@Transactional
+		public void 구직자회원정보수정(Integer userId , PersonMyPageUpdateDto personMyPageUpdateDto) {
+			personDao.updateToPerson(personMyPageUpdateDto);
+			userDao.updateToUser(personMyPageUpdateDto);
+		}
 }
