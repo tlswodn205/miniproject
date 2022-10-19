@@ -12,4 +12,6 @@ public interface SubmitResumeDao {
     public void update(SubmitResume submitResume); // dto생각
 
     public void deleteById(Integer submitResumeId);
+    
+    public List<SubmitResume> findByNoticeId(Integer noticeId);
 }

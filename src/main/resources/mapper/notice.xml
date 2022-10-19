@@ -13,8 +13,8 @@
   </select>
 
   <insert id="insert">
-    INSERT INTO Notice(company_id, notice_title, is_closed, salary, degree, career, created_At)
-    VALUE(#{companyId}, #{noticeTitle}, #{isClosed}, #{salary}, #{degree}, #{career}, now())
+    INSERT INTO Notice(company_id, notice_title, is_closed, salary, degree, career, notice_content, created_At)
+    VALUE(#{companyId}, #{noticeTitle}, #{isClosed}, #{salary}, #{degree}, #{career}, #{noticeContent}, now())
   </insert>
 
   <delete id="deleteById">
@@ -27,6 +27,36 @@
     is_closed = #{isClosed}
     WHERE notice_id = #{noticeId}
   </update>
-
-
+  
+    <select id="findByCompanyId" resultType="site.metacoding.miniproject.web.dto.response.NoticeRespDto">
+    SELECT notice_id, notice_title, salary, degree, is_closed, created_At
+    FROM Notice
+    WHERE company_id = #{companyId}
+  </select>
+  
+  <select id="findRecentNoticeId" resultType="Integer">
+    SELECT notice_id
+    FROM Notice
+    WHERE company_id = #{companyId}
+    ORDER BY created_At desc
+    FETCH NEXT 1 ROWS ONLY
+  </select>
+  
+  <update id="closeNotice">
+    Update Notice
+    SET is_closed = #{isClosed}
+    WHERE notice_id = #{noticeId}
+  </update>
+  
+	<select id = "findNoticeApply" resultType="site.metacoding.miniproject.web.dto.response.NoticeApplyDto" >
+		SELECT cn.notice_id, cn.notice_title, cn.resume_title, c.address, c.company_name, c.company_id
+		FROM (SELECT n.notice_Id, n.notice_title, n.company_Id ,ML.resume_title
+		FROM (SELECT s.*, pp.resume_title, pp.person_id
+		FROM(SELECT r.person_id, r.resume_title, r.resume_id
+		FROM person p INNER JOIN resume r 
+		ON p.person_id = r.person_id WHERE user_id=1) pp INNER JOIN  submit_resume s
+		ON s.resume_Id = pp.resume_Id) ML INNER JOIN notice n
+		ON ML.notice_Id = n.notice_Id WHERE n.is_closed=0) cn INNER JOIN company c
+		ON cn.company_id = c.company_id 
+	</select>
 </mapper>

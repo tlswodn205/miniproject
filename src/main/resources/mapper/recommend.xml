@@ -18,11 +18,19 @@
     VALUE(#{userId}, #{subjectId}, now())
   </insert>
 
-  <delete id="deleteById">
+  <delete id="delete">
     DELETE FROM recommend
     WHERE recommend_Id = #{recommendId}
   </delete>
 
   <update id="update"></update>
+  
+  <select id="findAboutsubject" resultType="site.metacoding.miniproject.web.dto.response.RecommendDetailDto">
+    SELECT count(*) recommendCount ,( SELECT recommend_id
+    FROM recommend
+    WHERE subject_id = #{subjectId} and user_id = #{userId}) recommendId
+    FROM recommend
+    WHERE subject_id = #{subjectId}
+  </select>
 
 </mapper>

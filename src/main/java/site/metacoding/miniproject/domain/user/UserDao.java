@@ -19,5 +19,7 @@ public interface UserDao {
 	public User findByUsername(String username);
 	public void updateToUser(CompanyMyPageUpdateDto companyMyPageUpdateDto);
 	public void updateToUser(PersonMyPageUpdateDto personMyPageUpdateDto);
+	
+	public User findByUserorle(String role);
 
 }

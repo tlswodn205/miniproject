@@ -17,12 +17,18 @@
 		WHERE person_id = #{personId}
 	</select>
 
-	<select id="personInfo"
-		resultType="site.metacoding.miniproject.web.dto.response.PersonInfoDto">
-		SELECT *
-		FROM person
-		WHERE person_id = #{personId}
-	</select>
+
+  <select id="personInfo" resultType="site.metacoding.miniproject.web.dto.response.PersonInfoDto">
+    SELECT *
+    FROM person
+    WHERE person_id = #{personId}
+  </select>
+  
+  <select id="findToId" resultType="Integer">
+  	SELECT person_id
+  	FROM person
+  	WHERE user_id = #{userId}
+  </select>
 
 	<select id="findToId" resultType="Integer">
 		SELECT person_id
@@ -102,6 +108,7 @@
 		ORDER BY
 		subject_id
 	</select>
+  
 
 	<select id="findToPersonMyPage"
 		resultType="site.metacoding.miniproject.web.dto.request.PersonMyPageDto">

@@ -24,5 +24,16 @@
   </delete>
 
   <update id="update"></update>
-
+  
+  <select id="findByUserId" resultType="site.metacoding.miniproject.domain.subscribe.Subscribe">
+    SELECT *
+    FROM subscribe
+    WHERE user_id = #{userId}
+  </select>
+  
+    <select id="findByUserIdAndSubjectId" resultType="Integer">
+    SELECT subscribe_Id
+    FROM subscribe
+    WHERE user_id = #{userId} and subject_id = #{subjectId}
+  </select>
 </mapper>

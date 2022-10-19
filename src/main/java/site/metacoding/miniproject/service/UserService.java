@@ -28,5 +28,8 @@ public class UserService {
 		User userPS = userDao.findByUsername(Username);
 		return userPS;
 	}
-
+	
+	public void 유저삭제하기(Integer userId) {
+		userDao.deleteUserId(userId);
+	}
 }

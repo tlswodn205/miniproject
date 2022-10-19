@@ -17,6 +17,11 @@
     VALUE( #{personId}, #{resumeTitle}, #{photo}, #{introduction}, #{myCloud}, now())
   </insert>
 
+ <insert id="save" useGeneratedKeys="true" keyProperty="resumeId">
+    INSERT INTO resume(person_id, resume_title, photo, introduction, my_cloud, created_At )
+    VALUE( #{personId}, #{resumeTitle}, #{photo}, #{introduction}, #{myCloud}, now())
+  </insert>
+
   <delete id="deleteById">
     DELETE FROM resume
     WHERE resume_id = #{resumeId}
@@ -28,9 +33,9 @@
     WHERE resume_id = #{resumeId}
   </update>
 
-  <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.person_skill.PersonSkill">
+  <select id="findByPersonId" resultType="site.metacoding.miniproject.domain.resume.Resume">
     SELECT *
-    FROM Person_Skill
+    FROM resume
     WHERE person_id = #{personId}
   </select>
 </mapper>

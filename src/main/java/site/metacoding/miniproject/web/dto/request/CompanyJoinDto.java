@@ -26,7 +26,7 @@ public class CompanyJoinDto {
 	}
 
 	public Company toCompany(Integer userId) {
-		return new Company(userId, this.companyName, this.companyEmail, this.companyPhone, this.history,
-				this.address, this.tech, this.introduction);
+		return new Company(userId, this.companyName, this.companyEmail, this.companyPhone, 
+				this.address, this.tech, this.ceoName);
 	}
 }
