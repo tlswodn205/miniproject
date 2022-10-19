@@ -59,7 +59,6 @@ public class PersonService {
 		List<String> personSkillList = personJoinDto.getPersonSkillList();
 		
 		for(int i=0;i<personSkillList.size();i++) {
-			System.out.println(personJoinDto.getPersonSkillList());
 			personSkillDao.insert(personId, personSkillList.get(i));
 		}
 	}
@@ -158,7 +157,6 @@ public class PersonService {
 		if(resumeList.size()==0) {
 			return null;
 		}
-		System.out.println(resumeList.get(0));
 		return resumeList;
 	}
 	

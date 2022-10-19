@@ -211,13 +211,6 @@ ul {
                 }
             }
 
-
-
-
-
-
-
-
             function makePersonItem(person) {
                 var item = `<li class="flex"><div><div class="companyname">\${person.personName}</div></div>`;
                 item += `<div class="info"><div class="content flex"><div>\${person.career}년차</div>`;

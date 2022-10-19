@@ -1,109 +1,121 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../layout/header.jsp"%>
-<link rel="stylesheet" href="css/main.css">
-        <header >
-            <div class="container px-lg-5">
-                <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
-                    <div class="m-4 m-lg-5">
-                        <h1 class="display-5 fw-bold">A warm welcome!</h1>
-                        <p class="fs-4">Bootstrap utility classes are used to create this jumbotron since the old component has been removed from the framework. Why create custom CSS when you can use utilities?</p>
-                        
-                    </div>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+    <%@ include file="../layout/header.jsp" %>
+        <!-- Body-->
+        <style>
+            ul {
+                list-style: none;
+            }
+            .main_container {
+                padding-top: 10px;
+            }
+            .main_container .mainNoticeTitle {
+                margin: 60px 0 40px 35%;
+                width: 400px;
+                font-size: 20px;
+                text-align: center;
+                border: 2px solid lightslategray;
+                font-weight: 900;
+                padding: 10px;
+            }
+            .main_container ul li {
+                padding: 12px;
+                margin: 1.5%;
+                width: 380px;
+                border: 2px solid lightslategray;
+                border-radius: 0.25rem;
+            }
+            .main_container ul li div {
+                margin: 5px;
+            }
+            .main_container .companyname {
+                margin: 10px 5px;
+                font-size: 25px;
+            }
+        </style>
+        <div class="container mt-3 d-flex justify-content-center">
+            <div class="main_container ">
+                <div class="main_photo"><img class="card-img-top" src="https://dummyimage.com/1300x400/adb5bd/495057" alt="..." /></div>
+                <div class="mainNoticeTitle">기업 공고 리스트</div>
+                <div class="mainNoticeList">
+                    <ul class="d-flex flex-wrap">
+                        <li>
+                            <div>
+                                <div><img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                                <div class="companyname">공고 제목</div>
+                                <div class="d-flex flex-column">
+                                    <div>기업명 : </div>
+                                    <div>급여 : </div>
+                                    <div>근무지 : </div>
+                                    <div>기술스택 : </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <div><img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                                <div class="companyname">공고 제목</div>
+                                <div class="d-flex flex-column">
+                                    <div>기업명 : </div>
+                                    <div>급여 : </div>
+                                    <div>근무지 : </div>
+                                    <div>기술스택 : </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <div><img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                                <div class="companyname">공고 제목</div>
+                                <div class="d-flex flex-column">
+                                    <div>기업명 : </div>
+                                    <div>급여 : </div>
+                                    <div>근무지 : </div>
+                                    <div>기술스택 : </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <div><img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                                <div class="companyname">공고 제목</div>
+                                <div class="d-flex flex-column">
+                                    <div>기업명 : </div>
+                                    <div>급여 : </div>
+                                    <div>근무지 : </div>
+                                    <div>기술스택 : </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <div><img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                                <div class="companyname">공고 제목</div>
+                                <div class="d-flex flex-column">
+                                    <div>기업명 : </div>
+                                    <div>급여 : </div>
+                                    <div>근무지 : </div>
+                                    <div>기술스택 : </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <div><img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                                <div class="companyname">공고 제목</div>
+                                <div class="d-flex flex-column">
+                                    <div>기업명 : </div>
+                                    <div>급여 : </div>
+                                    <div>근무지 : </div>
+                                    <div>기술스택 : </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </header>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
-        <div id="CompanyList"><button  type="button" class="btn btn-primary">기업 공고 리스트</button></div>
-        <!-- Page Content-->
-        <section class="pt-4">
-            <div class="container px-lg-5">
-                <!-- Page Features-->
-                <div class="row gx-lg-5">
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-xxl-4 mb-5">
-                        <div class="card bg-light border-0 h-100">
-                            <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
-                               <br> <br> <br> <br> <br> <br> <br> 
-                                <h2 class="fs-4 fw-bold">Fresh new layout</h2>
-                                <p class="mb-0">With Bootstrap 5, we've created a fresh new layout for this template!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-     
+        </div>
 
-
-<%@ include file="../layout/footer.jsp"%>
+        <script>
+        </script>
+        <%@ include file="../layout/footer.jsp" %>

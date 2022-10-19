@@ -27,14 +27,6 @@
 			<link href="/css/workenter.css" rel="stylesheet" />
 
 			<style>
-				.flex {
-					display: flex;
-					justify-content: flex-start;
-				}
-
-				.flex div {
-					margin: 10px 50px 10px 0;
-				}
 			</style>
 		</head>
 

@@ -3,34 +3,147 @@
 <link rel="stylesheet" href="css/workEnter.css">
 <%@ include file="../layout/header.jsp"%>
 
+    <style>
+        .resumeWrite_container {
+            width: 1200px;
+            border: 2px solid lightslategray;
+            margin: 50px;
+            padding-top: 25px;
+        }
+
+        .resumeWrite_container h2 {
+            padding-top: 20px;
+        }
+
+        .resumeWrite_container_title input {
+            width: 90%;
+            height: 60px;
+            margin-left: 5%;
+        }
+
+        .line {
+            width: 597px;
+            border-bottom: 2px solid lightslategray;
+            margin: 25px 0;
+        }
+
+        .resumeWrite_container_photo {
+            width: 150px;
+            padding-left: 10%;
+            margin: 0 30px;
+        }
+
+        .resumeWrite_container_photo photo {
+            width: 117px;
+            height: 156px;
+            background-color: lightslategray;
+        }
+
+        .resumeWrite_container_info {
+            width: 80%;
+            padding: 0;
+        }
+
+        .resumeWrite_container_info .input-group span {
+            width: 100px;
+            text-align: center;
+        }
+
+        .resumeWrite_container_info .input-group span:last-child {
+            padding: 5px;
+            width: 40%;
+        }
+
+        .resumeWrite_container_info .input-group textarea {
+            width: 953px;
+            height: 300px;
+        }
+
+
+
+        .btn_insert {
+            margin: 10px 35px 20px 0;
+            padding: 8px 3%;
+            border: 1px solid lightslategray;
+            background-color: lightslategray;
+            color: white;
+            border-radius: 0.25rem;
+        }
+
+        .btn_insert:hover {
+            background-color: #0d6efd;
+        }
+    </style>	
 <div class="container mt-3">
-	<h2>이력서 제목 : ${person2.resumeTitle}</h2>
-	<form>
-		<input id="personId" type="hidden" value="${person.personId}" /> <input
-			id="personId" type="hidden" value="${person2.resumeId}" />
-		<div class="mb-3 mt-3"></div>
-		<div class="flex">
+            <div class="resumeWrite_container">
+                <div class="resumeWrite_container_title"><c:choose>
+									<c:when test="${person.userId==principal.userId}"><input type="text" class="form-control" value = "${person2.resumeTitle}"></c:when>
+									<c:otherwise> <h2>${person2.resumeTitle}</h2> </c:otherwise>
+								</c:choose></div>
+                <div class="line" style="width: 100%;"></div>
+                <div class="d-flex justify-content-start">
+                    <div class="d-flex flex-column">
+						<input id="personId" type="hidden" value="${person.personId}" /> 
+						<input id="resumeId" type="hidden" value="${person2.resumeId}" />
+                        <div class="resumeWrite_container_photo">
+                        
+							<div id="imageContainer" style="width: 117px; height: 156px;"></div>   
+                        	<img  class = "photo" src="/img/${person2.photo}"  style="width: 117px; height: 156px;">
+                        </div>
+                        <div class="d-flex justify-content-end"> 
+                        	<c:if test="${person.userId==principal.userId}">
+                        		<input id="btnsave" type="file"  accept="image/*" onchange="setThumbnail(event)">  
+                        	</c:if>
+                        </div>
 
-			<div class="form-group">
-				<img src="/img/${person2.photo}" style="width: 117px; height: 156px;">
-				<div id="imageContainer"></div>
-			</div>
+                    </div>
+                    <div class="resumeWrite_container_info">
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 이름 </span>
+                            <span>${person.personName}</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 이메일 </span>
+                            <span>${person.personEmail}</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 학력 </span>
+                            <span>${person.degree}</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 경력 </span>
+                            <span>${person.career}년차</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 거주지 </span>
+                            <span>${person.address}</span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 기술스택 </span>
+                            <span> <c:forEach var="skills" items="${person.personSkillList}"> ${skills.skill}</c:forEach></span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class=" input-group-text"> 링크 </span>
+                            	<c:choose>
+									<c:when test="${person.userId==principal.userId}"><input type="text" class="form-control" value = "${person2.myCloud}"></c:when>
+									<c:otherwise> <span>${person2.myCloud}</span> </c:otherwise>
+								</c:choose>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="d-flex flex-column"><span class=" input-group-text"> 자기소개 </span>
+                                <textarea class="form-control" rows="5">${person2.introduction}</textarea>
 
-				이름 : ${person.personName}</br> 이메일 : ${person.personEmail}</br> 경력 :
-				${person.career}년차</br> 학력 : ${person.degree}</br> 거주지 : ${person.address}
-				<div>
-					<form>
-						<c:forEach var="skills" items="${person.personSkillList}"> ${skills.skill}</c:forEach>
-					</form>
-				</div>
-				링크 : ${person2.myCloud} </br>
-				간단소개 : ${person2.introduction}
-			</div>
-		</div>
-		<button id="btnsave" type="button" class="btn btn-primary"
-			onclick="save">등록하기</button>
-	</form>
-</div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end"><c:if test="${person.userId==principal.userId}"><button class="btn_insert">수정하기</button></c:if>
+                </div>
+            </div>
+        </div>
+
+				
 
 <script>
 
@@ -55,7 +168,6 @@ function setThumbnail(event) {
     };
     reader.readAsDataURL(event.target.files[0]);
 }
-
 
 
 let personId = $("#personId").val();

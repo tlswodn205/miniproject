@@ -9,6 +9,74 @@
         .greyBtn{
             background-color: lightslategray;
         }
+        .personDetail_container {
+            width: 700px;
+            border: 2px solid lightslategray;
+            padding: 50px 10px 100px 10px;
+            margin: 50px;
+        }
+
+        .personDetail_container h2 {
+            padding-top: 0;
+        }
+
+        .personDetail_container .btn_like {
+            width: 50px;
+            height: 30px;
+            margin-left: 15px;
+            border: none;
+            background-color: lightslategray;
+            color: white;
+            border-radius: 0.25rem;
+        }
+
+        .personDetail_container .btn_like:hover {
+            background-color: #0d6efd;
+        }
+
+        .personDetail_container .line {
+            width: 597px;
+            border-bottom: 2px solid lightslategray;
+            margin: 25px 0 80px 0;
+        }
+
+
+        .resumeWrite_container_info {
+            width: 80%;
+            padding: 0;
+            margin-right: -40px;
+        }
+
+
+        .personDetail_container .resumeWrite_container_info .input-group span {
+            width: 100px;
+            text-align: left;
+            padding-left: 20px;
+        }
+
+        .resumeWrite_container_info .input-group span:last-child {
+            padding: 5px 5px 5px 25px;
+            width: 80%;
+
+        }
+
+        .resumeWrite_container_info .input-group textarea {
+            width: 953px;
+            height: 300px;
+        }
+
+        .btn_insert {
+            margin: 10px 35px 20px 0;
+            padding: 8px 3%;
+            border: 1px solid lightslategray;
+            background-color: lightslategray;
+            color: white;
+            border-radius: 0.25rem;
+        }
+
+        .btn_insert:hover {
+            background-color: #0d6efd;
+        }
 </style>
 <section class="py-5">
 

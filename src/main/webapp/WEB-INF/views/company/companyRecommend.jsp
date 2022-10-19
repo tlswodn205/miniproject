@@ -21,24 +21,29 @@
             }
 
             .companyRecommand_container ul li {
-                border-top: 2px solid lightslategray;
-                border-left: 2px solid lightslategray;
-                border-right: 2px solid lightslategray;
-                border-bottom: 1px solid lightslategray;
+                border-right: solid lightslategray;
+                border-left: solid lightslategray;
+                border-bottom: solid lightslategray;
                 height: 150px;
-                padding: 15px 20px 0 50px;
+                padding: 15px 20px 0 40px;
             }
-
+            
+			 .companyRecommand_container ul li:first-child {
+                border-top: 2px solid lightslategray;
+            }
             .companyRecommand_container li:hover {
                 background-color: lightslategray;
                 border: 1px solid lightslategray;
             }
 
             .companyRecommand_container .companyname {
-                padding-right: 30px;
                 font-size: 25px;
             }
 
+ 			.companyRecommand_container .info{
+ 			margin-left:30px;
+ 			width:85%;
+ 			}
             .companyRecommand_container .title {
                 font-size: 25px;
             }
@@ -57,20 +62,20 @@
                 border: none;
             }
 
-            .companyRecommand_container .info .btn_companyDetail {
+            .companyRecommand_container .category .btn_companyDetail {
                 float: right;
                 padding: 5px 20px;
                 border: 1px solid black;
                 border-radius: 5%;
                 background-color: white;
-                margin: 80px 0 0 220px;
+                margin-top:40px;
             }
 
             .companyRecommand_container li:hover .btn_companyDetail {
                 background-color: lightslategray;
             }
 
-            .companyRecommand_container .info .btn_companyDetail:hover {
+            .companyRecommand_container .category .btn_companyDetail:hover {
                 background-color: #0d6efd;
             }
         </style>
@@ -86,6 +91,9 @@
                             </div>
                             <div class="info">
                                 <div class="title">${company.noticeTitle}</div>
+                                 <div class="category">
+                                <button  onClick="goDetail(${company.companyId})" type="button" class="btn_companyDetail">기업상세보기</button>
+                            </div>
                                 <div class="content d-flex justify-content-start">
                                     <div>${company.career==0 ? "신입": company.career}</div>
                                     <div>${company.degree}</div>
@@ -102,9 +110,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="info">
-                                <button  onClick="goDetail(${company.noticeId})" type="button" class="btn_companyDetail">공고상세보기</button>
-                            </div>
+                           
                     </c:forEach>
                     </li>
                 </ul>
@@ -113,7 +119,7 @@
         <script>
 
         function goDetail(id){
-			window.open("/company/noticeDetail/"+id, "", "_blank");
+        	location.href="/company/companyDetail/"+id;
         }
         
             function getSkill(id) {

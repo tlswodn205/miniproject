@@ -226,7 +226,7 @@
 	});
 	
 	function getDetail(id){
-		location.href="/company/noticeDetail/"+id;
+		window.open("/company/noticeDetail/"+id,"","_blank");
 	}
 	
 </script>

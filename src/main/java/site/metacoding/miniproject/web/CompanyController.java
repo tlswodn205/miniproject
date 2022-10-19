@@ -190,7 +190,6 @@ public class CompanyController {
 		if(recommendDetail.getRecommendId()==null) {
 			companyService.기업추천하기(principal.getUserId(), subjectId);
 			recommendDetail = companyService.기업추천불러오기(principal.getUserId(), subjectId);
-			System.out.println(recommendDetail.getRecommendId());
 			return new CMRespDto<RecommendDetailDto> (1, "추천 완료", recommendDetail);
 		}
 		companyService.기업추천취소(recommendDetail.getRecommendId());
@@ -225,7 +224,6 @@ public class CompanyController {
 	public String noticeDetail(@PathVariable Integer noticeId, Model model){
 		Notice notice = personService.공고하나불러오기(noticeId);
 		List<NeedSkill> needSkillList = companyService.noticeId로필요기술들고오기(noticeId);
-		System.out.println(notice.getNoticeContent());
 		model.addAttribute("notice", notice);
 		model.addAttribute("needSkillList", needSkillList);
 		return "/company/noticeDetail";

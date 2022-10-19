@@ -28,7 +28,7 @@
                 border-bottom: 2px solid lightslategray;
                 border-right: 2px solid lightslategray;
                 border-left: 2px solid lightslategray;
-                height: 100px;
+                height: 150px;
                 padding: 11px 20px 0 40px;
             }
 
@@ -141,7 +141,7 @@
                                     <div>${company.address}</div>
                                 </div>
                                 <div class="info">
-                                    <button onclick="goDetail(${company.companyId})" class="btn_companyDetail">기업 상세보기</button>
+                                    <button onclick="goDetail(${company.noticeId})" class="btn_companyDetail">공고상세보기</button>
                                 </div>
                                 <div class="content flex">
                                     <div>기술스택
@@ -159,7 +159,7 @@
 
         <script>
     	function goDetail(id){
-    		window.open("/company/companyDetail/"+id, "", "_blank");
+    		window.open("/company/noticeDetail/"+id, "", "_blank");
     	}
     	
             function getSkill(id) {

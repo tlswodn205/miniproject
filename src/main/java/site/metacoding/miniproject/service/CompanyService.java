@@ -42,7 +42,6 @@ public class CompanyService {
 	public void 기업회원가입(CompanyJoinDto companyJoinDto) {
 		userDao.insert(companyJoinDto.toUser());
 		User userPS = userDao.findByUsername(companyJoinDto.getUsername());
-		System.out.println(companyJoinDto.getCeoName());
 		companyDao.insert(companyJoinDto.toCompany(userPS.getUserId()));
 	}
 
@@ -86,7 +85,6 @@ public class CompanyService {
 			}
 			if(skillList.size()==count) {
 				noticeIdList.add(noticeIds.get(i).getNoticeId());
-				System.out.println(count);
 			}
 		}
 		return noticeIdList;
@@ -108,7 +106,6 @@ public class CompanyService {
 
 	
 	public List<SubscribeDto> 구독목록불러오기(int userId){
-		System.out.println(userId);
 		List<Subscribe> subscribeList = subscribeDao.findByUserId(userId);
 		List<SubscribeDto> subscribeDtoList = new ArrayList<>();
 		for (int i = 0; i < subscribeList.size(); i++) {
@@ -157,7 +154,6 @@ public class CompanyService {
 
 	public void 공고등록하기(NoticeInsertDto noticeInsertDto) {
 		noticeDao.insert(noticeInsertDto.toNotice());
-		System.out.println(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()));
 		for (int i = 0; i < noticeInsertDto.getNeedSkill().size(); i++) {
 			needSkillDao.insert(noticeInsertDto.toNeedSkill(noticeDao.findRecentNoticeId(noticeInsertDto.getCompanyId()), i));
 		}
