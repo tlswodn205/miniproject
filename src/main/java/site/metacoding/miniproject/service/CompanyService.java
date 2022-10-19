@@ -28,6 +28,7 @@ import site.metacoding.miniproject.web.dto.request.CompanyMyPageDto;
 import site.metacoding.miniproject.web.dto.request.CompanyMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.request.NoticeInsertDto;
 import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
+import site.metacoding.miniproject.web.dto.response.CompanyIntroductionDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
@@ -58,6 +59,12 @@ public class CompanyService {
 		companyInsertDto.setCompanyId(CompanyId);
 		companyDao.companyInsert(companyInsertDto);
 		return companyInsertDto;
+	}
+	
+	public CompanyIntroductionDto 기업이력가져오기(Integer companyId) {
+		Company company = companyDao.findById(companyId);
+		CompanyIntroductionDto companyIntroductionDto =  new CompanyIntroductionDto(companyId, company.getPhoto(),company.getIntroduction(), company.getHistory(), company.getCompanyGoal(), company.getUserId());
+				return companyIntroductionDto;
 	}
 
 	public Company 유저아이디로찾기(Integer userId) {

@@ -13,6 +13,7 @@
 				<h2>${company.companyName}</h2>
 				<div style="width: 400px;">
 					<div class="form-group">
+					
 						<input type="file" id="file" accept="image/*"
 							onchange="setThumbnail(event)">
 						<div id="imageContainer"></div>
@@ -77,7 +78,7 @@
 			formData.append('companyInsertDto', new Blob([ JSON.stringify(data) ], {type : "application/json"}));
 		    
 			
-			alert($("#companyId").val());
+			
 			
 			$.ajax("/company/companyInsert/" +$("#companyId").val(), {
 				type: "POST",
@@ -87,7 +88,7 @@
 				enctype : 'multipart/form-data'
 			}).done((res) => {
 				if (res.code == 1) { // 성공
-					alert($("#companyId").val());
+					
 					location.href = "/";
 				} else { // 실패
 					alert("기업 이력등록에 실패하였습니다.");

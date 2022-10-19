@@ -8,9 +8,6 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.domain.company.Company;
@@ -40,10 +36,10 @@ import site.metacoding.miniproject.web.dto.request.CompanyMyPageDto;
 import site.metacoding.miniproject.web.dto.request.CompanyMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.request.NoticeInsertDto;
 import site.metacoding.miniproject.web.dto.response.CMRespDto;
-import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
+import site.metacoding.miniproject.web.dto.response.CompanyIntroductionDto;
 import site.metacoding.miniproject.web.dto.response.CompanyRecommendDto;
-
 import site.metacoding.miniproject.web.dto.response.NoticeRespDto;
+import site.metacoding.miniproject.web.dto.response.RecommendDetailDto;
 import site.metacoding.miniproject.web.dto.response.SubscribeDto;
 
 @RequiredArgsConstructor
@@ -109,8 +105,10 @@ public class CompanyController {
 	public String companyInsertForm(Model model) {
 		User userPS = (User) session.getAttribute("principal");
 		Company companyPS = companyService.유저아이디로찾기(userPS.getUserId());
+		CompanyIntroductionDto companyPS2 = companyService.기업이력가져오기(companyPS.getCompanyId());
 		model.addAttribute("company", companyPS);
-		return "/company/companyInfoWrite";
+		model.addAttribute("company2", companyPS2);
+		return "/company/companyInsertWrite";
 	}
 
 	
