@@ -142,7 +142,7 @@ public class PersonController {
 	@GetMapping("/person/skillPersonMatching")
 	public String skillPersonMatching(Model model) {
 		int career=0;
-		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.경력별관심구직자찾기(career));		
+		List<InterestPersonDto> interestPersonDto = personService.관심구직자리스트(personService.경력별관심구직자찾기(career));	
 		model.addAttribute("interestPersonDto", interestPersonDto);
 		return "/person/skillPersonMatching";
 	}
@@ -164,6 +164,16 @@ public class PersonController {
 	@GetMapping("/person/personRecommendList")
 	public String personRecommendList(Model model) {
 		List<PersonRecommendListDto> personRecommendListDto = personService.구직자추천리스트보기();
+
+		User userPS = (User) session.getAttribute("principal");
+		if(userPS != null) {
+			List<String> skillList = personService.유저아이디로마감임박공고의기술스택찾기(userPS.getUserId());
+			if(skillList != null) {
+				System.out.println(skillList.get(0));
+				personRecommendListDto = personService.별찍기(personRecommendListDto, skillList);
+			}
+		}	
+		
 		model.addAttribute("personRecommendListDto", personRecommendListDto);
 		return "/person/personRecommend";
 	}

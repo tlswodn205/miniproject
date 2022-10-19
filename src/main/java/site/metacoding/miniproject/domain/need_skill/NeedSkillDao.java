@@ -12,4 +12,6 @@ public interface NeedSkillDao {
 	public void deleteById(Integer needSkillId);
 	public List<NeedSkill> findByNoticeId(Integer noticeId);
 	public List<Integer> findBySkill(String skill);
-	public Integer findBySkillAndNoticeId (@Param("skill") String skill, @Param("noticeId") Integer noticeId);}
+	public Integer findBySkillAndNoticeId (@Param("skill") String skill, @Param("noticeId") Integer noticeId);
+	public List<String> findByUserId(Integer userId);
+}

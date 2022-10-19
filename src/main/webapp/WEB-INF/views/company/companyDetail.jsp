@@ -167,7 +167,7 @@
                         <c:forEach var="noticeRespDto" items="${noticeRespDtoList}">
                             <li>
                                 <div class="info">
-                                    <div class="title">${noticeRespDto.noticeTitle}</div>
+                                    <div class="title">${noticeRespDto.noticeTitle}</div><span></span>
                                     <div>
                                         <button onclick="getDetail(${noticeRespDto.noticeId})" class="btn_companyDetail">상세보기</button>
                                     </div>

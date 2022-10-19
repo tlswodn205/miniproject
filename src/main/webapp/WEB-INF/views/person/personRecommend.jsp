@@ -76,7 +76,7 @@
                     <c:forEach var="person" items="${personRecommendListDto}">
                         <li>
                             <div class="info">
-                                <div class="name">${person.personName}(마크)</div>
+                                <div class="name">${person.personName} ${person.mark ? "(★)" : ""}</div>
                                 <div class="content d-flex justify-content-start">
                                     <div>추천수 : ${person.recommendCount}</div>
                                     <div>${person.degree}</div>

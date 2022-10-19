@@ -92,10 +92,18 @@
                             style="height: 500px;">${notice.noticeContent}</div>
                     </div>
                     <div class="d-flex justify-content-end">
+                    <c:choose>
+                    	<c:when test = "${company.companyId==notice.companyId}">
+                        	<button id="closed" class="btn_post" style="margin: 0 0 0 745px; ">마감하기</button>
+                        </c:when>
+                        <c:when test = "${principal.role=='person'}">
+                        <select id="submitId" class="btn_post" style="margin: 0 0 0 700px;">
+                        </select>
+                       		<button id="apply" class="btn_post" style="margin: 0 0 0 700px;">지원하기</button>
+                        </c:when>
+                    </c:choose>
                         <button id="goBack" class="btn_post"
-                            style="margin: 0 0 0 745px; ">뒤로가기</button>
-                        <button id="closed" class="btn_post"
-                            style="margin: 0 0 0 20px; ">마감하기</button>
+                            style="margin: 0 0 0 20px; ">공고별 지원자보기</button>
                     </div>
             </div>
             </br>
@@ -124,7 +132,7 @@
         <script>
 
         $("#goBack").click(() => {
-        	history.back();
+			location.href="/person/noticePerApplier/" + $("#noticeId").val();
         });
         
         $("#closed").click(() => {

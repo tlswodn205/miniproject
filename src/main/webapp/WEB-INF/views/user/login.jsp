@@ -53,7 +53,7 @@
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">비밀번호</span>
-                        <input id="password" type="text" class="form-control" placeholder="비밀번호를 입력해주세요">
+                        <input id="password" type="password" class="form-control" placeholder="비밀번호를 입력해주세요">
                     </div>
                     <div class="form-check mb-3">
                     </div>

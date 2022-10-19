@@ -164,7 +164,7 @@ ul {
 
 <script>
         function goInfo(id){
-			window.open("/PersonInfo/"+id, "", "_blank");
+			window.open("/PersonInfo/"+id, "", "_blank, resizable=no width=1200");
         }
         
         
