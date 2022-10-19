@@ -24,6 +24,8 @@ import site.metacoding.miniproject.domain.submit_resume.SubmitResumeDao;
 import site.metacoding.miniproject.domain.user.User;
 import site.metacoding.miniproject.domain.user.UserDao;
 import site.metacoding.miniproject.web.dto.request.PersonJoinDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.request.ResumeWriteDto;
 import site.metacoding.miniproject.web.dto.response.InterestPersonDto;
 import site.metacoding.miniproject.web.dto.response.NoticeApplyDto;
@@ -152,6 +154,20 @@ public class PersonService {
 		return  personRecommendListDto;
 	}
 	
+	//구직자 마이페이지 정보 보기
+		public PersonMyPageDto 구직자마이페이지정보보기(Integer userId) {
+			PersonMyPageDto personMyPageDtoPs = personDao.findToPersonMyPage(userId);
+			return personMyPageDtoPs;
+			
+		}
+		
+		// 구직자 마이페이지 정보 수정
+		@Transactional
+		public void 구직자회원정보수정(Integer userId , PersonMyPageUpdateDto personMyPageUpdateDto) {
+			personDao.updateToPerson(personMyPageUpdateDto);
+			userDao.updateToUser(personMyPageUpdateDto);
+		}
+    
 	public List<Resume> 이력서목록가져오기(Integer userId){
 		List<Resume> resumeList = resumeDao.findByPersonId(personDao.findToId(userId));
 		if(resumeList.size()==0) {
@@ -213,6 +229,4 @@ public class PersonService {
 		return noticeDao.findNoticeApply(userId);
 	}
 
-
-	
 }

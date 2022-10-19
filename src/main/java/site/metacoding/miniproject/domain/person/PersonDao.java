@@ -2,7 +2,8 @@ package site.metacoding.miniproject.domain.person;
 
 import java.util.List;
 
-
+import site.metacoding.miniproject.web.dto.request.PersonMyPageDto;
+import site.metacoding.miniproject.web.dto.request.PersonMyPageUpdateDto;
 import site.metacoding.miniproject.web.dto.response.PersonInfoDto;
 import site.metacoding.miniproject.web.dto.response.PersonRecommendListDto;
 
@@ -18,4 +19,6 @@ public interface PersonDao {
 	public List<Integer> findByCareer(Integer career);
 	public Integer findToId(Integer userId);
 	public List<PersonRecommendListDto> findToPersonRecommned();
+	public PersonMyPageDto findToPersonMyPage(Integer userId);
+	public void updateToPerson(PersonMyPageUpdateDto personMyPageUpdateDto);
 }
