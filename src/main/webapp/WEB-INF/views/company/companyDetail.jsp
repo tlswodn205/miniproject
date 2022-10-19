@@ -139,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div> <img class="card-img-top" src="https://dummyimage.com/400x150/adb5bd/495057" alt="..." /></div>
+                    <div><img  class = "photo" src="/img/${company.photo}"  style="width: 400px; height: 150px;"></div>
                 </div>
                 <div class="intro">
                     <div class="mb-3 mt-3">
