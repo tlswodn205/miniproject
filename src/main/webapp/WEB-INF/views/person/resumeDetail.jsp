@@ -85,11 +85,12 @@
                     <div class="d-flex flex-column">
 						<input id="personId" type="hidden" value="${person.personId}" /> 
 						<input id="resumeId" type="hidden" value="${person2.resumeId}" />
-                        <div class="resumeWrite_container_photo">
                         
-							<div id="imageContainer" style="width: 117px; height: 156px;"></div>   
-                        	<img  class = "photo" src="/img/${person2.photo}"  style="width: 117px; height: 156px;">
+                        <div class="resumeWrite_container_photo">
+							<div id="imageContainer"></div>   
+                        	<img  class = "photo" src="/img/${person2.photo}"  style="width: 200px; height: 300px;"> <!-- 사진 사이즈 조절 -->
                         </div>
+
                         <div class="d-flex justify-content-end"> 
                         	<c:if test="${person.userId==principal.userId}">
                         		<input id="btnsave" type="file"  accept="image/*" onchange="setThumbnail(event)">  
