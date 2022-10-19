@@ -27,6 +27,9 @@
                 padding: 25px;
                 border-radius: 1%;
             }
+            .companyInfoWrite_container textarea{
+            width:100%
+            }
         </style>
         <div class="container mt-3">
             <div class="companyInfoWrite_container">

@@ -13,7 +13,7 @@ import site.metacoding.miniproject.domain.resume.Resume;
 @Setter
 @Getter
 public class PersonRecommendListDto {
-
+	
 	private Integer personId;
 	private Integer userId;
 	private Integer recommendCount;
@@ -24,5 +24,6 @@ public class PersonRecommendListDto {
 	private String degree;
 	private String address;
 	private List<PersonSkill> skill;
+	private boolean mark;
 	}
 

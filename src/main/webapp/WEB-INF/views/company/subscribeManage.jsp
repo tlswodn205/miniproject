@@ -138,7 +138,7 @@ h2 {
 			}).done((res) => {
 				if (res.code == 1) {
 					console.log("구독 취소 완료");
-					location.href = "/company/subscribeManage"	
+					location.reload();
 				} else {
 					alert("구독 취소 실패");
 				}

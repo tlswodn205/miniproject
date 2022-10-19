@@ -46,4 +46,18 @@
 	    FROM Need_Skill
 	    WHERE skill = #{skill} and notice_id = #{noticeId}
   	</select>
+  	
+  	
+  	<select id = "findByUserId" resultType = "String">
+  		SELECT skill
+		FROM need_Skill
+		WHERE notice_id = (
+		SELECT notice_id
+		FROM notice
+		WHERE company_Id= (select company_Id
+		from company
+		where user_id = #{userId})
+		ORDER BY notice_id AND is_closed asc
+		FETCH NEXT 1 ROWS ONLY)
+	</select>
 </mapper>

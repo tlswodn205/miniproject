@@ -243,9 +243,12 @@ public class CompanyController {
 	
 	@GetMapping("/company/noticeDetail/{noticeId}")
 	public String noticeDetail(@PathVariable Integer noticeId, Model model){
+		User userPS = (User) session.getAttribute("principal");
 		Notice notice = personService.공고하나불러오기(noticeId);
 		List<NeedSkill> needSkillList = companyService.noticeId로필요기술들고오기(noticeId);
+		Company company = companyService.유저아이디로찾기(noticeId);
 		model.addAttribute("notice", notice);
+		model.addAttribute("company", company);
 		model.addAttribute("needSkillList", needSkillList);
 		return "/company/noticeDetail";
 	}

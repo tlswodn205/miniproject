@@ -88,13 +88,12 @@
 	                            <div class="flex">
 	                                <div class="title">${noticeRespDto.noticeTitle}</div>
 	                                <div class="second">
-	                                    <div class="date">${noticeRespDto.createdAt}</div>
 	                                    <div class="skill">
                 						<c:forEach var="Skills" items="${noticeRespDto.needSkill}">
 	                                    ${Skills.skill}
                     					</c:forEach>
-	                                    
 	                                    </div>
+	                                    <div class="date">${noticeRespDto.closed ?  "마감": "모집중"}</div>
 	                                    
 	                                </div>
 	                            </div>
